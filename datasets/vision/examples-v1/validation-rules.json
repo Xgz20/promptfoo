@@ -1,0 +1,17 @@
+{
+  "idField": "vars.sample_id",
+  "requiredFields": [
+    "vars.image",
+    "vars.question",
+    "vars.reference",
+    "metadata.scene",
+    "metadata.category",
+    "metadata.capability"
+  ],
+  "allowedValues": {
+    "metadata.dataset_version": ["examples-v1"],
+    "metadata.difficulty": ["easy", "medium", "hard"],
+    "assert.0.type": ["llm-rubric"],
+    "assert.0.threshold": [1]
+  }
+}

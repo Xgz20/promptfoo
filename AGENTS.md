@@ -6,6 +6,12 @@ Guidance for AI agents working on this TypeScript codebase.
 
 Promptfoo is an open-source framework for evaluating and testing LLM applications.
 
+## AStudio 视觉评测用例
+
+本工程的 AStudio 用例开发分支为 `feature/astudio-vision-eval`。处理新增、修改、检查视觉评测用例的任务时，先阅读 [用例维护指南](docs/astudio/datasets.md) 和 [数据集指令](datasets/vision/AGENTS.md)。正式用例维护在 `datasets/vision/astudio-v1/`，结构示例位于 `datasets/vision/examples-v1/`。
+
+新增用例后，从工程根目录运行 `node scripts/astudio/validate-dataset.mjs datasets/vision/astudio-v1`，并汇报新增 ID、图片、考察能力、标注与评分依据和校验结果。执行模型评测时，使用用户指定的模型与裁判配置。
+
 ## Project Structure
 
 | Directory           | Purpose                         | Local Docs                   |
