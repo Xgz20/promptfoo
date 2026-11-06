@@ -10,8 +10,6 @@ Promptfoo is an open-source framework for evaluating and testing LLM application
 
 本工程的 AStudio 用例开发分支为 `feature/astudio-vision-eval`。处理新增、修改、检查视觉评测用例的任务时，先阅读 [用例维护指南](docs/astudio/datasets.md) 和 [数据集指令](datasets/vision/AGENTS.md)。正式用例维护在 `datasets/vision/astudio-v1/`，结构示例位于 `datasets/vision/examples-v1/`。
 
-所有后续修改默认完成本地验证与 Git commit。推送 GitHub、Gitee 或双端均以用户明确的推送指令为执行条件，任务完成与本地提交本身仅授权本地操作。
-
 新增用例后，从工程根目录运行 `node scripts/astudio/validate-dataset.mjs datasets/vision/astudio-v1`，并汇报新增 ID、图片、考察能力、标注与评分依据和校验结果。执行模型评测时，使用用户指定的模型与裁判配置。
 
 ## Project Structure
@@ -158,9 +156,9 @@ with `--env-file`); never echo them into logs or commit messages.
 
 When asked only to review or audit a PR, keep the work read-only: inspect the branch, diff, PR comments, and CI as needed; run non-mutating tests or QA when useful; and report findings without committing, pushing, or changing files unless the user explicitly asks for fixes.
 
-When asked to fix, improve, or land a PR, check out the branch, inspect the diff and PR comments, merge or rebase on current `origin/main` when requested, run focused tests, run the relevant real workflow, and commit locally. After an explicit instruction to push, push to the requested remote targets and watch CI until it is green or the remaining failure is clearly unrelated.
+When asked to fix, improve, or land a PR, own the full loop: check out the branch, inspect the diff and PR comments, merge or rebase on current `origin/main` when requested, run focused tests, run the relevant real workflow, commit, push, and watch CI until it is green or the remaining failure is clearly unrelated.
 
-**Local commits by default on feature branches.** Complete the requested changes, verification, and local `git commit` on the working branch. Execute `git push` only after the user explicitly instructs you to push, using the requested remote targets. The safety constraints in _Git Workflow (CRITICAL)_ below still apply.
+**Standing commit/push authorization on feature branches.** When the user has asked you to fix, improve, or land work on a non-`main` branch, you have durable authorization to `git commit` and `git push` to that branch's tracking remote without per-step confirmation. Do not pause to ask "want me to commit?" — committing and pushing is part of the requested work. The safety constraints in _Git Workflow (CRITICAL)_ below (no commits to `main`, no `--force` without approval, no `--no-verify`, etc.) still apply.
 
 **After landing a PR, watch `main` until its CI is green.** Merging is not the end of the loop. The squash commit kicks off a fresh CI run on `main` that can fail for reasons the PR's own checks never surfaced — a base that advanced, a flaky job, or a real regression from the merge. After you merge, follow that `main` run to completion and do not leave `main` red:
 
@@ -221,7 +219,6 @@ without explicit permission.** Use `--no-cache` flag instead.
 
 ## Git Workflow (CRITICAL)
 
-- Pushes to GitHub, Gitee, or both require an explicit user instruction.
 - **NEVER** commit/push directly to main
 - **NEVER** use `--force` without explicit approval
 - **NEVER** comment on GitHub issues - only create PRs to address them
@@ -238,7 +235,6 @@ git add <specific-files>                    # Never blindly add everything
 npm run l && npm run f                      # Lint and format before commit/push
 git commit -m "type(scope): description"    # Conventional commit format
 git fetch origin main && git merge origin/main  # Sync with main
-# Run the next command after an explicit user instruction to push.
 git push -u origin feature/your-branch-name # Push branch
 ```
 
