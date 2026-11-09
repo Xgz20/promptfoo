@@ -60,7 +60,8 @@ npm ci
 完整流水线可用一个命令完成采集、API 裁判和 Excel 导出。
 
 ```bash
-node scripts/astudio/vision/run-evaluation.mjs --judge-mode api --concurrency 4
+node scripts/astudio/vision/run-evaluation.mjs --judge-mode api \
+  --concurrency 8 --per-model-concurrency 1
 ```
 
 需要在 Codex 会话完成裁判时，使用 `--judge-mode session`。首次生成判分包及待完成报告，在会话判分完成后，指定同一 `run-dir` 加 `--resume` 导入并刷新 Excel。`--resume` 继续裁判和报告阶段，候选采集使用已有记录。
@@ -76,7 +77,8 @@ node scripts/astudio/vision/run-evaluation.mjs \
 以下命令执行八模型、100题的全量采集，发起真实模型调用。
 
 ```bash
-node --import tsx scripts/astudio/vision/evaluate-live.mjs --concurrency 4
+node --import tsx scripts/astudio/vision/evaluate-live.mjs \
+  --concurrency 8 --per-model-concurrency 1
 ```
 
 首次验证可选两个模型、每场景一题。该范围为每模型6题，报告会标为接口验证样本。
@@ -87,7 +89,18 @@ node --import tsx scripts/astudio/vision/evaluate-live.mjs \
   --cases-per-scene 1 --concurrency 4
 ```
 
-命令输出本轮 `run_dir`。下文的 `RUN_DIR` 均替换为这个路径。每轮使用独立目录，已有目录会被拒绝，以便明确区分重复运行。候选回答、用量、耗时、请求ID、实际渠道和模型名称保存在 `candidates/`，Promptfoo 原生采集结果保存在 `promptfoo-candidate-results.json`。
+`--concurrency` 控制同时运行的模型数，`--per-model-concurrency` 控制各模型内部的题目并发数，默认分别为4和1。八模型同时运行、各模型串行时使用8和1。每个模型拥有独立的 Promptfoo SDK 进程、数据库和连接池，单个模型处理下一题无需等待其它模型。`run.json` 冻结并发设置、有效模型参数和源码版本，请求记录中的起止时间供实际并发核对。
+
+命令输出本轮 `run_dir`。下文的 `RUN_DIR` 均替换为这个路径。每轮使用独立目录，已有目录需显式指定 `--resume`。候选回答、用量、耗时、请求ID、实际渠道和模型名称保存在 `candidates/`。`promptfoo-candidate-results.json` 索引各模型、各次恢复执行的原生采集结果。
+
+候选采集中断后，可用相同参数恢复。程序核对源码版本、题集、配置与参数，校验已有记录的题目和回答哈希，只调用尚无落盘记录的题目。已记录的技术失败也保留。进程在收到响应后、写入记录前被强制终止的调用可能需要重试，远端是否已计费须以平台账单核对。
+
+```bash
+node --import tsx scripts/astudio/vision/evaluate-live.mjs \
+  --run-dir RUN_DIR --concurrency 8 --per-model-concurrency 1 --resume
+```
+
+`.candidate.lock` 防止同一轮重复启动。异常中止后，如锁仍存在，应先确认该轮父进程和所有模型子进程均已结束，再清理残留锁文件。默认单次请求超时180秒、最大输出8192 token，可通过 `--timeout-ms`、`--max-tokens` 指定并冻结在运行记录中。
 
 候选阶段的原生结果用于执行诊断，最终视觉分数由后续逐点判分生成。模型输入仅包含已核验哈希的原图与完整题干。
 

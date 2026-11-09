@@ -12,6 +12,7 @@ const { values } = parseArgs({
     models: { type: 'string' },
     'cases-per-scene': { type: 'string' },
     concurrency: { type: 'string', default: '4' },
+    'per-model-concurrency': { type: 'string', default: '1' },
     'judge-mode': { type: 'string', default: 'session' },
     'judge-concurrency': { type: 'string', default: '3' },
     output: { type: 'string' },
@@ -48,7 +49,14 @@ function execute(script, args, needsTypeScript = false) {
 }
 
 if (!values.resume) {
-  const args = ['--run-dir', runRoot, '--concurrency', values.concurrency];
+  const args = [
+    '--run-dir',
+    runRoot,
+    '--concurrency',
+    values.concurrency,
+    '--per-model-concurrency',
+    values['per-model-concurrency'],
+  ];
   for (const option of ['models', 'cases-per-scene']) {
     if (values[option]) {
       args.push(`--${option}`, values[option]);

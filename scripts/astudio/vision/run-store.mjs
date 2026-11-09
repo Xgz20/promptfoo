@@ -5,7 +5,7 @@ import path from 'node:path';
 import { checkpointDefinitions, checkpointResults } from './case-details.mjs';
 import { bytes, hash, read, verifiedJSON } from './files.mjs';
 import { reviewPath, reviewRequest, scoreCandidate, technicalFailureReview } from './judge.mjs';
-import { candidatePath } from './live-provider.mjs';
+import { readCandidate } from './live-provider.mjs';
 import { buildReport } from './metrics.mjs';
 import { estimateCost } from './pricing.mjs';
 import { DIMENSIONS } from './score.mjs';
@@ -43,17 +43,12 @@ export function loadRun(runRoot) {
   for (const model of manifest.models) {
     for (const row of rows) {
       const id = row.metadata.case_id;
-      const file = candidatePath(runRoot, model.id, id);
-      const candidate = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
+      const candidate = readCandidate(runRoot, model.id, row.metadata);
       let result = null,
         reviewError = null,
         provenance = null,
         semanticReview = null;
       if (candidate) {
-        assert.equal(candidate.model_id, model.id);
-        assert.equal(candidate.case_id, id);
-        assert.equal(candidate.image_sha256, row.metadata.image_sha256);
-        assert.equal(candidate.prompt_sha256, row.metadata.prompt_sha256);
         const request = reviewRequest(row, candidate);
         jobs.push({ row, candidate });
         const file = reviewPath(runRoot, model.id, id);

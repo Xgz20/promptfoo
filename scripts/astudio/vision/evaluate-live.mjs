@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 
-import { hash, REPO, ROOT, read } from './files.mjs';
+import { forEachConcurrent } from './concurrency.mjs';
+import { hash, REPO, read } from './files.mjs';
 import { exportSessionJudge } from './judge.mjs';
-import { writeJSON } from './live-provider.mjs';
+import { modelKey, writeJSON } from './live-provider.mjs';
 import { fetchForVision } from './network.mjs';
 import { refreshPricing } from './pricing.mjs';
 import { datasetCases, loadRun } from './run-store.mjs';
@@ -18,8 +19,11 @@ const { values } = parseArgs({
     models: { type: 'string' },
     'cases-per-scene': { type: 'string' },
     concurrency: { type: 'string', default: '4' },
+    'per-model-concurrency': { type: 'string', default: '1' },
     'max-tokens': { type: 'string', default: '8192' },
+    'timeout-ms': { type: 'string', default: '180000' },
     'run-dir': { type: 'string' },
+    resume: { type: 'boolean', default: false },
   },
 });
 const config = JSON.parse(fs.readFileSync(values.config, 'utf8'));
@@ -50,6 +54,13 @@ for (const model of models) {
 }
 const concurrency = Number(values.concurrency);
 assert.ok(Number.isInteger(concurrency) && concurrency > 0, '并发数需为正整数');
+const perModelConcurrency = Number(values['per-model-concurrency']);
+assert.ok(
+  Number.isInteger(perModelConcurrency) && perModelConcurrency > 0,
+  '模型内部并发数需为正整数',
+);
+const timeoutMs = Number(values['timeout-ms']);
+assert.ok(Number.isInteger(timeoutMs) && timeoutMs > 0, 'timeout-ms 需为正整数');
 const maxTokens = Number(values['max-tokens']);
 assert.ok(Number.isInteger(maxTokens) && maxTokens > 0, 'max-tokens 需为正整数');
 const limit = values['cases-per-scene'] ? Number(values['cases-per-scene']) : null;
@@ -64,12 +75,12 @@ const selected = dataset.scenes.flatMap((scene) => {
 const runId = new Date().toISOString().replaceAll(/[:.]/g, '-');
 const runRoot = path.resolve(values['run-dir'] ?? path.join(REPO, '.local/vision-runs', runId));
 fs.mkdirSync(path.dirname(runRoot), { recursive: true });
-fs.mkdirSync(runRoot); // An existing run cannot accidentally issue paid requests again.
+assert.ok(!values.resume || values['run-dir'], 'resume 需指定 run-dir');
 const sourceRevision = execFileSync('git', ['rev-parse', 'HEAD'], {
   cwd: REPO,
   encoding: 'utf8',
 }).trim();
-const manifest = {
+let manifest = {
   run_id: runId,
   created_at: new Date().toISOString(),
   source_revision: sourceRevision,
@@ -89,44 +100,104 @@ const manifest = {
     count: selected.filter((row) => row.metadata.scene === scene.id).length,
   })),
   concurrency,
+  concurrency_mode: 'model-workers',
+  per_model_concurrency: perModelConcurrency,
+  candidate_timeout_ms: timeoutMs,
   max_tokens: maxTokens,
   candidate_parameters: { max_tokens: maxTokens },
 };
-const pricing = await refreshPricing(config.models);
-writeJSON(path.join(runRoot, 'pricing.json'), pricing);
-manifest.pricing_sha256 = hash(JSON.stringify(pricing));
-writeJSON(path.join(runRoot, 'run.json'), manifest);
-
-Object.assign(process.env, {
-  PROMPTFOO_CONFIG_DIR: path.join(runRoot, 'promptfoo'),
-  PROMPTFOO_DISABLE_TELEMETRY: '1',
-  PROMPTFOO_DISABLE_REMOTE_GENERATION: '1',
-  LOG_LEVEL: 'error',
-});
-const { default: promptfoo } = await import('../../../src/index.ts');
-const evaluation = await promptfoo.evaluate(
-  {
-    description: 'AStudio 单图候选回答采集，视觉评分由逐点裁判阶段生成',
-    basePath: ROOT,
-    writeLatestResults: false,
-    prompts: [`file://${path.join(REPO, 'scripts/astudio/vision/messages.mjs')}`],
-    providers: models.map((model) => ({
-      id: `file://${path.join(REPO, 'scripts/astudio/vision/live-provider.mjs')}`,
-      label: model.name,
-      config: {
-        model: model.id,
-        baseUrl: config.base_url,
-        apiKeyEnv: config.api_key_env,
-        runRoot,
-        parameters: { ...manifest.candidate_parameters, ...model.parameters },
-      },
-    })),
-    tests: selected,
-  },
-  { maxConcurrency: concurrency, cache: false, showProgressBar: false },
+if (values.resume) {
+  const existing = loadRun(runRoot).manifest;
+  for (const key of [
+    'source_revision',
+    'source_dirty',
+    'config',
+    'models',
+    'cases_sha256',
+    'case_ids',
+    'concurrency',
+    'concurrency_mode',
+    'per_model_concurrency',
+    'candidate_timeout_ms',
+    'candidate_parameters',
+  ]) {
+    assert.deepEqual(existing[key], manifest[key], `断点恢复参数与原计划不一致 ${key}`);
+  }
+  manifest = existing;
+} else {
+  fs.mkdirSync(runRoot); // Existing runs require an explicit, hash-checked resume.
+  const pricing = await refreshPricing(config.models);
+  writeJSON(path.join(runRoot, 'pricing.json'), pricing);
+  manifest.pricing_sha256 = hash(JSON.stringify(pricing));
+  writeJSON(path.join(runRoot, 'run.json'), manifest);
+}
+const lock = path.join(runRoot, '.candidate.lock');
+const descriptor = fs.openSync(lock, 'wx');
+fs.writeFileSync(
+  descriptor,
+  JSON.stringify({ pid: process.pid, started_at: new Date().toISOString() }),
 );
-const summary = await evaluation.toEvaluateSummary();
-writeJSON(path.join(runRoot, 'promptfoo-candidate-results.json'), summary);
+fs.closeSync(descriptor);
+const children = new Set();
+let stopping = false;
+const stop = () => {
+  stopping = true;
+  for (const child of children) {
+    child.kill('SIGTERM');
+  }
+};
+process.once('SIGTERM', stop);
+process.once('SIGINT', stop);
+try {
+  await forEachConcurrent(
+    models,
+    concurrency,
+    (model) =>
+      new Promise((resolve, reject) => {
+        assert.ok(!stopping, '候选采集已停止');
+        const child = spawn(
+          process.execPath,
+          [
+            '--import',
+            'tsx',
+            path.join(REPO, 'scripts/astudio/vision/candidate-worker.mjs'),
+            '--run-dir',
+            runRoot,
+            '--model',
+            model.id,
+          ],
+          { cwd: REPO, stdio: 'inherit' },
+        );
+        children.add(child);
+        child.once('error', reject);
+        child.once('close', (code, signal) => {
+          children.delete(child);
+          if (code === 0) {
+            resolve();
+          } else {
+            reject(new Error(`模型采集进程失败 ${model.id} code=${code} signal=${signal}`));
+          }
+        });
+      }),
+  );
+} finally {
+  process.removeListener('SIGTERM', stop);
+  process.removeListener('SIGINT', stop);
+  fs.unlinkSync(lock);
+}
+writeJSON(path.join(runRoot, 'promptfoo-candidate-results.json'), {
+  format: 'vision-candidate-workers-v1',
+  models: models.map((model) => {
+    const directory = path.join(runRoot, 'promptfoo-candidate-results', modelKey(model.id));
+    return {
+      model_id: model.id,
+      summaries: fs
+        .readdirSync(directory)
+        .sort()
+        .map((file) => path.relative(runRoot, path.join(directory, file))),
+    };
+  }),
+});
 const run = loadRun(runRoot);
 assert.equal(run.jobs.length, models.length * selected.length, '候选调用记录不完整');
 exportSessionJudge(runRoot, run.jobs);
@@ -138,6 +209,7 @@ console.log(
       cases_per_model: selected.length,
       candidate_calls: run.jobs.length,
       concurrency,
+      per_model_concurrency: perModelConcurrency,
       scope: manifest.scope,
       next: '执行 judge-run.mjs，或在 Codex 会话完成 session-judge 判分后导入',
     },
