@@ -158,6 +158,8 @@ API 裁判接收原图、问题、原子标准及原始回答。程序从可信 
 
 Excel 生成使用 Artifact Tool，默认查找 Codex 随附运行时。其它运行环境通过 `ASTUDIO_ARTIFACT_RUNTIME` 指定包含其 `node_modules` 的 Node 运行时目录。
 
+报告文件名带北京时间的生成时间戳，格式为 `视觉模型评测报告_YYYYMMDD_HHmmss_SSS.xlsx`，精确到毫秒。同一轮重新生成时使用新的生成时间。若文件名仍冲突，会追加递增序号。`--output` 用于指定目录和名称前缀，实际文件名仍追加时间戳，以命令返回的 `output` 路径为准。
+
 ```bash
 node scripts/astudio/vision/report-xlsx.mjs --run-dir RUN_DIR
 
