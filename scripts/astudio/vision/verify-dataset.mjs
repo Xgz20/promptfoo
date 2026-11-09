@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
 
 import { bytes, hash, read, verifiedJSON } from './files.mjs';
+import { SCORING_POLICY } from './policy.mjs';
 
 export function verifyDataset() {
   const manifest = read('manifest.json');
@@ -57,6 +58,7 @@ export function verifyDataset() {
     tasks: 100,
     images: 100,
     byte_identical_core_files: files,
+    scoring_version: SCORING_POLICY.version,
     scene_counts: manifest.scenes.map((s) => s.count),
     applicable_dimension_counts: counts,
   };

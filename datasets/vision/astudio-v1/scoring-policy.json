@@ -1,0 +1,14 @@
+{
+  "version": "point-mean-v1",
+  "task_score": "equal_applicable_points",
+  "semantic_point_credit": [0, 1],
+  "geometry_point_credit": [0, 1],
+  "geometry_points_per_target": 1,
+  "shared_points": "count_once_at_declared_owner",
+  "extra_edit_penalty_per_item": 10,
+  "score_floor": 0,
+  "overall_aggregation": "equal_weight_six_scenes",
+  "dimension_aggregation": "mean_applicable_task_rates",
+  "annotation_aggregation": "pooled_complete_annotations",
+  "legacy_contract_weights": "historical_reference_only"
+}

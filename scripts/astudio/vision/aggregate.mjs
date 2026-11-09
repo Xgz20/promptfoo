@@ -16,6 +16,12 @@ export function aggregate(rows, scenes) {
       name: s.name,
       task_count: selected.length,
       score: mean(selected.map((r) => r.score)),
+      earned_points: sum(
+        selected.map((r) => sum(Object.values(r.dimensions).map((d) => d.earned))),
+      ),
+      total_points: sum(
+        selected.map((r) => sum(Object.values(r.dimensions).map((d) => d.possible))),
+      ),
       fully_correct: selected.filter((r) => r.fully_correct).length,
       annotation_complete: annotations.filter((a) => a.complete).length,
       annotation_total: annotations.length,
@@ -30,6 +36,8 @@ export function aggregate(rows, scenes) {
     score: mean(sceneScores.map((s) => s.score)),
     score_aggregation: 'equal_weight_six_scenes',
     task_mean_score: mean(rows.map((r) => r.score)),
+    earned_points: sum(sceneScores.map((s) => s.earned_points)),
+    total_points: sum(sceneScores.map((s) => s.total_points)),
     fully_correct: rows.filter((r) => r.fully_correct).length,
     annotation_complete: complete,
     annotation_total: total,
@@ -63,7 +71,11 @@ export function aggregate(rows, scenes) {
 // Check unrounded values, with 1e-9 absolute tolerance; never round to hide drift.
 export function compare(actual, expected, label = 'result', diffs = []) {
   if (typeof expected === 'number' && typeof actual === 'number') {
-    if (!Number.isFinite(actual) || Math.abs(actual - expected) > 1e-9) {
+    if (
+      !Number.isFinite(actual) ||
+      !Number.isFinite(expected) ||
+      Math.abs(actual - expected) > 1e-9
+    ) {
       diffs.push({ path: label, before: expected, after: actual });
     }
   } else if (expected && typeof expected === 'object') {

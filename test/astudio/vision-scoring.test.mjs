@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 
 import { test } from 'vitest';
-import { aggregate } from '../../scripts/astudio/vision/aggregate.mjs';
+import { aggregate, compare } from '../../scripts/astudio/vision/aggregate.mjs';
 import { bytes, hash, read } from '../../scripts/astudio/vision/files.mjs';
 import messages from '../../scripts/astudio/vision/messages.mjs';
 import grade, {
@@ -12,6 +12,12 @@ import grade, {
 } from '../../scripts/astudio/vision/score.mjs';
 
 const cases = bytes('cases.jsonl').toString().trim().split('\n').map(JSON.parse);
+test('non-finite recalculation expectations cannot silently pass numeric comparison', () => {
+  assert.equal(compare(80, Number.NaN).length, 1);
+  assert.equal(compare(Number.NaN, 80).length, 1);
+  assert.equal(compare(Number.POSITIVE_INFINITY, Number.POSITIVE_INFINITY).length, 1);
+  assert.equal(compare(80, 80).length, 0);
+});
 // Synthetic in-memory decisions exercise the scoring contract. No model answers
 // or historical run files are required by the committed test suite.
 function sample(id = 'photo-001') {
@@ -204,10 +210,11 @@ test('NA dimensions are excluded and cannot supply free score', () => {
     a.content_answers.find((q) => q.id === 'G1').target_point = null;
   });
   const r = scoreAnswer(s);
-  assert.equal(r.applicable_weight_sum, 45);
+  assert.equal(r.total_points, s.review.checkpoints.length + 1);
+  assert.equal(r.earned_points, r.total_points - 1);
   assert.equal(r.dimensions['文字识别'].rate, null);
   assert.equal(r.dimensions['批注目标识别'].rate, null);
-  assert.ok(Math.abs(r.score - (100 * 35) / 45) < 1e-9);
+  assert.ok(Math.abs(r.score - (100 * r.earned_points) / r.total_points) < 1e-9);
   assert.equal(r.annotation_complete_rate_percent, null);
 });
 test('shared intent fails both related annotations, scoring its atom only once', () => {
@@ -223,11 +230,47 @@ test('shared intent fails both related annotations, scoring its atom only once',
     d = '批注意图理解';
   assert.equal(after.dimensions[d].possible, before.dimensions[d].possible);
   assert.equal(after.dimensions[d].earned, before.dimensions[d].earned - 1);
+  assert.equal(after.total_points, before.total_points);
+  assert.equal(after.earned_points, before.earned_points - 1);
+  assert.ok(Math.abs(before.score - after.score - 100 / before.total_points) < 1e-9);
   assert.equal(after.annotation_outcomes.find((a) => a.annotation_id === owner.id).complete, false);
   assert.equal(
     after.annotation_outcomes.find((a) => a.annotation_id === dependent.id).complete,
     false,
   );
+});
+test('a semantic point and a geometry point have the same value regardless of dimension', () => {
+  const semantic = sample(),
+    geometry = sample();
+  semantic.review.checkpoints[0].credit = 0;
+  reviseAnswer(geometry, (a) => {
+    a.content_answers.find((q) => q.id === 'G1').target_point = null;
+  });
+  const a = scoreAnswer(semantic),
+    b = scoreAnswer(geometry);
+  assert.equal(a.total_points, 6);
+  assert.equal(a.earned_points, 5);
+  assert.equal(a.score, (100 * 5) / 6);
+  assert.equal(b.score, (100 * 5) / 6);
+  assert.equal(a.scoring_version, 'point-mean-v1');
+  assert.equal(a.scoring_method, 'equal_applicable_points');
+});
+test('historical dimension weights cannot alter the active point score', () => {
+  const s = sample();
+  s.review.checkpoints[0].credit = 0;
+  const before = scoreAnswer(s);
+  s.manifest.scoring.weights = { ignored: 999 };
+  assert.deepEqual(scoreAnswer(s), before);
+});
+test('existing penalties remain separate from point accuracy and cannot make a score negative', () => {
+  const s = sample('canvas-001');
+  s.review.extra_edits = Array(11).fill('extra');
+  const r = scoreAnswer(s);
+  assert.equal(r.earned_points, r.total_points);
+  assert.equal(r.base_score, 100);
+  assert.equal(r.extra_edit_penalty, 110);
+  assert.equal(r.score, 0);
+  assert.equal(r.fully_correct, false);
 });
 test('extra edits retain the existing ten-point penalty and whole-task rule', () => {
   const s = sample('canvas-001');

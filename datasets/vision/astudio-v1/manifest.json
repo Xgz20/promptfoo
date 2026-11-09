@@ -13,7 +13,7 @@
       "version": "0.4.3-draft",
       "manifest_path": "contracts/canvas/manifest.json",
       "manifest_sha256": "cca6a18e9e694b3f8f0fd5ca93f9ef9c22b95eb23b3785335748a68516940734",
-      "weights": {
+      "historical_dimension_weights": {
         "文字识别": 20,
         "对象属性与状态识别": 20,
         "空间布局与连接关系识别": 15,
@@ -30,7 +30,7 @@
       "version": "1.0.1",
       "manifest_path": "contracts/webapp/manifest.json",
       "manifest_sha256": "f513d56dfa946d8b9844d1b38bc7047805368e5d5db6b8a7696e87396f56eed2",
-      "weights": {
+      "historical_dimension_weights": {
         "文字识别": 20,
         "对象属性与状态识别": 20,
         "空间布局与连接关系识别": 15,
@@ -47,7 +47,7 @@
       "version": "1.0.2",
       "manifest_path": "contracts/photos/manifest.json",
       "manifest_sha256": "8d173feeea069e718298a375656bed45cd2d27a03cbefdf7028e843242c5af89",
-      "weights": {
+      "historical_dimension_weights": {
         "文字识别": 20,
         "对象属性与状态识别": 20,
         "空间布局与连接关系识别": 15,
@@ -64,7 +64,7 @@
       "version": "1.0.1",
       "manifest_path": "contracts/posters/manifest.json",
       "manifest_sha256": "0150435007fd43da78e7e2baf65dffc081e040bc112f8ea4a1a7080c5b60e77d",
-      "weights": {
+      "historical_dimension_weights": {
         "文字识别": 20,
         "对象属性与状态识别": 20,
         "空间布局与连接关系识别": 15,
@@ -81,7 +81,7 @@
       "version": "1.0.2",
       "manifest_path": "contracts/charts/manifest.json",
       "manifest_sha256": "313836efebf856fbe70e1b50317e1ed9f950f5b90dd9bc968c0d7b96293935c4",
-      "weights": {
+      "historical_dimension_weights": {
         "文字识别": 20,
         "对象属性与状态识别": 20,
         "空间布局与连接关系识别": 15,
@@ -98,7 +98,7 @@
       "version": "1.0.1",
       "manifest_path": "contracts/documents/manifest.json",
       "manifest_sha256": "510c3c84c20f094644f82b232aae7658a6be0861b81166de116e1c54a0c8ad46",
-      "weights": {
+      "historical_dimension_weights": {
         "文字识别": 20,
         "对象属性与状态识别": 20,
         "空间布局与连接关系识别": 15,
@@ -2113,5 +2113,7 @@
   "usage": "Local research pilot; source access does not imply public redistribution permission.",
   "dataset_version": "astudio-v1",
   "source_cases_sha256": "e157e56c373459b144187308b1834cab152c5f660d7d45a6cd27a066e62cb54e",
-  "source_export": "eval-harness/integrations/promptfoo-vision"
+  "source_export": "eval-harness/integrations/promptfoo-vision",
+  "scoring_policy_path": "scoring-policy.json",
+  "scoring_policy_sha256": "e6901a3b75f8577c558a03c683c9c8be83acc04838e2030c59567ca9002d644f"
 }

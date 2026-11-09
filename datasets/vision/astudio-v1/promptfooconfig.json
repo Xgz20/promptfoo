@@ -1,23 +1,32 @@
 {
-  "description": "AStudio 100题：历史答案回放与原评分对照",
+  "description": "AStudio 100题：历史答案按得分点均值重算（point-mean-v1）",
   "prompts": ["file://../../../scripts/astudio/vision/messages.mjs"],
   "providers": [
     {
       "id": "file://../../../scripts/astudio/vision/replay-provider.mjs",
       "label": "DeepSeek-V4.1-Flash · 历史回放",
-      "config": { "history": "deepseek" }
+      "config": {
+        "history": "deepseek"
+      }
     },
     {
       "id": "file://../../../scripts/astudio/vision/replay-provider.mjs",
       "label": "GPT-6.1 Sol · 历史回放",
-      "config": { "history": "sol" }
+      "config": {
+        "history": "sol"
+      }
     }
   ],
   "tests": "file://cases.jsonl",
   "defaultTest": {
-    "options": { "disableVarExpansion": true },
+    "options": {
+      "disableVarExpansion": true
+    },
     "assert": [
-      { "type": "javascript", "value": "file://../../../scripts/astudio/vision/score.mjs" }
+      {
+        "type": "javascript",
+        "value": "file://../../../scripts/astudio/vision/score.mjs"
+      }
     ]
   },
   "env": {
@@ -27,5 +36,9 @@
     "PROMPTFOO_DISABLE_TEMPLATING": "true"
   },
   "sharing": false,
-  "evaluateOptions": { "maxConcurrency": 4, "repeat": 1, "cache": false }
+  "evaluateOptions": {
+    "maxConcurrency": 4,
+    "repeat": 1,
+    "cache": false
+  }
 }

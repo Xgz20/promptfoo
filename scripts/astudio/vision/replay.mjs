@@ -5,6 +5,7 @@ import path from 'node:path';
 import { aggregate, compare } from './aggregate.mjs';
 import { bytes, fixtureFor, hash, LOCAL, REPO, ROOT, read } from './files.mjs';
 import { blockNetwork } from './offline.mjs';
+import { SCORING_POLICY } from './policy.mjs';
 
 const config = read('promptfooconfig.json');
 Object.assign(process.env, config.env, {
@@ -43,7 +44,8 @@ const failures = [],
   taskDiffs = [],
   compact = [],
   byModel = {},
-  expectedByModel = {};
+  expectedByModel = {},
+  legacyByModel = {};
 function findResult(grade) {
   if (grade?.metadata?.vision_result) {
     return grade.metadata.vision_result;
@@ -51,7 +53,6 @@ function findResult(grade) {
   return grade?.componentResults?.map(findResult).find(Boolean);
 }
 const comparedFields = [
-  'score',
   'fully_correct',
   'dimensions',
   'geometry',
@@ -62,9 +63,7 @@ const comparedFields = [
   'parse_method',
   'id_sets_complete',
   'field_roles_valid',
-  'base_score',
   'extra_edit_penalty',
-  'applicable_weight_sum',
   'annotation_outcomes',
   'annotation_complete_count',
   'annotation_total',
@@ -102,7 +101,28 @@ for (const row of results) {
       compare(result[k], oracle[k], k, diffs);
     }
   }
-  compare(row.score, oracle.score / 100, 'promptfoo.score', diffs);
+  // Independent arithmetic from the frozen pre-change report. Do not call the
+  // active scorer to construct its own expected result. Old totals are retained
+  // as a comparison, while all atomic decisions must still match exactly.
+  const oracleDimensions = Object.values(oracle.dimensions);
+  const earnedPoints = oracleDimensions.reduce((n, d) => n + d.earned, 0);
+  const totalPoints = oracleDimensions.reduce((n, d) => n + d.possible, 0);
+  const pointBase = (100 * earnedPoints) / totalPoints;
+  const pointScore = Math.max(0, pointBase - (oracle.extra_edit_penalty ?? 0));
+  compare(
+    result,
+    {
+      scoring_version: SCORING_POLICY.version,
+      scoring_method: 'equal_applicable_points',
+      earned_points: earnedPoints,
+      total_points: totalPoints,
+      base_score: pointBase,
+      score: pointScore,
+    },
+    'point_mean',
+    diffs,
+  );
+  compare(row.score, pointScore / 100, 'promptfoo.score', diffs);
   compare(row.success, oracle.fully_correct, 'promptfoo.success', diffs);
   for (const [dimension, d] of Object.entries(oracle.dimensions)) {
     if (d.applicable) {
@@ -116,12 +136,21 @@ for (const row of results) {
   }
   const caseMeta = cases.find((t) => t.metadata.case_id === result.taskId).metadata;
   (byModel[history] ??= []).push(result);
-  (expectedByModel[history] ??= []).push({ ...oracle, scene: caseMeta.scene });
+  (legacyByModel[history] ??= []).push({ ...oracle, scene: caseMeta.scene });
+  (expectedByModel[history] ??= []).push({
+    ...oracle,
+    scene: caseMeta.scene,
+    score: pointScore,
+    base_score: pointBase,
+  });
   taskDiffs.push({
     history,
     case_id: result.taskId,
     before: oracle.score,
     after: result.score,
+    expected: pointScore,
+    earned_points: earnedPoints,
+    total_points: totalPoints,
     differences: diffs,
   });
   compact.push({ history, provider: row.provider.id, ...result });
@@ -145,11 +174,12 @@ assert.equal(hash(publishedBytes), historyManifest.published_summary_sha256);
 const published = JSON.parse(publishedBytes);
 for (const history of ['deepseek', 'sol']) {
   const after = aggregate(byModel[history], dataset.scenes),
-    before = aggregate(expectedByModel[history], dataset.scenes);
+    before = aggregate(legacyByModel[history], dataset.scenes),
+    expected = aggregate(expectedByModel[history], dataset.scenes);
   const old = published.aggregates[history];
-  const differences = compare(after, before);
+  const differences = compare(after, expected);
   compare(
-    after,
+    before,
     {
       score: old.score,
       task_mean_score: old.task_mean_score_secondary,
@@ -170,7 +200,7 @@ for (const history of ['deepseek', 'sol']) {
     'published_summary',
     differences,
   );
-  for (const s of after.scenes) {
+  for (const s of before.scenes) {
     const oldScene = published.items.find((item) => item.slug === s.id)[`${history}_metrics`];
     compare(
       s,
@@ -184,7 +214,7 @@ for (const history of ['deepseek', 'sol']) {
       differences,
     );
   }
-  aggregates[history] = { before, after, differences };
+  aggregates[history] = { before, after, expected, differences };
 }
 const differenceCount =
   taskDiffs.reduce((n, r) => n + r.differences.length, 0) +
@@ -201,6 +231,9 @@ const verification = {
   verified_at: new Date().toISOString(),
   promptfoo_version: JSON.parse(fs.readFileSync(path.join(REPO, 'package.json'), 'utf8')).version,
   dataset_sha256: dataset.cases_sha256,
+  scoring_policy: SCORING_POLICY,
+  scoring_policy_sha256: dataset.scoring_policy_sha256,
+  comparison_mode: 'point_mean_recalculation_with_unchanged_atomic_decisions',
   task_count: 100,
   historical_answers: 200,
   original_summary: historyManifest.published_summary_path,
@@ -218,6 +251,7 @@ const verification = {
     'Assistant preliminary reviews; not re-judged or human-confirmed by this migration.',
   comparison_tolerance: 1e-9,
   difference_count: differenceCount,
+  changed_score_count: taskDiffs.filter((t) => Math.abs(t.after - t.before) > 1e-9).length,
   aggregates,
   tasks: taskDiffs,
 };

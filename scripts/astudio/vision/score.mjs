@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 
 import Ajv2020 from 'ajv/dist/2020.js';
 import { fixtureFor, hash, verifiedJSON } from './files.mjs';
+import { SCORING_POLICY } from './policy.mjs';
 
 export const DIMENSIONS = [
   '文字识别',
@@ -198,7 +199,6 @@ export function scoreAnswer({ raw, meta, gold, manifest, schema, review, status 
   const task = manifest.tasks.find((t) => t.id === meta.case_id);
   assert.ok(task);
   assert.equal(manifest.version, meta.source_dataset_version);
-  assert.deepEqual(Object.keys(manifest.scoring.weights), DIMENSIONS);
   validateReview(gold, review, status, annotated);
   const parsed = parseAnswer(raw),
     answer = parsed.answer;
@@ -226,13 +226,13 @@ export function scoreAnswer({ raw, meta, gold, manifest, schema, review, status 
     assert.equal(applicable, Boolean(possible));
     dims[d] = { applicable, earned, possible, rate: possible ? earned / possible : null };
   }
-  const weights = manifest.scoring.weights;
-  const denominator = DIMENSIONS.reduce((n, d) => n + (dims[d].applicable ? weights[d] : 0), 0);
-  const base =
-    (100 *
-      DIMENSIONS.reduce((n, d) => n + (dims[d].applicable ? weights[d] * dims[d].rate : 0), 0)) /
-    denominator;
-  const penalty = annotated ? 10 * review.extra_edits.length : 0;
+  const totalPoints = DIMENSIONS.reduce((n, d) => n + dims[d].possible, 0);
+  const earnedPoints = DIMENSIONS.reduce((n, d) => n + dims[d].earned, 0);
+  assert.ok(totalPoints > 0, 'A scored task needs at least one applicable point');
+  const base = (100 * earnedPoints) / totalPoints;
+  const penalty = annotated
+    ? SCORING_POLICY.extra_edit_penalty_per_item * review.extra_edits.length
+    : 0;
   const outcomes = annotationOutcomes(gold.annotations, review.checkpoints, geometry, status);
   const content = Array.isArray(answer?.content_answers) ? answer.content_answers : [];
   const wanted = gold.content_questions.map((q) => q.id);
@@ -265,10 +265,13 @@ export function scoreAnswer({ raw, meta, gold, manifest, schema, review, status 
     status,
     answer_sha256: hash(raw),
     gold_sha256: review.gold_sha256,
-    score: Math.max(0, base - penalty),
+    scoring_version: SCORING_POLICY.version,
+    scoring_method: SCORING_POLICY.task_score,
+    score: Math.max(SCORING_POLICY.score_floor, base - penalty),
     base_score: base,
     extra_edit_penalty: penalty,
-    applicable_weight_sum: denominator,
+    earned_points: earnedPoints,
+    total_points: totalPoints,
     fully_correct:
       Object.values(dims)
         .filter((d) => d.applicable)
@@ -320,7 +323,7 @@ export default function grade(output, context) {
   return {
     pass: result.fully_correct,
     score: result.score / 100,
-    reason: `${result.taskId}: ${result.score.toFixed(4)}/100；${result.fully_correct ? '整题完整正确' : '存在失分项'}；沿用历史逐项语义判分`,
+    reason: `${result.taskId}: ${result.score.toFixed(4)}/100；得分点 ${result.earned_points}/${result.total_points}；${result.fully_correct ? '整题完整正确' : '存在失分项'}；沿用历史逐项语义判分`,
     namedScores,
     metadata: {
       vision_result: result,

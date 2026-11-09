@@ -58,7 +58,11 @@ for (const row of rows) {
 }
 const serialize = (selected) => selected.map((r) => JSON.stringify(r)).join('\n') + '\n';
 fs.writeFileSync(path.join(ROOT, 'cases.jsonl'), serialize(rows));
-const scenes = original.scenes.map((s) => ({ ...s, manifest_path: relocate(s.manifest_path) }));
+const scenes = original.scenes.map(({ weights, ...s }) => ({
+  ...s,
+  historical_dimension_weights: weights,
+  manifest_path: relocate(s.manifest_path),
+}));
 for (const scene of scenes) {
   fs.writeFileSync(
     path.join(ROOT, `${scene.id}.jsonl`),
@@ -68,6 +72,8 @@ for (const scene of scenes) {
 write(path.join(ROOT, 'manifest.json'), {
   ...original,
   dataset_version: 'astudio-v1',
+  scoring_policy_path: 'scoring-policy.json',
+  scoring_policy_sha256: hash(fs.readFileSync(path.join(ROOT, 'scoring-policy.json'))),
   source_cases_sha256: original.cases_sha256,
   cases_sha256: hash(Buffer.from(serialize(rows))),
   source_export: 'eval-harness/integrations/promptfoo-vision',
