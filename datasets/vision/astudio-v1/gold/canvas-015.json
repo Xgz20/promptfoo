@@ -1,0 +1,330 @@
+{
+  "id": "canvas-015",
+  "version": "0.4.2-draft",
+  "title": "办公平面画布：重复工位与批量范围",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "drawio-diagrams",
+    "kind": "open_source_diagram_template",
+    "url": "https://github.com/jgraph/drawio-diagrams/blob/cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01/templates/plans/floor_plan_2.xml",
+    "license_observed": "Apache-2.0（所下载仓库根目录 LICENSE；保留原文件与版权许可）",
+    "repository_commit": "cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01",
+    "original_file": "repos/drawio-diagrams/templates/plans/floor_plan_2.xml",
+    "original_sha256": "ae9bc91687f8f28f958dcfc0c8ac78293c42bcbc1d7894e5820c8e340142c38c",
+    "renderer": "source-build/render-sources.mjs + pinned viewer-static.min.js",
+    "renderer_sha256": "35b8ef54369e938ad2399d3c8ce3945591d4b200a01f6942d0e39743bea1f1a1",
+    "path_in_collection": "pilots/canvas-20261106/source-build/templates__plans__floor_plan_2.png",
+    "sha256": "a71e46e6d1f59b517cbe2103b5d100cb92e8863d33e9e25f4cd5185365f9083f"
+  },
+  "source_image_size": [
+    845,
+    1100
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    845,
+    1100
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1500,
+    1710
+  ],
+  "capabilities": [
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "只看原图，右下房间两套电脑工位的桌面是什么颜色？每套工位上方设备和桌下家具分别是什么？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "右下房间上方工位桌面为白色"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "右下房间下方工位桌面为白色"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "桌上有显示器"
+        },
+        {
+          "id": "appearance-1.4",
+          "expected": "桌上有键盘"
+        },
+        {
+          "id": "appearance-1.5",
+          "expected": "桌下有椅子"
+        }
+      ],
+      "reference_answer": "右下房间上方工位桌面为白色；右下房间下方工位桌面为白色；桌上有显示器；桌上有键盘；桌下有椅子。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "左下房间底部有几套电脑工位，如何排列？右下房间两套工位分别靠房间哪两个角？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "左下房间底部有两套工位"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "左下两套左右排列"
+        },
+        {
+          "id": "layout-1.3",
+          "expected": "右下房间一套靠右上"
+        },
+        {
+          "id": "layout-1.4",
+          "expected": "右下房间另一套靠左下"
+        }
+      ],
+      "reference_answer": "左下房间底部有两套工位；左下两套左右排列；右下房间一套靠右上；右下房间另一套靠左下。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": false,
+      "points": 0,
+      "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 12.5,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "删除这一整套工位。\n桌子、显示器、键盘和椅子一起删；\n墙体与其他工位保留。",
+      "arrow_path_input_px": [
+        [
+          435,
+          1485
+        ],
+        [
+          435,
+          1309
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          309,
+          1239,
+          460,
+          1345
+        ],
+        "reference_point": [
+          435,
+          1309
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "左下房间底部靠右的一整套电脑工位，紧邻中间竖墙左侧。",
+        "requested_change": "删除左下房间靠右整套工位，包括桌子、显示器、键盘和椅子。",
+        "preserve": [
+          "墙体",
+          "其他工位"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          290.0,
+          765.5
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "左下房间底部靠右的一整套电脑工位，紧邻中间竖墙左侧。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 9.23076923076923,
+          "points_per_checkpoint": 1.5384615384615385,
+          "checkpoints": [
+            "删除目标工位的桌子",
+            "删除目标工位的显示器",
+            "删除目标工位的键盘",
+            "删除目标工位的椅子",
+            "保留：墙体",
+            "保留：其他工位"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.change-2",
+            "A.change-3",
+            "A.change-4",
+            "A.preserve-1",
+            "A.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "把本房间两套工位的桌面填成浅蓝色。\n只改桌面；A 删除的工位不在范围内。\n显示器、键盘、椅子和位置不变。",
+      "arrow_path_input_px": [
+        [
+          865,
+          1485
+        ],
+        [
+          610,
+          1304
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          475,
+          1238,
+          625,
+          1314
+        ],
+        "reference_point": [
+          610,
+          1304
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "右下房间底部靠左电脑工位的桌面，以此确定右下房间这一修改范围。",
+        "requested_change": "将右下房间两套电脑工位的桌面填充改为浅蓝色；不包括左下房间A删除的工位。",
+        "preserve": [
+          "本房间两套工位的显示器",
+          "本房间两套工位的键盘",
+          "本房间两套工位的椅子",
+          "本房间两套工位的位置"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          406.67,
+          762.57
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "右下房间底部靠左电脑工位的桌面，以此确定右下房间这一修改范围。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.76923076923077,
+          "points_per_checkpoint": 1.5384615384615385,
+          "checkpoints": [
+            "B所在房间第一套工位的桌面改为浅蓝色",
+            "B所在房间第二套工位的桌面改为浅蓝色",
+            "排除A删除的工位",
+            "保留：本房间两套工位的显示器",
+            "保留：本房间两套工位的键盘",
+            "保留：本房间两套工位的椅子",
+            "保留：本房间两套工位的位置"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.change-3",
+            "B.preserve-1",
+            "B.preserve-2",
+            "B.preserve-3",
+            "B.preserve-4"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

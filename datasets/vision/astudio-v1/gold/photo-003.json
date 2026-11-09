@@ -1,0 +1,167 @@
+{
+  "task_id": "photo-003",
+  "version": "1.0.0",
+  "scene": "日常照片",
+  "input_size": [
+    496,
+    512
+  ],
+  "input_sha256": "826f1d1dff3d2d70751987185b3a77002326e86a76bfbfe5e9a37d712bb24dbf",
+  "prompt_sha256": "135e2f4e99c68a9c40efa82c8fbe81079e5130c35a183d1d11f1de572b30a08a",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "repository": "https://github.com/MMStar-Benchmark/MMStar",
+    "source_row_zero_based": 311,
+    "upstream_index": "311",
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/396218d131e53f32a9bde4ec.jpg",
+    "local_original": "sources/photo-003.jpg",
+    "original_sha256": "396218d131e53f32a9bde4ec0fe854f9ac15f06fb985664d5bc97c6eac894443",
+    "size": [
+      496,
+      512
+    ],
+    "snapshot": "Local MMStar.tsv SHA-256 38a99f4a33743665e6990961a9a0072b07f7ac6a74d1555b43c4f82145377cb4",
+    "upstream_commit": null,
+    "pin_note": "下载时使用main，未保存commit；复现以实际TSV和图像哈希为准，不虚构commit。",
+    "license_status": "数据卡/项目仓库未列出统一图像许可证；仅记录公开可获取，不声明再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "画面中带金属罩、从天花板垂下的灯具有几盏？只数这类吊灯。",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "数量判断"
+      ],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "金属罩吊灯为3盏"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "前景桌边座椅的靠背表面有什么明显的结构特点？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "材质与结构"
+      ],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "椅背呈网孔或密集镂空结构"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "靠后墙的抽油烟机下方是什么烹饪设备？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "物体识别"
+      ],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "识别为炉灶或灶台"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "画面前景桌子相对于C3所问设备，在图像的左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [
+        "左右关系"
+      ],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "前景桌子在该炉灶的画面右侧"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：最靠画面右边的金属罩吊灯，只定位灯罩，不含吊线。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "预测中心与Gold中心的欧氏距离≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        413,
+        43,
+        496,
+        146
+      ],
+      "center_input_px": [
+        454.5,
+        94.5
+      ],
+      "reference_point": {
+        "x": 916.331,
+        "y": 184.57
+      },
+      "tolerance_input_px": 20,
+      "scope": "最靠画面右边的金属罩吊灯，只定位灯罩，不含吊线"
+    }
+  },
+  "reference_answer": {
+    "task_id": "photo-003",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "3盏。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "有很多孔洞／网孔／镂空。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "炉灶／灶台（带烤箱的炉具）。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 916.331,
+          "y": 184.57
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

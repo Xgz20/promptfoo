@@ -1,0 +1,156 @@
+{
+  "task_id": "document-009",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1025,
+    1025
+  ],
+  "input_sha256": "860677241074cae66579bcb159bc766d75e251c22566ba229b23739c2f7cc779",
+  "prompt_sha256": "31079d980e8c313446d7b5073d5d9f321c860c253bdecd28eb0d3eee43a949a4",
+  "source": {
+    "dataset": "MDVP-Bench",
+    "url": "https://huggingface.co/datasets/Afeng-x/Draw-and-Understand",
+    "source_row_zero_based": 213,
+    "original_record_row": 4,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDVP-Bench/MDVP-bench/ocr_doc_detailed_caption/images/82a75b3f20541bc86d47c069975a58ab1b7334d46f68cfa0c4538a5d22e30ada.png",
+    "local_original": "sources/document-009.png",
+    "original_sha256": "a180dfff5d69b354e69e42d1710ce6f35a73e9ed1e70a2b726010901cc683a1e",
+    "size": [
+      1025,
+      1025
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明CC BY-NC 4.0；非商业限制，保留页面署名。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "Chunghwa Telecom Vietnam Co., Ltd.所在行的注册司法辖区是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "Vietnam。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "表身可见多少条浅蓝色横向底纹行？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "10条。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "NAME OF ENTITY与JURISDICTION OF INCORPORATION两个表头，哪一个位于右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "JURISDICTION OF INCORPORATION在右侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "表身两列之间是否画有连续竖直网格线？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "没有。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：左页边带竖排分部文字的深蓝色矩形色块整体，不含灰色竖条。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        0,
+        585,
+        62,
+        724
+      ],
+      "center_input_px": [
+        31.0,
+        654.5
+      ],
+      "reference_point": {
+        "x": 30.244,
+        "y": 638.537
+      },
+      "tolerance_input_px": 20,
+      "scope": "左页边带竖排分部文字的深蓝色矩形色块整体，不含灰色竖条"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-009",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "Vietnam。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "10条。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "JURISDICTION OF INCORPORATION在右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "没有。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 30.244,
+          "y": 638.537
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

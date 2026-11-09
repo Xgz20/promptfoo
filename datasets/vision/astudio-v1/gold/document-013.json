@@ -1,0 +1,156 @@
+{
+  "task_id": "document-013",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1920,
+    1440
+  ],
+  "input_sha256": "b9b474d6513e140eedee955e424ec4e0b14348acc51750cd7937a4d023794959",
+  "prompt_sha256": "c78f8266b7afa1eee530f5c6524bb5bb5fe775652c2d37447a9bb73c79d7a760",
+  "source": {
+    "dataset": "PublicTicketPhotos",
+    "url": "https://home.gamer.com.tw/artwork.php?sn=5814799",
+    "source_row_zero_based": 1,
+    "original_record_row": 1,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/PublicTicketPhotos/boarding.jpg",
+    "local_original": "sources/document-013.jpg",
+    "original_sha256": "87a5c1d1e121312d0bfb6f012475e006a548cd459f779a9b5453eac36dc2b0e4",
+    "size": [
+      1920,
+      1440
+    ],
+    "snapshot": "逐图原URL、下载字节SHA-256固定；页面证据及抓取失败状态留档。",
+    "license_status": "公开网页实拍照片：原页面与图片URL、抓取字节和SHA-256留档。未查到允许再分发的明确开放许可证，不标为开源。仅纳入本地研究试点，公开发布需另核授权。来源中的既有遮盖与标记完整保留；本项目未添加文字、箭头或修图。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "登机牌左侧主联的FLIGHT航班号是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "MU2042。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "左侧主联的SEAT座位号是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "52B。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "左侧主联的登机口框在登机时间框的左边还是右边？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "左边。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "左侧主联的登机口框内，是否有蓝色手写笔迹覆盖或延伸到框外？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "有蓝色手写笔迹，覆盖框内并延伸到框外；回答有即可"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：左侧主联包围登机时间数值的红色矩形边框整体，不含框左侧文字。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        1146,
+        748,
+        1284,
+        812
+      ],
+      "center_input_px": [
+        1215.0,
+        780.0
+      ],
+      "reference_point": {
+        "x": 632.812,
+        "y": 541.667
+      },
+      "tolerance_input_px": 20,
+      "scope": "左侧主联包围登机时间数值的红色矩形边框整体，不含框左侧文字"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-013",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "MU2042。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "52B。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "左边。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "有。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 632.812,
+          "y": 541.667
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

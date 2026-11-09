@@ -1,0 +1,156 @@
+{
+  "task_id": "document-008",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1025,
+    1025
+  ],
+  "input_sha256": "0b00051f9438badfe84eddd909744d714500575da142c2d33f30908eeaae8d17",
+  "prompt_sha256": "25c972638f32a4b8fe10660c6b013ef11ba277466183e358c79eac30d7647521",
+  "source": {
+    "dataset": "MDVP-Bench",
+    "url": "https://huggingface.co/datasets/Afeng-x/Draw-and-Understand",
+    "source_row_zero_based": 182,
+    "original_record_row": 3,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDVP-Bench/MDVP-bench/ocr_doc_QA/images/735400b9246050615d18bd4b869005c2956025e1d4672053c3878f869d2d749e.png",
+    "local_original": "sources/document-008.png",
+    "original_sha256": "0365da2968fd3da7d0f516783bb3ef2f33f8a6ec69a36c93261e89caed488ba0",
+    "size": [
+      1025,
+      1025
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明CC BY-NC 4.0；非商业限制，保留页面署名。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "2011列末行Cash and Cash Equivalents at End of Year的数值是多少？按表中单位回答。",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "464.8，单位百万美元；接受4.648亿美元"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "这张表展示了几个年度的数据列？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "3个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "2011列相对于2009列，在左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "左侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "Depreciation and amortization一行，2011的金额比2010更大还是更小？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "更大。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：页面顶部全大写的主标题整行字形，不含下方年份说明。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        105,
+        67,
+        767,
+        83
+      ],
+      "center_input_px": [
+        436.0,
+        75.0
+      ],
+      "reference_point": {
+        "x": 425.366,
+        "y": 73.171
+      },
+      "tolerance_input_px": 20,
+      "scope": "页面顶部全大写的主标题整行字形，不含下方年份说明"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-008",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "464.8百万美元。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "3个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "更大。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 425.366,
+          "y": 73.171
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

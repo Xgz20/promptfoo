@@ -1,0 +1,518 @@
+{
+  "id": "canvas-020",
+  "version": "0.4.2-draft",
+  "title": "多阶段生产流程：虚线消息、条件分支与子流程",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "drawio-diagrams",
+    "kind": "open_source_diagram_template",
+    "url": "https://github.com/jgraph/drawio-diagrams/blob/cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01/templates/business/bpmn_1.xml",
+    "license_observed": "Apache-2.0（所下载仓库根目录 LICENSE；保留原文件与版权许可）",
+    "repository_commit": "cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01",
+    "original_file": "repos/drawio-diagrams/templates/business/bpmn_1.xml",
+    "original_sha256": "b27e3cfb0a1feef856da7c2e76fa77280de88b0d584486706149e90ff0c93fa9",
+    "renderer": "source-build/render-sources.mjs + pinned viewer-static.min.js",
+    "renderer_sha256": "35b8ef54369e938ad2399d3c8ce3945591d4b200a01f6942d0e39743bea1f1a1",
+    "path_in_collection": "pilots/canvas-20261106/source-build/templates__business__bpmn_1.png",
+    "sha256": "d208d0407f4e4c4c731f0b6fdda305abf675091d56f3733fa13516e6c0ebe05d"
+  },
+  "source_image_size": [
+    1448,
+    963
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1448,
+    963
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1508,
+    1538
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "文字识别",
+      "question": "读取最上方泳道名称、FACTORY 内 Compose Specification 右侧紧邻节点的标题，以及上方回传虚线的标签。",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "最上方泳道 SCHEDULING"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "紧邻节点 Check warehouse"
+        },
+        {
+          "id": "text-1.3",
+          "expected": "回传标签 Order Completed"
+        }
+      ],
+      "reference_answer": "最上方泳道 SCHEDULING；紧邻节点 Check warehouse；回传标签 Order Completed。",
+      "id": "text-1"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "原图跨泳道消息线和 FACTORY 内生产流程线分别是什么颜色、实线还是虚线？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "跨泳道消息线为蓝色或深蓝色"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "消息线为虚线"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "FACTORY 生产流程线为红色"
+        },
+        {
+          "id": "appearance-1.4",
+          "expected": "生产流程线为实线"
+        }
+      ],
+      "reference_answer": "跨泳道消息线为蓝色或深蓝色；消息线为虚线；FACTORY 生产流程线为红色；生产流程线为实线。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "只看原图，从 Check warehouse 沿原流程箭头下一步到哪个节点？该节点标有 Yes 的分支到哪个节点、标有 No 的分支先到什么图形？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Check warehouse 指向 Available?"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "Yes 分支指向 Produce Goods"
+        },
+        {
+          "id": "layout-1.3",
+          "expected": "No 分支先向下进入信封圆形事件"
+        }
+      ],
+      "reference_answer": "Check warehouse 指向 Available?；Yes 分支指向 Produce Goods；No 分支先向下进入信封圆形事件。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10.0,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "标签改为“生产完成”。\n保持蓝色虚线和回传方向，\n不要改实线生产流程。",
+      "arrow_path_input_px": [
+        [
+          635,
+          260
+        ],
+        [
+          1010,
+          592
+        ]
+      ],
+      "geometry": {
+        "type": "polyline",
+        "bbox_xyxy": [
+          620.277,
+          452.837,
+          1229.289,
+          731.837
+        ],
+        "reference_point": [
+          1010,
+          592
+        ],
+        "coordinate_system": "input image pixels",
+        "polyline": [
+          [
+            1226.289,
+            728.837
+          ],
+          [
+            1226.289,
+            592.042
+          ],
+          [
+            623.277,
+            592.042
+          ],
+          [
+            623.277,
+            455.837
+          ]
+        ],
+        "max_distance_px": 12
+      },
+      "reference_answer": {
+        "target_description": "从 FACTORY 中 Produce Goods 右侧信封事件返回 SCHEDULING 的 Create Schedule 的蓝色虚线消息，标签为 Order Completed。",
+        "requested_change": "把该蓝色虚线回传消息标签改为“生产完成”。",
+        "preserve": [
+          "蓝色虚线",
+          "返回Create Schedule的方向",
+          "所有实线生产流程"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          669.76,
+          384.92
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 5.0,
+          "checkpoints": [
+            "从 FACTORY 中 Produce Goods 右侧信封事件返回 SCHEDULING 的 Create Schedule 的蓝色虚线消息，标签为 Order Completed。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 7.142857142857143,
+          "points_per_checkpoint": 1.4285714285714286,
+          "checkpoints": [
+            "消息标签改为“生产完成”",
+            "保留：蓝色",
+            "保留：虚线",
+            "保留：返回Create Schedule的方向",
+            "保留：实线生产流程的其余内容（B/C单独计分的保留条件除外，B/C要求的修改按其批注）"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3",
+            "A.preserve-4"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 3.3333333333333335,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ],
+      "shared_constraints": [
+        {
+          "text": "Check warehouse的红色填充不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：红色填充"
+        },
+        {
+          "text": "Check warehouse所属区域不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：FACTORY子流程区域归属"
+        },
+        {
+          "text": "Check warehouse的原有连接不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：原有连接"
+        },
+        {
+          "text": "No分支的条件文字不变",
+          "scored_in_annotation": "C",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：No条件文字"
+        },
+        {
+          "text": "No分支的向下箭头方向不变",
+          "scored_in_annotation": "C",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：向下箭头方向"
+        },
+        {
+          "text": "Available?节点",
+          "scored_in_annotation": "C",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：Available?节点"
+        },
+        {
+          "text": "信封事件",
+          "scored_in_annotation": "C",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：信封事件"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "此节点文字改成“库存检查”。\n保持红色、所属区域和连接。",
+      "arrow_path_input_px": [
+        [
+          635,
+          1348
+        ],
+        [
+          772,
+          763
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          661,
+          725,
+          788,
+          776
+        ],
+        "reference_point": [
+          772,
+          763
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "FACTORY 红色子流程区域内的 Check warehouse 节点。",
+        "requested_change": "将 Check warehouse 节点文字改为“库存检查”。",
+        "preserve": [
+          "红色填充",
+          "FACTORY子流程区域归属",
+          "原有连接"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          511.94,
+          496.1
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 5.0,
+          "checkpoints": [
+            "FACTORY 红色子流程区域内的 Check warehouse 节点。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 5.714285714285714,
+          "points_per_checkpoint": 1.4285714285714286,
+          "checkpoints": [
+            "节点文字改为“库存检查”",
+            "保留：红色填充",
+            "保留：FACTORY子流程区域归属",
+            "保留：原有连接"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1",
+            "B.preserve-2",
+            "B.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 3.3333333333333335,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "这条 No 分支改为橙色。\n条件文字、箭头方向和两端不变。",
+      "arrow_path_input_px": [
+        [
+          881,
+          1348
+        ],
+        [
+          1450,
+          1320
+        ],
+        [
+          1450,
+          995
+        ],
+        [
+          1145,
+          995
+        ],
+        [
+          1145,
+          805
+        ],
+        [
+          910,
+          805
+        ],
+        [
+          881,
+          801
+        ]
+      ],
+      "geometry": {
+        "type": "polyline",
+        "bbox_xyxy": [
+          877.506,
+          767.837,
+          883.506,
+          822.753
+        ],
+        "reference_point": [
+          881,
+          801
+        ],
+        "coordinate_system": "input image pixels",
+        "polyline": [
+          [
+            880.506,
+            770.837
+          ],
+          [
+            880.506,
+            819.753
+          ]
+        ],
+        "max_distance_px": 12
+      },
+      "reference_answer": {
+        "target_description": "从 Available? 节点向下连接信封事件的 No 分支。",
+        "requested_change": "把 Available? 向下的 No 分支线改为橙色。",
+        "preserve": [
+          "No条件文字",
+          "向下箭头方向",
+          "Available?节点和信封事件"
+        ],
+        "annotation_id": "C",
+        "target_point": [
+          584.22,
+          520.81
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 5.0,
+          "checkpoints": [
+            "从 Available? 节点向下连接信封事件的 No 分支。"
+          ],
+          "checkpoint_ids": [
+            "C.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 7.142857142857143,
+          "points_per_checkpoint": 1.4285714285714286,
+          "checkpoints": [
+            "分支线颜色改为橙色",
+            "保留：No条件文字",
+            "保留：向下箭头方向",
+            "保留：Available?节点",
+            "保留：信封事件"
+          ],
+          "checkpoint_ids": [
+            "C.change-1",
+            "C.preserve-1",
+            "C.preserve-2",
+            "C.preserve-3",
+            "C.preserve-4"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 3.3333333333333335,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "C.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

@@ -1,0 +1,160 @@
+{
+  "task_id": "document-001",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1654,
+    2339
+  ],
+  "input_sha256": "81bff1c08c46efbf74fea0a3971c7b5e62affd2b3a300818376ea607a9c53013",
+  "prompt_sha256": "1f7ade365b682ff7dafaa1a5810634bb5aacc7f75e5b0330395fd24469d53e19",
+  "source": {
+    "dataset": "MDPBench",
+    "url": "https://huggingface.co/datasets/Delores-Lin/MDPBench",
+    "source_row_zero_based": 6,
+    "original_record_row": 6,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDPBench/MDPBench_img_public/en_magazine_46.jpg",
+    "local_original": "sources/document-001.jpg",
+    "original_sha256": "995a04efaf8c8b361e3787088d083a7b0a1861527eec867cb28f703c9a6792a5",
+    "size": [
+      1654,
+      2339
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明Apache-2.0；保留文档内原出版方、公司及作者署名，不扩张第三方页面权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "页脚右下角显示的页码是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "37。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "左侧正文列出了几个带数字编号的技术类别？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "3个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "大字号引文块相对于两列主要正文，在画面的哪一侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "右侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "下半页人物周围的气泡有哪两种主要填充色？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "蓝色"
+        },
+        {
+          "id": "C4.2",
+          "text": "紫色"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：大字号引文块开头的蓝色双引号字形整体，不含正文或分隔线。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        1137,
+        273,
+        1200,
+        342
+      ],
+      "center_input_px": [
+        1168.5,
+        307.5
+      ],
+      "reference_point": {
+        "x": 706.469,
+        "y": 131.466
+      },
+      "tolerance_input_px": 20,
+      "scope": "大字号引文块开头的蓝色双引号字形整体，不含正文或分隔线"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-001",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "37。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "3个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "蓝色与紫色。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 706.469,
+          "y": 131.466
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

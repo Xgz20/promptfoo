@@ -1,0 +1,343 @@
+{
+  "id": "webapp-017",
+  "version": "1.0.0-draft",
+  "title": "屏幕共享弹窗：开关与灰色按钮",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 33,
+    "original_record": {
+      "source_row": 33,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/element_grounding/a2ea3b69e1201eb409a3e97b1d128b53.png",
+          "width": 1680,
+          "height": 1044
+        }
+      ],
+      "original": {
+        "image_path": "element_grounding/a2ea3b69e1201eb409a3e97b1d128b53.png",
+        "image_size": [
+          1680,
+          1044
+        ],
+        "prompt_to_evaluate": "customize google chrome",
+        "bbox": [
+          1640.333324432373,
+          58.16571428571428,
+          1665.533324432373,
+          92.46857142857142
+        ],
+        "platform": "Jitsi",
+        "category": "Input Elements",
+        "element_type": "icon"
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/a2ea3b69e1201eb409a3e97b1d128b53.png",
+    "sha256": "a2f9f36dd687b1a4400fd71184e04f8aef8e855a39f1061021ded0929b235b07",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1680,
+    1044
+  ],
+  "crop_xywh": [
+    250,
+    60,
+    1200,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.9444444444444444
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "弹窗主标题和黄色预览区域的提示文字各是什么？",
+      "reference_answer": "Choose what to share with meet.jit.si；Select a tab to share",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Choose what to share with meet.jit.si"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "Select a tab to share"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "Also share tab audio 的开关状态是什么？Share 按钮当前呈灰色弱化样式还是黄色突出样式？",
+      "reference_answer": "音频开关为打开（滑块在右）；Share按钮呈灰色弱化样式",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "音频开关为打开（滑块在右）"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Share按钮呈灰色弱化样式"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "中部可选标签列表与黄色预览区域的左右关系是什么？",
+      "reference_answer": "标签列表在预览区域左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "标签列表在预览区域左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "关闭这个开关。顶部 Chrome Tab 仍保持选中。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          701.61111
+        ],
+        [
+          896.66667,
+          701.61111
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          865.5,
+          684.61111,
+          899.5,
+          704.44444
+        ],
+        "reference_point": [
+          896.66667,
+          701.61111
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "Also share tab audio 行最右侧的开关",
+        "target_point": [
+          498.148,
+          637.828
+        ],
+        "requested_change": "关闭音频共享开关",
+        "preserve": [
+          "Chrome Tab仍保持选中"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Also share tab audio 行最右侧的开关"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "关闭音频共享开关",
+            "保留：Chrome Tab仍保持选中"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "按钮文字改为“开始共享”。保持当前灰色样式。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          792.27778
+        ],
+        [
+          816.38889,
+          792.27778
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          738.0,
+          753.55556,
+          823.0,
+          797.94444
+        ],
+        "reference_point": [
+          816.38889,
+          792.27778
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "弹窗底部左侧灰色 Share 按钮",
+        "target_point": [
+          453.549,
+          720.253
+        ],
+        "requested_change": "按钮文字改为开始共享",
+        "preserve": [
+          "当前灰色样式"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "弹窗底部左侧灰色 Share 按钮"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "按钮文字改为开始共享",
+            "保留：当前灰色样式"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

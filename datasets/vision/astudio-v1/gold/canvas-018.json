@@ -1,0 +1,323 @@
+{
+  "id": "canvas-018",
+  "version": "0.4.2-draft",
+  "title": "思维导图：分支归属与局部重命名",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "drawio-diagrams",
+    "kind": "open_source_diagram_template",
+    "url": "https://github.com/jgraph/drawio-diagrams/blob/cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01/templates/maps/mind_map_1.xml",
+    "license_observed": "Apache-2.0（所下载仓库根目录 LICENSE；保留原文件与版权许可）",
+    "repository_commit": "cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01",
+    "original_file": "repos/drawio-diagrams/templates/maps/mind_map_1.xml",
+    "original_sha256": "223f69c9706cb2f917bc37d2e54762b4092ac3b9d46f132ac432d0d0d1576058",
+    "renderer": "source-build/render-sources.mjs + pinned viewer-static.min.js",
+    "renderer_sha256": "35b8ef54369e938ad2399d3c8ce3945591d4b200a01f6942d0e39743bea1f1a1",
+    "path_in_collection": "pilots/canvas-20261106/source-build/templates__maps__mind_map_1.png",
+    "sha256": "6f263d4684b1adf300ebbcdd6b0ed96d85739902e38f1aca16882619cd896558"
+  },
+  "source_image_size": [
+    1377,
+    805
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1377,
+    805
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1500,
+    1415
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "文字识别",
+      "question": "读取中央云形节点的文字，以及 Topic 4 正上方最高处矩形节点的文字。",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "中央节点 Main Topic"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "最高处矩形节点 Argument 8"
+        }
+      ],
+      "reference_answer": "中央节点 Main Topic；最高处矩形节点 Argument 8。",
+      "id": "text-1"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "Topic 类节点与 Argument 类节点分别是什么形状？原有连接线是什么颜色？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "Topic 1至5 为椭圆形"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "Argument 节点为圆角矩形"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "原有连线为灰色"
+        }
+      ],
+      "reference_answer": "Topic 1至5 为椭圆形；Argument 节点为圆角矩形；原有连线为灰色。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "Argument 9 和 Argument 1 在原图中分别直接连接到哪个 Topic？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Argument 9 连接 Topic 4"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "Argument 1 连接 Topic 1"
+        }
+      ],
+      "reference_answer": "Argument 9 连接 Topic 4；Argument 1 连接 Topic 1。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10.0,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "文字改为“性能优化”。\n保留其与 Topic 4 的连接，\n位置和样式不变。",
+      "arrow_path_input_px": [
+        [
+          882,
+          260
+        ],
+        [
+          882,
+          468
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          727,
+          445,
+          892,
+          475
+        ],
+        "reference_point": [
+          882,
+          468
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "上方 Topic 4 分支右上侧的 Argument 9 矩形节点。",
+        "requested_change": "把 Argument 9 改为“性能优化”。",
+        "preserve": [
+          "与Topic 4的连接",
+          "节点位置",
+          "节点样式"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          588.0,
+          330.74
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "上方 Topic 4 分支右上侧的 Argument 9 矩形节点。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.88888888888889,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "节点文字改为“性能优化”",
+            "保留：与Topic 4的连接",
+            "保留：节点位置",
+            "保留：节点样式"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "改挂到 Topic 5 下。\n删掉原父节点连线，再连到新父节点；\n文字、位置和大小不变。",
+      "arrow_path_input_px": [
+        [
+          1140,
+          1190
+        ],
+        [
+          1140,
+          935
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          997,
+          919,
+          1162,
+          949
+        ],
+        "reference_point": [
+          1140,
+          935
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "右下方 Topic 1 右侧的 Argument 1 矩形叶子节点。",
+        "requested_change": "删除 Argument 1 与 Topic 1 的连接，并将 Argument 1 连接到 Topic 5，成为其子节点。",
+        "preserve": [
+          "Argument 1文字",
+          "Argument 1位置",
+          "Argument 1大小"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          760.0,
+          660.78
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "右下方 Topic 1 右侧的 Argument 1 矩形叶子节点。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 11.11111111111111,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "删除目标与原父节点的连接",
+            "将目标连接到新父节点Topic 5",
+            "保留：Argument 1文字",
+            "保留：Argument 1位置",
+            "保留：Argument 1大小"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.preserve-1",
+            "B.preserve-2",
+            "B.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

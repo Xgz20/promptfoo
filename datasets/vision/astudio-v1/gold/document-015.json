@@ -1,0 +1,156 @@
+{
+  "task_id": "document-015",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1836,
+    3264
+  ],
+  "input_sha256": "2ea4627596f79cbea4e1ca9fbe15290fe009db99dfaa3b1eb649c615bfcb3bf5",
+  "prompt_sha256": "74503d0dedd8f5791d071f8f2062afa0ea032c94df161ccbb146500be456f2f8",
+  "source": {
+    "dataset": "CORD-v2",
+    "url": "https://huggingface.co/datasets/naver-clova-ix/cord-v2/viewer/default/test?row=14",
+    "source_row_zero_based": 14,
+    "original_record_row": 14,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/CORD-v2/test-014.jpg",
+    "local_original": "sources/document-015.jpg",
+    "original_sha256": "ea8f1c932350e1e2d5182a9dad4ed0fdadf2fe4d88703ee1d4ce20ecf9933067",
+    "size": [
+      1836,
+      3264
+    ],
+    "snapshot": "HF 7f0115a4b758a71d6473b8d085751692da2fef98；public viewer JPEG exports固定实际下载字节，不宣称与parquet原字节一致。",
+    "license_status": "上游CORD仓库声明CC BY 4.0；图中既有隐私模糊保持原样，不询问模糊字段。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "TOTAL一行打印的合计金额是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "281435，接受281,435"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "从第一项到Iced Tea为止，商品明细一共有几行？不计汇总和支付行。",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "6行"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "Coupon一行在CASH一行的上方还是下方？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "上方。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "商品明细中单行金额最高的商品名称是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "Fish n Chips，接受炸鱼薯条或不影响名称的大小写变化"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：大号TOTAL标签的全部字形，不含右侧金额和上下分隔线。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        558,
+        1595,
+        795,
+        1642
+      ],
+      "center_input_px": [
+        676.5,
+        1618.5
+      ],
+      "reference_point": {
+        "x": 368.464,
+        "y": 495.864
+      },
+      "tolerance_input_px": 20,
+      "scope": "大号TOTAL标签的全部字形，不含右侧金额和上下分隔线"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-015",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "281,435。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "6行。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "上方。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "Fish n Chips。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 368.464,
+          "y": 495.864
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

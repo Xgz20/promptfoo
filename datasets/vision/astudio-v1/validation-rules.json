@@ -1,0 +1,17 @@
+{
+  "idField": "vars.case_id",
+  "requiredFields": [
+    "description",
+    "vars.image",
+    "vars.question",
+    "metadata.case_id",
+    "metadata.gold_path",
+    "metadata.schema_path",
+    "metadata.applicable_dimensions",
+    "metadata.source_dataset_version"
+  ],
+  "allowedValues": {
+    "metadata.dataset_version": ["astudio-v1"],
+    "metadata.scene": ["canvas", "webapp", "photos", "posters", "charts", "documents"]
+  }
+}

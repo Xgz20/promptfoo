@@ -1,0 +1,156 @@
+{
+  "task_id": "poster-014",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    413,
+    360
+  ],
+  "input_sha256": "06063ba8edf79de419bc6a930e6d0f019d72f05fb094033f74bd0cf6501b6828",
+  "prompt_sha256": "6b3f6b56e68e011ef7334bcd294f5d62e012950dbc5e2af5001435bd2810a7ea",
+  "source": {
+    "dataset": "xkcd",
+    "url": "https://xkcd.com/303/",
+    "source_row_zero_based": 3,
+    "original_record_row": 303,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/xkcd/303.png",
+    "local_original": "sources/poster-014.png",
+    "original_sha256": "1489aef471a4ed7cda5e1c69bf9ce9d51395bd2e781346216f025e208c95756b",
+    "size": [
+      413,
+      360
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "Randall Munroe，xkcd，CC BY-NC 2.5；公开漫画素材，不是现成评测集，保留来源署名与非商业限制。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "位于上方引号内的英文借口是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "MY CODE’S COMPILING"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "画面中有几张带轮子的办公椅？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "2张。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "标有COMPILING!的气泡尾部指向门外来人还是房间里的椅子区域？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "房间里的椅子区域。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "房间内人物手持物体进行的活动更像击剑还是打字？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "击剑／持剑对打。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：最靠画面右侧的办公椅可见整体，含椅背、座面和底部支脚，不含坐椅上的人物。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        341,
+        279,
+        397,
+        342
+      ],
+      "center_input_px": [
+        369.0,
+        310.5
+      ],
+      "reference_point": {
+        "x": 893.462,
+        "y": 862.5
+      },
+      "tolerance_input_px": 20,
+      "scope": "最靠画面右侧的办公椅可见整体，含椅背、座面和底部支脚，不含坐椅上的人物"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-014",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "MY CODE’S COMPILING.",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "2张。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "房间里的椅子区域。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "击剑／持剑对打。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 893.462,
+          "y": 862.5
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

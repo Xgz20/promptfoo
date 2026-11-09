@@ -6,7 +6,7 @@ export default defineConfig({
     ...commonTestConfig(),
     exclude: ['**/*.integration.test.ts', '**/node_modules/**', 'test/smoke/**'],
     globals: false,
-    include: ['test/**/*.test.ts', 'test/**/*.test.tsx'],
+    include: ['test/**/*.test.ts', 'test/**/*.test.tsx', 'test/astudio/**/*.test.mjs'],
 
     // Keep successful backend unit-test runs focused on failures. Set
     // PROMPTFOO_TEST_SHOW_OUTPUT=true when debugging stdout/stderr from tests.

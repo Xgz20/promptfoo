@@ -1,0 +1,172 @@
+{
+  "task_id": "photo-010",
+  "version": "1.0.0",
+  "scene": "日常照片",
+  "input_size": [
+    510,
+    512
+  ],
+  "input_sha256": "5c9d9324c4fb180932bf5e585a68ac3655cd553b6b59f84514f97e639042de85",
+  "prompt_sha256": "62dde4ccf0c19eadf615ac429e7d7ceef7d307b13001cc74c8515f83f35c2643",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "repository": "https://github.com/MMStar-Benchmark/MMStar",
+    "source_row_zero_based": 184,
+    "upstream_index": "184",
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/5c6b07ba2b8ec10c866ec99e.jpg",
+    "local_original": "sources/photo-010.jpg",
+    "original_sha256": "5c6b07ba2b8ec10c866ec99edf1e179e9948bd6592c658e08cf11126353e3610",
+    "size": [
+      510,
+      512
+    ],
+    "snapshot": "Local MMStar.tsv SHA-256 38a99f4a33743665e6990961a9a0072b07f7ac6a74d1555b43c4f82145377cb4",
+    "upstream_commit": null,
+    "pin_note": "下载时使用main，未保存commit；复现以实际TSV和图像哈希为准，不虚构commit。",
+    "license_status": "数据卡/项目仓库未列出统一图像许可证；仅记录公开可获取，不声明再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "画面主要动物是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "物体识别"
+      ],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "识别为猫"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "动物身上的毛色与纹理有什么特点？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "颜色属性",
+        "纹理细节"
+      ],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "橙棕或橘黄色"
+        },
+        {
+          "id": "C2.2",
+          "text": "条纹纹理"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "它当前主要是站着、坐着还是躺着？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "姿态识别"
+      ],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "站姿"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "它的头朝向画面哪一侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [
+        "方向判断"
+      ],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "头朝画面左侧"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：这只动物的整个可见身体，包括头、耳朵和可见四肢；不补全画面外部分。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "预测中心与Gold中心的欧氏距离≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        109,
+        61,
+        510,
+        465
+      ],
+      "center_input_px": [
+        309.5,
+        263.0
+      ],
+      "reference_point": {
+        "x": 606.863,
+        "y": 513.672
+      },
+      "tolerance_input_px": 20,
+      "scope": "这只动物的整个可见身体，包括头、耳朵和可见四肢；不补全画面外部分"
+    }
+  },
+  "reference_answer": {
+    "task_id": "photo-010",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "猫。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "橙棕／橘黄色，带条纹。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "站着。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "左侧。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 606.863,
+          "y": 513.672
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

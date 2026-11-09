@@ -1,0 +1,339 @@
+{
+  "id": "webapp-004",
+  "version": "1.0.0-draft",
+  "title": "活动日程页：日期层级与跨批注样式",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "Design2Code-hf",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/SALT-NLP/Design2Code-hf",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 28,
+    "original_record": {
+      "source_file": "datasets/Design2Code-hf/data/train-00000-of-00001.parquet",
+      "source_row": 28,
+      "collection_index": 28,
+      "images": [
+        {
+          "path": "normalized/Design2Code-hf/images/c251f9a9e4dad7825a180a38.png",
+          "width": 1280,
+          "height": 1575,
+          "sha256": "c251f9a9e4dad7825a180a387659a84adba83a00ce1789e5fcee73fb13036992",
+          "field": "image"
+        }
+      ],
+      "original": {
+        "html_path": "normalized/Design2Code-hf/html/0028.html"
+      }
+    },
+    "path_in_collection": "normalized/Design2Code-hf/images/c251f9a9e4dad7825a180a38.png",
+    "sha256": "c251f9a9e4dad7825a180a387659a84adba83a00ce1789e5fcee73fb13036992",
+    "license_observed": "ODC-By（数据卡）；上游项目另注明research use only",
+    "license_evidence": "sources/licenses/Design2Code-hf-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1280,
+    1575
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1280,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.9444444444444444
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "下方日程表前两行的时间段分别是什么？按行序列出。",
+      "reference_answer": "3–4 pm（接受3-4 pm）；4–4:30 pm（接受4-4:30 pm）",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "3–4 pm（接受3-4 pm）"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "4–4:30 pm（接受4-4:30 pm）"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "首场活动标题中，manger 与后面的 by Boris Charmatz 在斜体样式上有何区别？",
+      "reference_answer": "manger为斜体；by Boris Charmatz不为斜体",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "manger为斜体"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "by Boris Charmatz不为斜体"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "下方日程表中，时间列与活动描述列的左右关系是什么？",
+      "reference_answer": "时间列在活动描述列左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "时间列在活动描述列左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "文字颜色改为紫色。日期和时间内容不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          364.44444
+        ],
+        [
+          578.38889,
+          364.44444
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          269.55556,
+          351.22222,
+          583.11111,
+          368.22222
+        ],
+        "reference_point": [
+          578.38889,
+          364.44444
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "首场活动下方 SEPTEMBER 22-23, 2018 · 8-9 PM 日期时间行",
+        "target_point": [
+          321.327,
+          331.313
+        ],
+        "requested_change": "文字颜色改为紫色",
+        "preserve": [
+          "日期内容",
+          "时间内容"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "首场活动下方 SEPTEMBER 22-23, 2018 · 8-9 PM 日期时间行"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "文字颜色改为紫色",
+            "保留：日期内容",
+            "保留：时间内容"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "颜色与 A 修改后的颜色一致。日期和时间内容不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          574.11111
+        ],
+        [
+          515.11111,
+          574.11111
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          269.55556,
+          561.83333,
+          518.88889,
+          576.94444
+        ],
+        "reference_point": [
+          515.11111,
+          574.11111
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "第二场活动下方 OCTOBER 6, 2018 · 3-9 PM 日期时间行",
+        "target_point": [
+          286.173,
+          521.919
+        ],
+        "requested_change": "文字颜色与A修改后相同，即紫色",
+        "preserve": [
+          "日期内容",
+          "时间内容"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "第二场活动下方 OCTOBER 6, 2018 · 3-9 PM 日期时间行"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "文字颜色与A修改后相同，即紫色",
+            "保留：日期内容",
+            "保留：时间内容"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1",
+            "B.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

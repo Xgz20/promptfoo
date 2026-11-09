@@ -1,0 +1,156 @@
+{
+  "task_id": "poster-013",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    600,
+    386
+  ],
+  "input_sha256": "c48bfdcba38fa448d65f11a7e42a2469d4f5d46f43ffb90784ea60cf5f15d136",
+  "prompt_sha256": "4003ea99ffd094d2863dd13fd5d9218fede4de8068659d7ec5d423714a6c4c59",
+  "source": {
+    "dataset": "xkcd",
+    "url": "https://xkcd.com/162/",
+    "source_row_zero_based": 2,
+    "original_record_row": 162,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/xkcd/162.png",
+    "local_original": "sources/poster-013.png",
+    "original_sha256": "7be3b0e56503b281c7216f65eef36eb2192b56279f22f91e19e835cd52083bc8",
+    "size": [
+      600,
+      386
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "Randall Munroe，xkcd，CC BY-NC 2.5；公开漫画素材，不是现成评测集，保留来源署名与非商业限制。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "人物说自己转动的英文方向短语是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "SPINNING COUNTERCLOCKWISE"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "画面整体使用彩色，还是黑白灰？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "黑白灰／灰度画面"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "带旋转动作线的人物相对床，在画面哪一侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "右侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "坐在床上的人物是直立站着还是屈腿坐着？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "屈腿坐着。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：墙上的窗户整体（含黑色边框，不含周围墙面）。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        25,
+        148,
+        69,
+        236
+      ],
+      "center_input_px": [
+        47.0,
+        192.0
+      ],
+      "reference_point": {
+        "x": 78.333,
+        "y": 497.409
+      },
+      "tolerance_input_px": 20,
+      "scope": "墙上的窗户整体（含黑色边框，不含周围墙面）"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-013",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "SPINNING COUNTERCLOCKWISE。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "黑白灰。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "屈腿坐着。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 78.333,
+          "y": 497.409
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

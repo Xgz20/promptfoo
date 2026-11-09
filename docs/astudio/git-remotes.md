@@ -9,6 +9,21 @@
 
 工程最初基于 Promptfoo main 的 `715e929298130cc32a6eab895f056ac32d0f15b4` 创建，开发分支由本地 main 拉出。首次推送前，本地 main 和开发分支已同步官方上游至 `414645ff0f8b52ad78bc427f9d5ca2ec23bd3725`。本地 main 用于保存官方基线，并跟踪个人 fork 的 `github/main`。项目定制在开发分支进行。
 
+## 提交身份
+
+当前用户已确认本项目的提交邮箱为 `xqzhou9@iflytek.com`。为该用户代为提交时，使用此邮箱，配置仅作用于本仓库；其他协作者使用本人在公司 Git 平台登记的邮箱。
+
+```bash
+git config --local user.email 'xqzhou9@iflytek.com'
+git config --local --get user.email
+```
+
+公司仓库的远端 hook 会校验提交邮箱。若返回“未通过Commit邮箱校验”，检查待推送提交的作者和提交者邮箱；修改 `user.email` 只影响后续新提交，不会更改已有提交。
+
+```bash
+git show -s --format='Author: %an <%ae>%nCommitter: %cn <%ce>' HEAD
+```
+
 ## 切换推送目标
 
 从工程任意子目录执行脚本均可，以下命令以工程根目录为例。

@@ -1,0 +1,156 @@
+{
+  "task_id": "document-005",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1192,
+    1686
+  ],
+  "input_sha256": "b677e99d7fd3a7951f5955b5afdca3c26d64e8f3d46774062dce4c23a37f469f",
+  "prompt_sha256": "a22ba6ff8d9f60a67a7d3d86418843e4cf63986e23c86616dd93567805bb6016",
+  "source": {
+    "dataset": "MDVP-Bench",
+    "url": "https://huggingface.co/datasets/Afeng-x/Draw-and-Understand",
+    "source_row_zero_based": 195,
+    "original_record_row": 6,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDVP-Bench/MDVP-bench/ocr_doc_QA/images/0501_0059_0042.jpg",
+    "local_original": "sources/document-005.jpg",
+    "original_sha256": "ff7c88e03cfa99f754f149db5d31f821a51c3b7121666b46cc1fad3290510bef",
+    "size": [
+      1192,
+      1686
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明CC BY-NC 4.0；非商业限制，保留页面署名。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "页面底部中央的页码是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "36。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "本页实际可见的黑色圆点列表项共有几个？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "2个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "Chapter编号相对于两行主题标题，在上方还是下方？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "上方。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "第二个列表项正文中的OHNSGA使用直立字还是斜体字？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "斜体。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：章节的两行主题标题整体字形，不含Chapter编号或5.1小节标题。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        214,
+        468,
+        798,
+        583
+      ],
+      "center_input_px": [
+        506.0,
+        525.5
+      ],
+      "reference_point": {
+        "x": 424.497,
+        "y": 311.684
+      },
+      "tolerance_input_px": 20,
+      "scope": "章节的两行主题标题整体字形，不含Chapter编号或5.1小节标题"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-005",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "36。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "2个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "上方。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "斜体。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 424.497,
+          "y": 311.684
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

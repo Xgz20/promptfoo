@@ -1,0 +1,11 @@
+你将看到一张网页或应用截图，附有文字与箭头批注。只识别画面并理解批注，不执行任何编辑、点击或实际操作。
+请先回答以下独立内容问题，再逐条解释图片中的 A、B 批注。内容问题只观察原截图，不把批注要求的未来状态当成当前状态。
+text-1：商品区第一行从左数前两张完整卡片的名称分别是什么？
+state-1：顶部 Discover、Extensions、Themes 中哪一项处于选中态？用哪种线条标记？
+layout-1：分类列表与主题卡片网格的左右关系是什么？
+
+对每条批注回答：箭头指向的原目标、原位置代表点、修改要求及明确需要保留的内容。相似控件须用可见位置或归属消歧。跨批注指代须落实到对应对象。不要自行增加未要求的修改或保留项。
+target_point 是原目标的代表点，不是批注框、箭头起点或修改后位置。坐标按整张最终输入图宽高归一化到 [0,1000]：原点为左上角，x向右，y向下；不是截图内部局部坐标。无需与箭头尖端精确重合，合理落在目标内即可。无法定位时填null；无法识别的文字或状态明确说明不确定，不猜隐藏功能。
+只返回JSON，不加Markdown围栏。结构：
+{"content_answers":[{"question_id":"text-1","answer":"..."},{"question_id":"state-1","answer":"..."},{"question_id":"layout-1","answer":"..."}],"edits":[{"annotation_id":"A","target_description":"...","target_point":[0,0],"requested_change":"...","preserve":["..."]},{"annotation_id":"B","target_description":"...","target_point":[0,0],"requested_change":"...","preserve":["..."]}]}
+每个内容问题和批注编号恰好出现一次。示例中的[0,0]只是结构占位，不是答案。edits字段仅表达对批注的理解。

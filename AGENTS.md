@@ -12,6 +12,8 @@ Promptfoo is an open-source framework for evaluating and testing LLM application
 
 新增用例后，从工程根目录运行 `node scripts/astudio/validate-dataset.mjs datasets/vision/astudio-v1`，并汇报新增 ID、图片、考察能力、标注与评分依据和校验结果。执行模型评测时，使用用户指定的模型与裁判配置。
 
+提交前核对本项目的[提交身份约定](docs/astudio/git-remotes.md#提交身份)，使用当前用户已确认的公司提交邮箱。
+
 ## Project Structure
 
 | Directory           | Purpose                         | Local Docs                   |

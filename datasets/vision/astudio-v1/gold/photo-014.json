@@ -1,0 +1,186 @@
+{
+  "task_id": "photo-014",
+  "version": "1.0.1",
+  "scene": "日常照片",
+  "input_size": [
+    512,
+    384
+  ],
+  "input_sha256": "2cfac9570adb5fe7506f324eb2763de944ac3f2a677a042b6017c0001c2e874e",
+  "prompt_sha256": "9fa9df53db3dedb97269065607096493c8f5485d4ea7193c59fe24b5c78e11c0",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "repository": "https://github.com/MMStar-Benchmark/MMStar",
+    "source_row_zero_based": 124,
+    "upstream_index": "124",
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/9d09f7001bb7d808d8d3eef8.jpg",
+    "local_original": "sources/photo-014.jpg",
+    "original_sha256": "9d09f7001bb7d808d8d3eef8a03ad9aa7e97215164b4376f3a20eab8d62fde24",
+    "size": [
+      512,
+      384
+    ],
+    "snapshot": "Local MMStar.tsv SHA-256 38a99f4a33743665e6990961a9a0072b07f7ac6a74d1555b43c4f82145377cb4",
+    "upstream_commit": null,
+    "pin_note": "下载时使用main，未保存commit；复现以实际TSV和图像哈希为准，不虚构commit。",
+    "license_status": "数据卡/项目仓库未列出统一图像许可证；仅记录公开可获取，不声明再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "画面中距镜头最近的公共交通车辆有几层乘客空间？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "结构识别"
+      ],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "双层结构"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "C1所问车辆的车身主色是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "颜色属性"
+      ],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "车身粉红或粉紫色"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "画面中可清楚区分出几辆同类大型公共交通车辆？只数车身大部可见的，不计左远处被遮挡的局部或小汽车。",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "数量判断"
+      ],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "可清楚区分的公交大车为3辆"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "C1所问车辆相对于中间那辆绿色公共交通车辆，在图像左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [
+        "左右关系"
+      ],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "最近粉色车辆在绿色车辆右侧"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "question": "C1所问车辆前部显示屏上靠右的清晰路线数字是什么？只写数字。",
+      "dimension": "文字识别",
+      "tags": [
+        "自然文字"
+      ],
+      "checks": [
+        {
+          "id": "C5.1",
+          "text": "路线号24"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：C1所问车辆的整体可见车身，包括车轮，不包括旁边建筑。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "预测中心与Gold中心的欧氏距离≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        227,
+        119,
+        396,
+        270
+      ],
+      "center_input_px": [
+        311.5,
+        194.5
+      ],
+      "reference_point": {
+        "x": 608.398,
+        "y": 506.51
+      },
+      "tolerance_input_px": 20,
+      "scope": "C1所问车辆的整体可见车身，包括车轮，不包括旁边建筑"
+    }
+  },
+  "reference_answer": {
+    "task_id": "photo-014",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "2层／双层。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "粉红／粉紫色。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "3辆。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C5",
+        "answer": "24",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 608.398,
+          "y": 506.51
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

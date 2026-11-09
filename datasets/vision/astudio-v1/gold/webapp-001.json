@@ -1,0 +1,337 @@
+{
+  "id": "webapp-001",
+  "version": "1.0.0-draft",
+  "title": "安装完成页：按钮文案与相对布局",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "Design2Code-hf",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/SALT-NLP/Design2Code-hf",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 10,
+    "original_record": {
+      "source_file": "datasets/Design2Code-hf/data/train-00000-of-00001.parquet",
+      "source_row": 10,
+      "collection_index": 10,
+      "images": [
+        {
+          "path": "normalized/Design2Code-hf/images/a8fcb0835faae872e96a388b.png",
+          "width": 1280,
+          "height": 720,
+          "sha256": "a8fcb0835faae872e96a388b8eda5ab253785cb3b654b4c1644d5d75447f497f",
+          "field": "image"
+        }
+      ],
+      "original": {
+        "html_path": "normalized/Design2Code-hf/html/0010.html"
+      }
+    },
+    "path_in_collection": "normalized/Design2Code-hf/images/a8fcb0835faae872e96a388b.png",
+    "sha256": "a8fcb0835faae872e96a388b8eda5ab253785cb3b654b4c1644d5d75447f497f",
+    "license_observed": "ODC-By（数据卡）；上游项目另注明research use only",
+    "license_evidence": "sources/licenses/Design2Code-hf-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1280,
+    720
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1280,
+    720
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    1
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "页面主体中的操作按钮分别显示什么文字？按从上到下列出。",
+      "reference_answer": "Quickstart Guide；Ask a Question",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Quickstart Guide"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "Ask a Question"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "页面主体操作按钮的底色和文字颜色分别是什么？",
+      "reference_answer": "底色为蓝色；文字为白色",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "底色为蓝色"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "文字为白色"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "左上方版权文字在主体大边框的内部还是外部？",
+      "reference_answer": "位于主体大边框外部的上方",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "位于主体大边框外部的上方"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "文字改为“开始配置”。按钮位置不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          344
+        ],
+        [
+          730,
+          344
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          590,
+          306,
+          738,
+          354
+        ],
+        "reference_point": [
+          730,
+          344
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "主体上方的 Quickstart Guide 按钮",
+        "target_point": [
+          405.556,
+          312.727
+        ],
+        "requested_change": "按钮文案改为开始配置",
+        "preserve": [
+          "按钮位置"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "主体上方的 Quickstart Guide 按钮"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 6.666666666666667,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "按钮文案改为开始配置",
+            "保留：按钮位置"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "移到 A 所指按钮的右侧，垂直中心对齐，边缘间距 20 px。大小不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          689.0
+        ],
+        [
+          1428,
+          689.0
+        ],
+        [
+          1428,
+          475
+        ],
+        [
+          729,
+          475
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          590,
+          435,
+          738,
+          483
+        ],
+        "reference_point": [
+          729,
+          475
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "主体下方的 Ask a Question 按钮",
+        "target_point": [
+          405.0,
+          431.818
+        ],
+        "requested_change": "移动到A所指按钮右侧；与A按钮垂直中心对齐；两按钮相邻边缘间距20 px",
+        "preserve": [
+          "按钮大小"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "主体下方的 Ask a Question 按钮"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 13.333333333333334,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "移动到A所指按钮右侧",
+            "与A按钮垂直中心对齐",
+            "两按钮相邻边缘间距20 px",
+            "保留：按钮大小"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.change-3",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

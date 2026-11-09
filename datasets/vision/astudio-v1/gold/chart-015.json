@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-015",
+  "version": "1.0.1",
+  "scene": "统计图表",
+  "input_size": [
+    780,
+    568
+  ],
+  "input_sha256": "9f2cb5da4a890970c82e6eee4169024684132623956617b8fc084a5270a64b89",
+  "prompt_sha256": "41753d6b29c62ba9166e614cc81e28e7f8f7f0e142783231f17254537bc93fa5",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 76,
+    "original_record_row": 76,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/dd5e7541824fd756635dbdfc.jpg",
+    "local_original": "sources/chart-015.jpg",
+    "original_sha256": "dd5e7541824fd756635dbdfca75ebb4bf05dc190d8fd1d7d959817c73dc6303a",
+    "size": [
+      780,
+      568
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "PROFIT面板标注的变化百分比是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "负30%"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "三项指标的下降幅度中，哪一项最小？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "SALES／销售额。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "EARNINGS PER SHARE与SALES面板，哪一个在画面更右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "SALES在右。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "SALES面板2014年Q4与2015年Q4标注的销售额相差多少十亿美元？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "0.9十亿美元，接受9亿美元"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：EARNINGS PER SHARE面板中2015年Q3的柱形实体，不含轴线。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        429,
+        313,
+        455,
+        468
+      ],
+      "center_input_px": [
+        442.0,
+        390.5
+      ],
+      "reference_point": {
+        "x": 566.667,
+        "y": 687.5
+      },
+      "tolerance_input_px": 20,
+      "scope": "EARNINGS PER SHARE面板中2015年Q3的柱形实体，不含轴线"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-015",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "−30.0%。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "SALES／销售额。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "SALES在右。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "0.90十亿美元。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 566.667,
+          "y": 687.5
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

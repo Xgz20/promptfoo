@@ -1,0 +1,346 @@
+{
+  "id": "webapp-005",
+  "version": "1.0.0-draft",
+  "title": "期刊网页与书签侧栏：同类控件消歧",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 11,
+    "original_record": {
+      "source_row": 11,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/element_grounding/7be00357257313ec4f1f6f5f907bca23.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "original": {
+        "image_path": "element_grounding/7be00357257313ec4f1f6f5f907bca23.png",
+        "image_size": [
+          1280,
+          720
+        ],
+        "prompt_to_evaluate": "Site information",
+        "bbox": [
+          252.8,
+          50.39999999999999,
+          276.8,
+          72.0
+        ],
+        "platform": "Brave",
+        "category": "Input Elements",
+        "element_type": "icon"
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/7be00357257313ec4f1f6f5f907bca23.png",
+    "sha256": "16074c767b66083a86c9f948bb71a734a924442fee65c77ac89dd221b1f445f8",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1280,
+    720
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1280,
+    720
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    1
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "网页中的期刊名称和 CiteScore 数值分别是什么？",
+      "reference_answer": "Topology and its Applications；1.2",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Topology and its Applications"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "1.2"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "浏览器书签侧栏当前是否展开？它的主要底色是浅色还是深色？",
+      "reference_answer": "书签侧栏已展开；书签侧栏为深色底",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "书签侧栏已展开"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "书签侧栏为深色底"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "期刊网页内容与书签侧栏的左右关系是什么？",
+      "reference_answer": "期刊内容在左，书签侧栏在右",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "期刊内容在左，书签侧栏在右"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "宽度缩小为原来的 80%。高度和占位文字不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          278
+        ],
+        [
+          1244,
+          278
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          953,
+          249,
+          1256,
+          286
+        ],
+        "reference_point": [
+          1244,
+          278
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "右侧书签面板中的 Search bookmarks 搜索框",
+        "target_point": [
+          691.111,
+          252.727
+        ],
+        "requested_change": "宽度改为原来的80%",
+        "preserve": [
+          "高度",
+          "占位文字"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "右侧书签面板中的 Search bookmarks 搜索框"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 12.0,
+          "points_per_checkpoint": 4.0,
+          "checkpoints": [
+            "宽度改为原来的80%",
+            "保留：高度",
+            "保留：占位文字"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "宽度改为与 A 修改后的宽度相同。保留放大镜图标。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          451
+        ],
+        [
+          583,
+          451
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          133,
+          408,
+          593,
+          460
+        ],
+        "reference_point": [
+          583,
+          451
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "网页导航条中的 Search in this journal 搜索框",
+        "target_point": [
+          323.889,
+          410.0
+        ],
+        "requested_change": "宽度与A修改后的书签搜索框相同",
+        "preserve": [
+          "放大镜图标"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "网页导航条中的 Search in this journal 搜索框"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.0,
+          "points_per_checkpoint": 4.0,
+          "checkpoints": [
+            "宽度与A修改后的书签搜索框相同",
+            "保留：放大镜图标"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

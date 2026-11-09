@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-005",
+  "version": "1.0.0",
+  "scene": "统计图表",
+  "input_size": [
+    547,
+    307
+  ],
+  "input_sha256": "2e0c9886debb16576dea84b9d47a62a92e61f0f303369d48bfcd12f1d99f2e85",
+  "prompt_sha256": "2472d099eac7c75a35725ef41355a542ca26034b86aab70e18d3cc0b3b4e5402",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 61,
+    "original_record_row": 61,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/e5e10197143ae3953c780d35.jpg",
+    "local_original": "sources/chart-005.jpg",
+    "original_sha256": "e5e10197143ae3953c780d3553dec2aecad3ac7fced687eb304c221fdf292082",
+    "size": [
+      547,
+      307
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "22 July–28 July这一周的柱顶数值是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "32595"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "这组柱从第一周到最后一周是否出现过相邻两周下降？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "无相邻下降"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "5 Aug–11 Aug与12 Aug–18 Aug两组柱，哪组在画面更左侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "5 Aug–11 Aug在左。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "最后两周柱顶数字相差多少？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "62185−60972=1213；只要求结果1213"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：8 July–14 July的绿色柱形实体，不包括标签。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        112,
+        209,
+        140,
+        239
+      ],
+      "center_input_px": [
+        126.0,
+        224.0
+      ],
+      "reference_point": {
+        "x": 230.347,
+        "y": 729.642
+      },
+      "tolerance_input_px": 20,
+      "scope": "8 July–14 July的绿色柱形实体，不包括标签"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-005",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "32595。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "没有，逐周上升。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "5 Aug–11 Aug在左。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "1213。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 230.347,
+          "y": 729.642
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

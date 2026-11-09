@@ -1,0 +1,156 @@
+{
+  "task_id": "poster-015",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    300,
+    330
+  ],
+  "input_sha256": "fc9dfce626debc42f3873b0c5481267c65c6c9c4013e25ec5643369636b42a78",
+  "prompt_sha256": "0844d616963e5131017548c016420a20b0c618e086b7f02188c95c3083051c5f",
+  "source": {
+    "dataset": "xkcd",
+    "url": "https://xkcd.com/386/",
+    "source_row_zero_based": 4,
+    "original_record_row": 386,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/xkcd/386.png",
+    "local_original": "sources/poster-015.png",
+    "original_sha256": "8c05cfc38dce90d0d09124d476546172001a2f17b8f0e96c9b7bcf37b8dea0a6",
+    "size": [
+      300,
+      330
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "Randall Munroe，xkcd，CC BY-NC 2.5；公开漫画素材，不是现成评测集，保留来源署名与非商业限制。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "人物说有人在哪里犯错？抄写对话中的英文地点短语。",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "ON THE INTERNET。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "图中实际画出了几个人物？不把画外说话者算进去。",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "1个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "显示器相对于人物头部，在画面左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "右侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "人物是在坐着使用电脑还是站着使用电脑？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "坐着。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：桌上显示器的完整可见整体，包含底座，不含桌面。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        205,
+        187,
+        224,
+        243
+      ],
+      "center_input_px": [
+        214.5,
+        215.0
+      ],
+      "reference_point": {
+        "x": 715.0,
+        "y": 651.515
+      },
+      "tolerance_input_px": 20,
+      "scope": "桌上显示器的完整可见整体，包含底座，不含桌面"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-015",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "ON THE INTERNET。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "1个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "坐着。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 715.0,
+          "y": 651.515
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

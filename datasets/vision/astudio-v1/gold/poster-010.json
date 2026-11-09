@@ -1,0 +1,156 @@
+{
+  "task_id": "poster-010",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    419,
+    421
+  ],
+  "input_sha256": "28d78b3e7cc21336eb2faf3f6add9daa55e92cfa00d6787d166bdf996a5b1618",
+  "prompt_sha256": "0a44383c83eb3843be9711a1929a7e4a4c4c6ed30b20aa3a2fc185dec9dcd52e",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "source_row_zero_based": 245,
+    "original_record_row": 245,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/66e29e1538cb1a06da2d2cdb.jpg",
+    "local_original": "sources/poster-010.jpg",
+    "original_sha256": "66e29e1538cb1a06da2d2cdb38d7bcd6899b6a05a58cfbc1570323a3026d7675",
+    "size": [
+      419,
+      421
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡未列统一图片许可证；公开可获取不等于开放再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "人物嘴唇的主色是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "鲜粉色／玫红色。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "头部机械装置中，带黄色金属外圈、内部为暗色放射叶片的大圆形部件有几个？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "2个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "脸颊上密集暴露的机械结构主要位于画面左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "画面左侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "人物的眼睛主要是什么颜色？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "蓝色／青蓝色。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：头部装置中没有放射叶片、呈黄色发光球状的部件，不含外部暗色底座。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        284,
+        25,
+        332,
+        75
+      ],
+      "center_input_px": [
+        308.0,
+        50.0
+      ],
+      "reference_point": {
+        "x": 735.084,
+        "y": 118.765
+      },
+      "tolerance_input_px": 20,
+      "scope": "头部装置中没有放射叶片、呈黄色发光球状的部件，不含外部暗色底座"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-010",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "鲜粉色／玫红色。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "2个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "画面左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "蓝色／青蓝色。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 735.084,
+          "y": 118.765
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

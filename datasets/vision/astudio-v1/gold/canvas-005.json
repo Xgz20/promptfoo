@@ -1,0 +1,413 @@
+{
+  "id": "canvas-005",
+  "version": "0.4.2-draft",
+  "title": "多画板移动端稿：图标缩放、按钮间距与选中项",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "drawio-diagrams",
+    "kind": "open_source_diagram_template",
+    "url": "https://github.com/jgraph/drawio-diagrams/blob/cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01/templates/layout/ios_app_ui.xml",
+    "license_observed": "Apache-2.0（所下载仓库根目录 LICENSE；保留原文件与版权许可）",
+    "repository_commit": "cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01",
+    "original_file": "repos/drawio-diagrams/templates/layout/ios_app_ui.xml",
+    "original_sha256": "4e54fc55bbdf9d41d1d4baacf7e41f4d742244cf68d8a4ff8264494080d8e631",
+    "renderer": "source-build/render-sources.mjs + pinned viewer-static.min.js",
+    "renderer_sha256": "35b8ef54369e938ad2399d3c8ce3945591d4b200a01f6942d0e39743bea1f1a1",
+    "path_in_collection": "pilots/canvas-20261106/source-build/templates__layout__ios_app_ui.png",
+    "sha256": "fb6394aac2ac896e1b7aa676b4858502730b36bc8773d61539ad668b5da1e5b0"
+  },
+  "source_image_size": [
+    1074,
+    650
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1074,
+    650
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1500,
+    1260
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "文字识别",
+      "question": "读取左侧手机画板中小图标的文字，以及中间画板较小按钮的文字。",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "小图标文字 Icon"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "较小按钮文字 Abort Download"
+        }
+      ],
+      "reference_answer": "小图标文字 Icon；较小按钮文字 Abort Download。",
+      "id": "text-1"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "右侧手机画板的 Hangout 和 Settings 当前是否有选中标记？左侧小图标的背景是纯色还是渐变？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "Hangout 有蓝色勾选标记"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "Settings 没有勾选标记"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "小图标为蓝青渐变背景"
+        }
+      ],
+      "reference_answer": "Hangout 有蓝色勾选标记；Settings 没有勾选标记；小图标为蓝青渐变背景。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "只看原图，中间画板的两个按钮和下载进度条按上下顺序如何排列？用按钮文字或大小指代。",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Wait 在 Abort Download 上方"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "Abort Download 在下载进度条上方"
+        }
+      ],
+      "reference_answer": "Wait 在 Abort Download 上方；Abort Download 在下载进度条上方。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10.0,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "图标等比放大到原来的 125%。\n中心位置、文字内容和渐变背景不变。",
+      "arrow_path_input_px": [
+        [
+          198,
+          225
+        ],
+        [
+          198,
+          672
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          145,
+          628,
+          205,
+          682
+        ],
+        "reference_point": [
+          198,
+          672
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "最左侧手机画板九宫格中间的蓝色渐变 Icon 图标。",
+        "requested_change": "以原中心为基准，将该图标宽高均放大到原来的125%。",
+        "preserve": [
+          "中心位置",
+          "Icon文字",
+          "渐变背景"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          132.0,
+          533.33
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 5.0,
+          "checkpoints": [
+            "最左侧手机画板九宫格中间的蓝色渐变 Icon 图标。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 6.666666666666667,
+          "points_per_checkpoint": 1.3333333333333333,
+          "checkpoints": [
+            "图标宽度放大为原来的125%",
+            "图标高度放大为原来的125%",
+            "保留：中心位置",
+            "保留：Icon文字",
+            "保留：渐变背景"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.change-2",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 3.3333333333333335,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "将选中项改为 Settings。\nHangout 取消选中；\n其余菜单项与顺序不变。",
+      "arrow_path_input_px": [
+        [
+          1024,
+          260
+        ],
+        [
+          1024,
+          576
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          797,
+          544,
+          1060,
+          590
+        ],
+        "reference_point": [
+          1024,
+          576
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "最右侧手机画板菜单中的 Hangout 行及其右侧蓝色勾选标记。",
+        "requested_change": "取消 Hangout 的选中状态，将选中状态和勾选标记移到 Settings。",
+        "preserve": [
+          "其他菜单项",
+          "菜单顺序"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          682.67,
+          457.14
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 5.0,
+          "checkpoints": [
+            "最右侧手机画板菜单中的 Hangout 行及其右侧蓝色勾选标记。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 5.333333333333333,
+          "points_per_checkpoint": 1.3333333333333333,
+          "checkpoints": [
+            "Settings改为选中",
+            "Hangout取消选中",
+            "保留：其他菜单项",
+            "保留：菜单顺序"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.preserve-1",
+            "B.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 3.3333333333333335,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "移到 Wait 按钮正下方，\n水平居中，边缘间距 24 px。\n文字、尺寸和下载进度不变。",
+      "arrow_path_input_px": [
+        [
+          635,
+          1035
+        ],
+        [
+          660,
+          769
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          453,
+          749,
+          676,
+          781
+        ],
+        "reference_point": [
+          660,
+          769
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "中间手机画板弹层下方的 Abort Download 按钮。",
+        "requested_change": "移动 Abort Download，使其在 Wait 正下方水平中心对齐，两按钮边缘间距24 px。",
+        "preserve": [
+          "Abort Download文字",
+          "Abort Download尺寸",
+          "下载进度"
+        ],
+        "annotation_id": "C",
+        "target_point": [
+          440.0,
+          610.32
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 5.0,
+          "checkpoints": [
+            "中间手机画板弹层下方的 Abort Download 按钮。"
+          ],
+          "checkpoint_ids": [
+            "C.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.0,
+          "points_per_checkpoint": 1.3333333333333333,
+          "checkpoints": [
+            "移动到Wait按钮下方",
+            "与Wait水平中心对齐",
+            "最近边缘间距24 px",
+            "保留：Abort Download文字",
+            "保留：Abort Download尺寸",
+            "保留：下载进度"
+          ],
+          "checkpoint_ids": [
+            "C.change-1",
+            "C.change-2",
+            "C.change-3",
+            "C.preserve-1",
+            "C.preserve-2",
+            "C.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 3.3333333333333335,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "C.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

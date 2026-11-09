@@ -1,0 +1,156 @@
+{
+  "task_id": "document-011",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    576,
+    864
+  ],
+  "input_sha256": "333e94612723e3bfc0186f1c9372a8e50019297c20f6328504a29441cb3848e3",
+  "prompt_sha256": "c6db5d7b05d0cae376e5807cd512a77632e886cba50e620cce615cfccfb14526",
+  "source": {
+    "dataset": "CORD-v2",
+    "url": "https://huggingface.co/datasets/naver-clova-ix/cord-v2/viewer/default/test?row=10",
+    "source_row_zero_based": 10,
+    "original_record_row": 10,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/CORD-v2/test-010.jpg",
+    "local_original": "sources/document-011.jpg",
+    "original_sha256": "b815404532dc13595b3722cff86a4c3e76155187f5b289040ca4f9a59d44a546",
+    "size": [
+      576,
+      864
+    ],
+    "snapshot": "HF 7f0115a4b758a71d6473b8d085751692da2fef98；public viewer JPEG exports固定实际下载字节，不宣称与parquet原字节一致。",
+    "license_status": "上游CORD仓库声明CC BY 4.0；图中既有隐私模糊保持原样，不询问模糊字段。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "未被遮盖的商品名称是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "CINNAMON SUGAR，接受不影响单词的空格变化"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "票面CASH IDR金额比GRAND TOTAL金额多多少？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "3000，接受3,000；按票面整数值计算"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "CHANGE DUE行在CASH IDR行的上方还是下方？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "下方。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "商品明细显示购买了几件？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "1件"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：左上角未被模糊处理的线描图形标志整体，含其上方小椭圆，不含右侧店名字样。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        35,
+        155,
+        104,
+        225
+      ],
+      "center_input_px": [
+        69.5,
+        190.0
+      ],
+      "reference_point": {
+        "x": 120.66,
+        "y": 219.907
+      },
+      "tolerance_input_px": 20,
+      "scope": "左上角未被模糊处理的线描图形标志整体，含其上方小椭圆，不含右侧店名字样"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-011",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "CINNAMON SUGAR。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "3,000。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "下方。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "1件。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 120.66,
+          "y": 219.907
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

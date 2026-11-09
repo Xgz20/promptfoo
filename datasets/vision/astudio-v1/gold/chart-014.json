@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-014",
+  "version": "1.0.0",
+  "scene": "统计图表",
+  "input_size": [
+    800,
+    525
+  ],
+  "input_sha256": "829aaad5f6531d12754187fdcd3e5c698fb965697e871a9f2cd0f33b5c62e93c",
+  "prompt_sha256": "68ffc123dfc7031c0d42b0d3b125a443df1b8af4dce0d6294d098fa14f33f942",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 40,
+    "original_record_row": 40,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/6434815c6b2139871e149a6c.jpg",
+    "local_original": "sources/chart-014.jpg",
+    "original_sha256": "6434815c6b2139871e149a6c2e117817ce227898ce5e8426eb538b4af7728f40",
+    "size": [
+      800,
+      525
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "左侧饼图中Don’t know/can’t say对应多少百分比？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "20%。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "右侧三组支持者中，YES柱最高的是哪一组？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "Congress Supporters。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "右侧柱图中蓝色柱与YES、NO中的哪一个标签对应？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "NO。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "底部North与South的YES比例相差多少个百分点？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "48−35=13个百分点"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：UF Supporters组内的YES红色柱形实体，不含数值和文字。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        673,
+        238,
+        722,
+        330
+      ],
+      "center_input_px": [
+        697.5,
+        284.0
+      ],
+      "reference_point": {
+        "x": 871.875,
+        "y": 540.952
+      },
+      "tolerance_input_px": 20,
+      "scope": "UF Supporters组内的YES红色柱形实体，不含数值和文字"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-014",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "20%。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "Congress Supporters。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "NO。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "13个百分点。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 871.875,
+          "y": 540.952
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

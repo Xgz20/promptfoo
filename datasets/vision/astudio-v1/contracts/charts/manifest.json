@@ -1,0 +1,427 @@
+{
+  "version": "1.0.2",
+  "scene": "统计图表",
+  "scene_number": 5,
+  "slug": "charts",
+  "task_count": 15,
+  "annotation_count": 0,
+  "content_question_count": 60,
+  "excluded": [
+    "新增修改批注",
+    "实际图像编辑",
+    "不可见或外部知识推断"
+  ],
+  "capability_coverage": {
+    "文字识别": 15,
+    "对象属性与状态识别": 15,
+    "空间布局与连接关系识别": 15,
+    "批注目标识别": 0,
+    "批注意图理解": 0,
+    "精确坐标定位": 15
+  },
+  "coverage_note": "按实际计分问题统计；三组各5题，难度是未经实测的设计标记。",
+  "coverage": {
+    "groups": {
+      "柱状与排名": 5,
+      "折线与趋势": 5,
+      "组合图表": 5
+    },
+    "difficulty": {
+      "基础": 5,
+      "中等": 5,
+      "复杂": 5
+    },
+    "coordinate_questions": 15
+  },
+  "measurement_protocol": {
+    "unit": "图像理解工具单次调用",
+    "input": "仅固定PNG和prompt；无新增文字、箭头或编号批注",
+    "output": "仅首次原始返回，不含Agent补写、外部OCR、裁剪重看或其他工具救场；不要求编辑",
+    "run_status": "未运行模型"
+  },
+  "input_policy": "只发送固定PNG和prompt，不发送Gold、来源、预览或生成源。",
+  "source_policy": "源文件字节保留、完整解码PNG，无裁剪缩放或新增批注；许可按逐来源记录。",
+  "scoring": {
+    "weights": {
+      "文字识别": 20,
+      "对象属性与状态识别": 20,
+      "空间布局与连接关系识别": 15,
+      "批注目标识别": 15,
+      "批注意图理解": 20,
+      "精确坐标定位": 10
+    },
+    "unit": "每题100分，15题等权平均。六维名称及名义权重沿用既有批次，仅计算实际适用维度。",
+    "content": "内容按Gold原子项0/1判定，维度内原子项等权。文字/字段原样读取归文字识别；对象、数量、颜色、图表数据大小与趋势归对象属性与状态识别；空间关系、阅读结构及图例绑定归空间布局与连接关系识别。同一事实只计一次。",
+    "equivalence": "接受语义等价表述；OCR忽略大小写、首尾空白和非关键标点，文字和数字缺漏/增添/替换不得分。数值接受等值单位换算；要求百分点时不能混成相对百分比。按图估计值仅依具体Gold声明的区间，不自动使用数值容差。",
+    "geometry": "G1要求题干限定目标的可见外接矩形中心；0～1000坐标反算输入像素，与Gold中心欧氏距离≤20像素得1。框只确定中心，不采用任意落框规则。截断目标不补全画外部分。",
+    "aggregation": "题分=100×Σ(适用维度权重×该维度正确率)/Σ适用维度权重；批次总分为15个题分均值。单维度分数为适用题正确率均值，并报告题数。",
+    "not_applicable": "批注目标识别、批注意图理解及批注完整正确率N/A；某题未问文字识别则该维度也N/A。不适用不记0或满分。原图文字、指示线、对话框不是新增修改批注。",
+    "complete": "整题完整正确率=全部内容原子项及G1均正确题数/15。另报此指标，不替换综合分。批注完整正确率分母0，显示N/A。",
+    "contradictions": "同一事实出现未纠正的相互矛盾回答，该项0分。可跨字段匹配明确对应本问题的答案，重复表述不加分；未问的无关内容不增设扣分。集合列举的漏报/虚报按本题Gold；不靠关键词命中掩盖矛盾。",
+    "failure": "仅评分首次原始返回；缺失适用项记0。已调用但失败/超时/无答案则适用项全0，技术失败单报；未调用是未测。解析不能补写视觉内容。",
+    "review": "语义逐项记录依据和人工/助手复核状态，结构和几何程序判定。schema有效不代表内容正确。",
+    "comparison": "同一版本和相同输入条件比较；跨场景同时列出适用维度与定位规则，不将批注缺失算成满分。"
+  },
+  "tasks": [
+    {
+      "id": "chart-001",
+      "title": "公共支出：正负值与预测系列",
+      "group": "柱状与排名",
+      "difficulty": "基础",
+      "dataset": "ChartQAPro",
+      "source_row": 4,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-001/input.png",
+      "prompt": "model-inputs/chart-001/prompt.txt",
+      "gold": "review/chart-001/gold.json",
+      "source_files": [
+        "sources/chart-001.jpg",
+        "sources/chart-001-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-002",
+      "title": "市政预算：分组柱与图例",
+      "group": "柱状与排名",
+      "difficulty": "中等",
+      "dataset": "ChartQAPro",
+      "source_row": 13,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-002/input.png",
+      "prompt": "model-inputs/chart-002/prompt.txt",
+      "gold": "review/chart-002/gold.json",
+      "source_files": [
+        "sources/chart-002.jpg",
+        "sources/chart-002-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-003",
+      "title": "横向排名：标签与颜色",
+      "group": "柱状与排名",
+      "difficulty": "复杂",
+      "dataset": "ChartQAPro",
+      "source_row": 32,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-003/input.png",
+      "prompt": "model-inputs/chart-003/prompt.txt",
+      "gold": "review/chart-003/gold.json",
+      "source_files": [
+        "sources/chart-003.jpg",
+        "sources/chart-003-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-004",
+      "title": "飞行成本：实心柱与估计区间",
+      "group": "柱状与排名",
+      "difficulty": "基础",
+      "dataset": "ChartQAPro",
+      "source_row": 51,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-004/input.png",
+      "prompt": "model-inputs/chart-004/prompt.txt",
+      "gold": "review/chart-004/gold.json",
+      "source_files": [
+        "sources/chart-004.jpg",
+        "sources/chart-004-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-005",
+      "title": "逐周数据：顺序趋势与增量",
+      "group": "柱状与排名",
+      "difficulty": "中等",
+      "dataset": "ChartQAPro",
+      "source_row": 61,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-005/input.png",
+      "prompt": "model-inputs/chart-005/prompt.txt",
+      "gold": "review/chart-005/gold.json",
+      "source_files": [
+        "sources/chart-005.jpg",
+        "sources/chart-005-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-006",
+      "title": "零售增长：均值标记与范围",
+      "group": "折线与趋势",
+      "difficulty": "复杂",
+      "dataset": "ChartQAPro",
+      "source_row": 2,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-006/input.png",
+      "prompt": "model-inputs/chart-006/prompt.txt",
+      "gold": "review/chart-006/gold.json",
+      "source_files": [
+        "sources/chart-006.jpg",
+        "sources/chart-006-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-007",
+      "title": "年龄分组：多线与图例绑定",
+      "group": "折线与趋势",
+      "difficulty": "基础",
+      "dataset": "ChartQAPro",
+      "source_row": 24,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-007/input.png",
+      "prompt": "model-inputs/chart-007/prompt.txt",
+      "gold": "review/chart-007/gold.json",
+      "source_files": [
+        "sources/chart-007.jpg",
+        "sources/chart-007-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-008",
+      "title": "药品价格：单位与曲线比较",
+      "group": "折线与趋势",
+      "difficulty": "中等",
+      "dataset": "ChartQAPro",
+      "source_row": 27,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-008/input.png",
+      "prompt": "model-inputs/chart-008/prompt.txt",
+      "gold": "review/chart-008/gold.json",
+      "source_files": [
+        "sources/chart-008.jpg",
+        "sources/chart-008-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-009",
+      "title": "通胀：双系列与负值区间",
+      "group": "折线与趋势",
+      "difficulty": "复杂",
+      "dataset": "ChartQAPro",
+      "source_row": 3,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-009/input.png",
+      "prompt": "model-inputs/chart-009/prompt.txt",
+      "gold": "review/chart-009/gold.json",
+      "source_files": [
+        "sources/chart-009.jpg",
+        "sources/chart-009-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-010",
+      "title": "信心指数：原图事件指示与走势",
+      "group": "折线与趋势",
+      "difficulty": "基础",
+      "dataset": "ChartQAPro",
+      "source_row": 34,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-010/input.png",
+      "prompt": "model-inputs/chart-010/prompt.txt",
+      "gold": "review/chart-010/gold.json",
+      "source_files": [
+        "sources/chart-010.jpg",
+        "sources/chart-010-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-011",
+      "title": "环形图和分组柱：占比与变化",
+      "group": "组合图表",
+      "difficulty": "中等",
+      "dataset": "ChartQAPro",
+      "source_row": 16,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-011/input.png",
+      "prompt": "model-inputs/chart-011/prompt.txt",
+      "gold": "review/chart-011/gold.json",
+      "source_files": [
+        "sources/chart-011.jpg",
+        "sources/chart-011-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-012",
+      "title": "双面板消费图：曲线与指示线",
+      "group": "组合图表",
+      "difficulty": "复杂",
+      "dataset": "ChartQAPro",
+      "source_row": 23,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-012/input.png",
+      "prompt": "model-inputs/chart-012/prompt.txt",
+      "gold": "review/chart-012/gold.json",
+      "source_files": [
+        "sources/chart-012.jpg",
+        "sources/chart-012-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-013",
+      "title": "双半环图：类别数值与对应",
+      "group": "组合图表",
+      "difficulty": "基础",
+      "dataset": "ChartQAPro",
+      "source_row": 38,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-013/input.png",
+      "prompt": "model-inputs/chart-013/prompt.txt",
+      "gold": "review/chart-013/gold.json",
+      "source_files": [
+        "sources/chart-013.jpg",
+        "sources/chart-013-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-014",
+      "title": "调查图：饼图、分组柱和地区",
+      "group": "组合图表",
+      "difficulty": "中等",
+      "dataset": "ChartQAPro",
+      "source_row": 40,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-014/input.png",
+      "prompt": "model-inputs/chart-014/prompt.txt",
+      "gold": "review/chart-014/gold.json",
+      "source_files": [
+        "sources/chart-014.jpg",
+        "sources/chart-014-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "chart-015",
+      "title": "财务三面板：单位与跨期变化",
+      "group": "组合图表",
+      "difficulty": "复杂",
+      "dataset": "ChartQAPro",
+      "source_row": 76,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/chart-015/input.png",
+      "prompt": "model-inputs/chart-015/prompt.txt",
+      "gold": "review/chart-015/gold.json",
+      "source_files": [
+        "sources/chart-015.jpg",
+        "sources/chart-015-record.json",
+        "sources/ChartQAPro-README.md"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    }
+  ]
+}

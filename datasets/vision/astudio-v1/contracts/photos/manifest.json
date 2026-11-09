@@ -1,0 +1,429 @@
+{
+  "version": "1.0.2",
+  "scene": "日常照片",
+  "task_count": 15,
+  "annotation_count": 0,
+  "content_question_count": 64,
+  "excluded": [
+    "新增文字批注",
+    "新增箭头批注",
+    "手绘线框",
+    "插画或多图拼接",
+    "实际图像编辑",
+    "人物身份、动机或不可见信息推断"
+  ],
+  "capability_coverage": {
+    "文字识别": 5,
+    "对象属性与状态识别": 15,
+    "空间布局与连接关系识别": 15,
+    "批注目标识别": 0,
+    "批注意图理解": 0,
+    "精确坐标定位": 15
+  },
+  "coverage_note": "能力题数按实际评分问题统计；分组各3题，难度为构建设计标记。",
+  "coverage": {
+    "groups": {
+      "室内与生活物品": 3,
+      "食品与购物": 3,
+      "运动与人物活动": 3,
+      "动物与自然环境": 3,
+      "街道与公共空间": 3
+    },
+    "difficulty": {
+      "中等": 5,
+      "基础": 5,
+      "复杂": 5
+    },
+    "subskills": {
+      "颜色属性": 11,
+      "数量判断": 8,
+      "遮挡关系": 2,
+      "自然文字": 5,
+      "物体识别": 10,
+      "内外关系": 1,
+      "左右关系": 5,
+      "材质与结构": 1,
+      "前后关系": 1,
+      "局部细节": 1,
+      "姿态与空间": 1,
+      "动作识别": 3,
+      "场景识别": 1,
+      "光影空间": 1,
+      "方向判断": 3,
+      "纹理细节": 1,
+      "姿态识别": 2,
+      "环境识别": 1,
+      "倒影空间": 1,
+      "图标状态": 1,
+      "结构识别": 1
+    },
+    "coordinate_questions": 15
+  },
+  "measurement_protocol": {
+    "unit": "图像理解工具单次调用",
+    "input": "仅固定input.png和prompt.txt；原图无新增文字/箭头/编号",
+    "output": "仅首次原始返回；不含Agent补写、OCR工具、裁剪重看或其他工具救场；不要求图片编辑",
+    "comparison": "同版本15题全量比较；完整返回与技术失败分别报告",
+    "run_status": "未运行模型"
+  },
+  "input_policy": "只发送model-inputs中的PNG与prompt；不发送任何review、source、预览或生成源。",
+  "source_policy": "从公开MMStar选取真实照片素材，新编问题；源文件保留原字节，题图不新增批注；图片许可证未确认，未声明开放再分发。",
+  "scoring": {
+    "weights": {
+      "文字识别": 20,
+      "对象属性与状态识别": 20,
+      "空间布局与连接关系识别": 15,
+      "批注目标识别": 15,
+      "批注意图理解": 20,
+      "精确坐标定位": 10
+    },
+    "unit": "六维名称与名义权重沿用前两场景；本批仅计算实际适用维度。每题100分，15题等权平均。",
+    "content": "内容按Gold原子项0/1判定，维度内原子项等权。物体、数量、颜色、纹理和姿态归对象属性与状态识别；关系归空间布局与连接关系识别。一个独立事实只计一次。",
+    "equivalence": "接受合理同义词和等义表达，不要求照抄参考答案；数量须准确。OCR不区分大小写及首尾空白，标点除Gold明确要求外忽略；缺字、多字和数字错误不得分。",
+    "geometry": "G1要求目标可见外接矩形的中心，不是任意内部点。先将0～1000坐标反算到最终输入像素；预测中心与Gold中心的欧氏距离≤20个输入像素得1，否则0。目标被画面截断时只取可见范围；具体包含/排除项以G1为准。bbox用于确定参考中心，不作为任意点命中区域。语义与几何分别评分，不跨维归零。另留存像素距离作为诊断。",
+    "aggregation": "题分=100×Σ(适用维度名义权重×该维度正确率)/Σ适用名义权重。有OCR题分母65，无OCR题分母45。批次总分为15个题分均值；单维度分数为适用题正确率均值并报告样本数，不用维度均值直接加权冒充总分。",
+    "not_applicable": "批注目标识别、批注意图理解全部N/A；无OCR问题的题文字识别N/A。不适用不记0或满分。原照片路标箭头属于画面内容，不是修改批注。",
+    "complete": "整题完整正确率=全部所问内容原子项正确且G1命中的题数/15。独立作为整题诊断；本批没有批注，批注完整正确率为N/A，分母0，不替换成100%。",
+    "contradictions": "同一事实有相互矛盾且未纠正的回答，该原子项0分。可跨字段匹配明确对应同一问题的等义答案，重复表述不加分；不为无关闲谈额外设扣分点。",
+    "failure": "首次原始返回缺失的适用原子项记0；已调用但失败、超时或无答案，该题适用项全0并单报技术失败。未调用是未测，不能发布模型分数。格式有效率独立报告，解析不得补写视觉内容。",
+    "review": "语义逐项留证据并标人工/助手复核状态；几何与结构程序判定。不以schema通过代替内容正确。",
+    "comparison": "不同工具必须使用本批同一版本、同一15题与输入条件。跨场景总分须报告各自适用维度，不能把照片分数直接当作与有批注场景完全相同的能力测量。"
+  },
+  "tasks": [
+    {
+      "id": "photo-001",
+      "title": "后备厢中的旅行物品",
+      "group": "室内与生活物品",
+      "difficulty": "中等",
+      "source_row": 0,
+      "annotation_count": 0,
+      "content_question_count": 5,
+      "input_image": "model-inputs/photo-001/input.png",
+      "prompt": "model-inputs/photo-001/prompt.txt",
+      "gold": "review/photo-001/gold.json",
+      "source_files": [
+        "sources/photo-001.jpg",
+        "sources/photo-001.png",
+        "sources/photo-001-record.json"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-002",
+      "title": "玻璃窗围合的室内空间",
+      "group": "室内与生活物品",
+      "difficulty": "基础",
+      "source_row": 66,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-002/input.png",
+      "prompt": "model-inputs/photo-002/prompt.txt",
+      "gold": "review/photo-002/gold.json",
+      "source_files": [
+        "sources/photo-002.jpg",
+        "sources/photo-002.png",
+        "sources/photo-002-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-003",
+      "title": "厨房中的灯具与工作区",
+      "group": "室内与生活物品",
+      "difficulty": "复杂",
+      "source_row": 311,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-003/input.png",
+      "prompt": "model-inputs/photo-003/prompt.txt",
+      "gold": "review/photo-003/gold.json",
+      "source_files": [
+        "sources/photo-003.jpg",
+        "sources/photo-003.png",
+        "sources/photo-003-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-004",
+      "title": "台面上的果盘",
+      "group": "食品与购物",
+      "difficulty": "基础",
+      "source_row": 297,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-004/input.png",
+      "prompt": "model-inputs/photo-004/prompt.txt",
+      "gold": "review/photo-004/gold.json",
+      "source_files": [
+        "sources/photo-004.jpg",
+        "sources/photo-004.png",
+        "sources/photo-004-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-005",
+      "title": "桌面食品与包装",
+      "group": "食品与购物",
+      "difficulty": "复杂",
+      "source_row": 324,
+      "annotation_count": 0,
+      "content_question_count": 5,
+      "input_image": "model-inputs/photo-005/input.png",
+      "prompt": "model-inputs/photo-005/prompt.txt",
+      "gold": "review/photo-005/gold.json",
+      "source_files": [
+        "sources/photo-005.jpg",
+        "sources/photo-005.png",
+        "sources/photo-005-record.json"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-006",
+      "title": "水果摊上的成堆商品",
+      "group": "食品与购物",
+      "difficulty": "中等",
+      "source_row": 325,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-006/input.png",
+      "prompt": "model-inputs/photo-006/prompt.txt",
+      "gold": "review/photo-006/gold.json",
+      "source_files": [
+        "sources/photo-006.jpg",
+        "sources/photo-006.png",
+        "sources/photo-006-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-007",
+      "title": "雪地中的运动者",
+      "group": "运动与人物活动",
+      "difficulty": "基础",
+      "source_row": 180,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-007/input.png",
+      "prompt": "model-inputs/photo-007/prompt.txt",
+      "gold": "review/photo-007/gold.json",
+      "source_files": [
+        "sources/photo-007.jpg",
+        "sources/photo-007.png",
+        "sources/photo-007-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-008",
+      "title": "球场上的击球瞬间",
+      "group": "运动与人物活动",
+      "difficulty": "复杂",
+      "source_row": 300,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-008/input.png",
+      "prompt": "model-inputs/photo-008/prompt.txt",
+      "gold": "review/photo-008/gold.json",
+      "source_files": [
+        "sources/photo-008.jpg",
+        "sources/photo-008.png",
+        "sources/photo-008-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-009",
+      "title": "草地上的击球动作",
+      "group": "运动与人物活动",
+      "difficulty": "中等",
+      "source_row": 344,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-009/input.png",
+      "prompt": "model-inputs/photo-009/prompt.txt",
+      "gold": "review/photo-009/gold.json",
+      "source_files": [
+        "sources/photo-009.jpg",
+        "sources/photo-009.png",
+        "sources/photo-009-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-010",
+      "title": "光照下的猫",
+      "group": "动物与自然环境",
+      "difficulty": "基础",
+      "source_row": 184,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-010/input.png",
+      "prompt": "model-inputs/photo-010/prompt.txt",
+      "gold": "review/photo-010/gold.json",
+      "source_files": [
+        "sources/photo-010.jpg",
+        "sources/photo-010.png",
+        "sources/photo-010-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-011",
+      "title": "水边与远处的动物",
+      "group": "动物与自然环境",
+      "difficulty": "中等",
+      "source_row": 224,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-011/input.png",
+      "prompt": "model-inputs/photo-011/prompt.txt",
+      "gold": "review/photo-011/gold.json",
+      "source_files": [
+        "sources/photo-011.jpg",
+        "sources/photo-011.png",
+        "sources/photo-011-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-012",
+      "title": "草地上的动物群",
+      "group": "动物与自然环境",
+      "difficulty": "基础",
+      "source_row": 252,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-012/input.png",
+      "prompt": "model-inputs/photo-012/prompt.txt",
+      "gold": "review/photo-012/gold.json",
+      "source_files": [
+        "sources/photo-012.jpg",
+        "sources/photo-012.png",
+        "sources/photo-012-record.json"
+      ],
+      "applicable_dimensions": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-013",
+      "title": "场所出口标识",
+      "group": "街道与公共空间",
+      "difficulty": "中等",
+      "source_row": 123,
+      "annotation_count": 0,
+      "content_question_count": 4,
+      "input_image": "model-inputs/photo-013/input.png",
+      "prompt": "model-inputs/photo-013/prompt.txt",
+      "gold": "review/photo-013/gold.json",
+      "source_files": [
+        "sources/photo-013.jpg",
+        "sources/photo-013.png",
+        "sources/photo-013-record.json"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-014",
+      "title": "城市街道上的公共交通",
+      "group": "街道与公共空间",
+      "difficulty": "复杂",
+      "source_row": 124,
+      "annotation_count": 0,
+      "content_question_count": 5,
+      "input_image": "model-inputs/photo-014/input.png",
+      "prompt": "model-inputs/photo-014/prompt.txt",
+      "gold": "review/photo-014/gold.json",
+      "source_files": [
+        "sources/photo-014.jpg",
+        "sources/photo-014.png",
+        "sources/photo-014-record.json"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    },
+    {
+      "id": "photo-015",
+      "title": "街头手持文字牌",
+      "group": "街道与公共空间",
+      "difficulty": "复杂",
+      "source_row": 305,
+      "annotation_count": 0,
+      "content_question_count": 5,
+      "input_image": "model-inputs/photo-015/input.png",
+      "prompt": "model-inputs/photo-015/prompt.txt",
+      "gold": "review/photo-015/gold.json",
+      "source_files": [
+        "sources/photo-015.jpg",
+        "sources/photo-015.png",
+        "sources/photo-015-record.json"
+      ],
+      "applicable_dimensions": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "精确坐标定位"
+      ]
+    }
+  ]
+}

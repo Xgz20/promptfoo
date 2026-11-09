@@ -1,0 +1,347 @@
+{
+  "id": "webapp-009",
+  "version": "1.0.0-draft",
+  "title": "任务清单：完成状态与局部复选框",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 78,
+    "original_record": {
+      "source_row": 78,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/element_grounding/70a1fa6ac98d5256c94d5c702da6868d.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "original": {
+        "image_path": "element_grounding/70a1fa6ac98d5256c94d5c702da6868d.png",
+        "image_size": [
+          1920,
+          1080
+        ],
+        "prompt_to_evaluate": "Toggle show/Hide Checklist",
+        "bbox": [
+          798.675,
+          601.2000004904611,
+          897.0749999999999,
+          642.8571433476039
+        ],
+        "platform": "WeKan",
+        "category": "Button",
+        "element_type": "icon"
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/70a1fa6ac98d5256c94d5c702da6868d.png",
+    "sha256": "bbbe6b72acca4d8871b6c6ac43e28dd352676fa8a5d24c1a9ae6644b5ec6e47d",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1920,
+    1080
+  ],
+  "crop_xywh": [
+    0,
+    100,
+    1450,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.9444444444444444
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "List 下拉框的当前文字和清单进度百分比各是什么？",
+      "reference_answer": "To Do List；67%",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "To Do List"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "67%"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "Create project timeline 下三项任务各自是否勾选？按显示顺序回答。",
+      "reference_answer": "Define project goals已勾选；Identify team leads已勾选；monitor progress未勾选",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "Define project goals已勾选"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Identify team leads已勾选"
+        },
+        {
+          "id": "state-1.3",
+          "expected": "monitor progress未勾选"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "Description 区和 Checklists 区谁在上方？",
+      "reference_answer": "Description在Checklists上方",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Description在Checklists上方"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "勾选这个复选框。该行文字不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          821.55556
+        ],
+        [
+          75.94444,
+          821.55556
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          54.22222,
+          797.94444,
+          78.77778,
+          824.38889
+        ],
+        "reference_point": [
+          75.94444,
+          821.55556
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "monitor progress 行左侧未勾选的复选框",
+        "target_point": [
+          42.191,
+          746.869
+        ],
+        "requested_change": "将该复选框设为勾选",
+        "preserve": [
+          "该行文字"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "monitor progress 行左侧未勾选的复选框"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "将该复选框设为勾选",
+            "保留：该行文字"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "标题改为“项目时间线”。字号不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          644.0
+        ],
+        [
+          349.83333,
+          644.0
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          105.22222,
+          621.33333,
+          401.77778,
+          650.61111
+        ],
+        "reference_point": [
+          349.83333,
+          644.0
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "Create project timeline 清单标题文字",
+        "target_point": [
+          194.352,
+          585.455
+        ],
+        "requested_change": "标题改为项目时间线",
+        "preserve": [
+          "字号"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Create project timeline 清单标题文字"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "标题改为项目时间线",
+            "保留：字号"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

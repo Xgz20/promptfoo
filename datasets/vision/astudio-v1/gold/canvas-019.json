@@ -1,0 +1,345 @@
+{
+  "id": "canvas-019",
+  "version": "0.4.2-draft",
+  "title": "三维编辑画布：重叠对象与可见状态",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "license_observed": "MIT（已下载的官方数据卡）",
+    "normalized_row_0based": 8,
+    "original_record": {
+      "image_path": "element_grounding/fd679b4f8c7bba8283272ea17ce95b22.png",
+      "image_size": [
+        1920,
+        1020
+      ],
+      "prompt_to_evaluate": "scale z",
+      "bbox": [
+        1708.4944996471463,
+        770.2457142857141,
+        1847.6944996471464,
+        796.4742857142855
+      ],
+      "platform": "Blender",
+      "category": "Input Elements",
+      "element_type": "icon"
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/fd679b4f8c7bba8283272ea17ce95b22.png",
+    "sha256": "62437ef1cb57a888f7b6478a24857efcef0d5205066372cf22d08c09a5cc3b3a"
+  },
+  "source_image_size": [
+    1920,
+    1020
+  ],
+  "crop_xywh": [
+    250,
+    110,
+    1300,
+    600
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1500,
+    1210
+  ],
+  "capabilities": [
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "原视口中平面与立方体哪一个有橙色选中轮廓？立方体是什么颜色？相机是否可见？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "平面有橙色选中轮廓"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "立方体没有橙色选中轮廓"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "立方体为灰色"
+        },
+        {
+          "id": "appearance-1.4",
+          "expected": "相机在视口中可见"
+        }
+      ],
+      "reference_answer": "平面有橙色选中轮廓；立方体没有橙色选中轮廓；立方体为灰色；相机在视口中可见。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "只看当前视口投影，相机位于立方体哪一侧？平面与立方体在画面中重叠还是分离？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "相机在立方体左侧"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "平面与立方体在投影中重叠"
+        }
+      ],
+      "reference_answer": "相机在立方体左侧；平面与立方体在投影中重叠。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": false,
+      "points": 0,
+      "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 12.5,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "取消这个平面的选中，改选灰色立方体。\n只改选中状态，不移动或删除对象。",
+      "arrow_path_input_px": [
+        [
+          522,
+          225
+        ],
+        [
+          522,
+          710
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          495,
+          679,
+          656,
+          751
+        ],
+        "reference_point": [
+          522,
+          710
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "灰色立方体中部、带橙色轮廓的四边形平面。",
+        "requested_change": "取消平面的选中状态，将灰色立方体设为选中对象。",
+        "preserve": [
+          "平面与立方体均保留",
+          "对象位置"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          348.0,
+          586.78
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "灰色立方体中部、带橙色轮廓的四边形平面。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 2.0,
+          "checkpoints": [
+            "平面取消选中",
+            "灰色立方体改为选中",
+            "保留：平面对象保留",
+            "保留：立方体对象保留",
+            "保留：对象位置"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.change-2",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "仅在编辑视口中隐藏这个相机。\n不删除相机，不影响最终渲染；\n其他对象及 A 的选中结果保留。",
+      "arrow_path_input_px": [
+        [
+          106,
+          985
+        ],
+        [
+          106,
+          645
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          91,
+          573,
+          280,
+          709
+        ],
+        "reference_point": [
+          106,
+          645
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "画布左侧、由线框和上方黑色三角标志构成的相机对象。",
+        "requested_change": "在编辑视口中隐藏左侧相机，但保留相机对象且不改变其最终渲染可见性。",
+        "preserve": [
+          "相机对象本身",
+          "最终渲染设置",
+          "其他对象",
+          "A修改后的立方体选中状态"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          70.67,
+          533.06
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "画布左侧、由线框和上方黑色三角标志构成的相机对象。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 2.0,
+          "checkpoints": [
+            "仅在编辑视口隐藏相机",
+            "保留：相机对象本身",
+            "保留：最终渲染设置",
+            "保留：其他对象（不重复计平面与立方体的存在、位置及本条另计的选中结果）",
+            "保留：A修改后的立方体选中状态"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1",
+            "B.preserve-2",
+            "B.preserve-3",
+            "B.preserve-4"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ],
+      "shared_constraints": [
+        {
+          "text": "平面对象保留",
+          "scored_in_annotation": "A",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：平面对象保留"
+        },
+        {
+          "text": "立方体对象保留",
+          "scored_in_annotation": "A",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：立方体对象保留"
+        },
+        {
+          "text": "平面与立方体的位置不变",
+          "scored_in_annotation": "A",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：对象位置"
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

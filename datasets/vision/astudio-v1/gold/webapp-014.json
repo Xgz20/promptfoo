@@ -1,0 +1,342 @@
+{
+  "id": "webapp-014",
+  "version": "1.0.0-draft",
+  "title": "文件属性：同名权限控件消歧",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 130,
+    "original_record": {
+      "source_row": 130,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/layout_grounding/49d88b2de141c252cd762b53324ddd17.png",
+          "width": 1916,
+          "height": 810
+        }
+      ],
+      "original": {
+        "image_path": "layout_grounding/49d88b2de141c252cd762b53324ddd17.png",
+        "image_size": [
+          1916,
+          810
+        ],
+        "name": "Permission and Properties",
+        "explanation": "This region contains the permission and properties buttons, including read and write, read-only, and new file properties.",
+        "platform": "Nemo",
+        "bbox": [
+          682.575,
+          168.94285714285715,
+          1041.825,
+          467.4857142857143
+        ]
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/layout_grounding/49d88b2de141c252cd762b53324ddd17.png",
+    "sha256": "debd939fb2a13e2003085e81c43b5305a6694d703503a38b58ea65d4904b0e38",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1916,
+    810
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1500,
+    810
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.92
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "Owner 显示的用户名和 Last changed 时间各是什么？",
+      "reference_answer": "用户名为user（可带尾部短横线）；Fri Dec 20 04:13:44 2024",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "用户名为user（可带尾部短横线）"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "Fri Dec 20 04:13:44 2024"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "Execute 复选框有勾吗？顶部哪一个标签页突出显示？",
+      "reference_answer": "Execute未勾选；Permissions标签页突出显示",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "Execute未勾选"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Permissions标签页突出显示"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "Group 区的 Access 下拉框与 Owner 区的 Access 下拉框谁在上方？",
+      "reference_answer": "Owner区的Access下拉框在Group区的Access下拉框上方",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Owner区的Access下拉框在Group区的Access下拉框上方"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "这个权限值改为“Read-only”。Group 区的 Access 值不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          290.44
+        ],
+        [
+          965.16,
+          290.44
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          654.2,
+          255.48,
+          972.52,
+          297.8
+        ],
+        "reference_point": [
+          965.16,
+          290.44
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "Owner 区第一行 Access 下拉框，当前Read and write",
+        "target_point": [
+          536.2,
+          264.036
+        ],
+        "requested_change": "该权限值改为Read-only",
+        "preserve": [
+          "Group区Access值"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Owner 区第一行 Access 下拉框，当前Read and write"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "该权限值改为Read-only",
+            "保留：Group区Access值"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "勾选此项。文件名不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          659.0
+        ],
+        [
+          1428,
+          659.0
+        ],
+        [
+          1428,
+          522.28
+        ],
+        [
+          678.12,
+          522.28
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          659.72,
+          503.88,
+          680.88,
+          525.04
+        ],
+        "reference_point": [
+          678.12,
+          522.28
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "Execute 行 Allow executing file as program 左侧复选框",
+        "target_point": [
+          376.733,
+          474.8
+        ],
+        "requested_change": "将该复选框设为勾选",
+        "preserve": [
+          "文件名"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Execute 行 Allow executing file as program 左侧复选框"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "将该复选框设为勾选",
+            "保留：文件名"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

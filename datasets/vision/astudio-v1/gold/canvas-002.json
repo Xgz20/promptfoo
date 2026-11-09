@@ -1,0 +1,335 @@
+{
+  "id": "canvas-002",
+  "version": "0.4.2-draft",
+  "title": "两个批注：添加文字并调整相对位置",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "license_observed": "MIT（已下载的官方数据卡）",
+    "normalized_row_0based": 159,
+    "original_record": {
+      "image_path": "layout_grounding/ceff4bde88b5a0bfb7e6e0e45d404c9c.png",
+      "image_size": [
+        1920,
+        912
+      ],
+      "name": "Menu Bar",
+      "explanation": "This region contains menus such as file, edit, view, and arrange.",
+      "platform": "draw.io",
+      "bbox": [
+        77.46000366210937,
+        48.205714285714286,
+        423.06000366210935,
+        79.47428571428571
+      ]
+    },
+    "path_in_collection": "datasets/UI-Vision/images/layout_grounding/ceff4bde88b5a0bfb7e6e0e45d404c9c.png",
+    "sha256": "87d69b0ccaa89b2f7a3f99d551ef18f1d9f1f417dc2298eabc7cd40b2e292045"
+  },
+  "source_image_size": [
+    1920,
+    912
+  ],
+  "crop_xywh": [
+    406,
+    130,
+    1064,
+    726
+  ],
+  "placement_x_y_scale": [
+    24,
+    110,
+    1
+  ],
+  "input_size": [
+    1500,
+    900
+  ],
+  "capabilities": [
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "画布内两个非圆形对象的底边分别有什么形状特征？两者内部目前是否有文字？本问不需要说明相对位置。",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "存在直底边矩形"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "存在波浪底边图形"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "直底边图形内部无文字"
+        },
+        {
+          "id": "appearance-1.4",
+          "expected": "波浪底边图形内部无文字"
+        }
+      ],
+      "reference_answer": "存在直底边矩形；存在波浪底边图形；直底边图形内部无文字；波浪底边图形内部无文字。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "只看原图，两个四边形谁在左、谁在右？圆形与它们的上下关系如何？用形状指代。",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "直底边矩形在波浪底边图形左侧"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "圆形在下部两个图形上方"
+        }
+      ],
+      "reference_answer": "直底边矩形在波浪底边图形左侧；圆形在下部两个图形上方。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": false,
+      "points": 0,
+      "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 12.5,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "里面加上“人工审核”，\n文字水平、垂直居中。\n图形大小和位置不变。",
+      "arrow_path_input_px": [
+        [
+          1120,
+          235
+        ],
+        [
+          1098,
+          235
+        ],
+        [
+          1098,
+          402
+        ],
+        [
+          700,
+          402
+        ],
+        [
+          570,
+          455
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          474,
+          436,
+          625,
+          512
+        ],
+        "reference_point": [
+          570,
+          455
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "画布中下方偏左、圆形左下方的普通矩形。",
+        "requested_change": "在普通矩形内部添加“人工审核”，文字在矩形内水平、垂直居中。",
+        "preserve": [
+          "矩形大小",
+          "矩形位置"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          380.0,
+          505.56
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "画布中下方偏左、圆形左下方的普通矩形。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 11.11111111111111,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "在目标内部添加文字“人工审核”",
+            "文字水平居中",
+            "文字垂直居中",
+            "保留：矩形大小",
+            "保留：矩形位置"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.change-2",
+            "A.change-3",
+            "A.preserve-1",
+            "A.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "移到 A 指向图形的正下方，\n水平居中，边缘间距 20 px。\n只移动，大小不变。",
+      "arrow_path_input_px": [
+        [
+          1120,
+          590
+        ],
+        [
+          1020,
+          590
+        ],
+        [
+          870,
+          480
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          787,
+          436,
+          938,
+          537
+        ],
+        "reference_point": [
+          870,
+          480
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "画布中下方偏右、底边为波浪线的文档图形。",
+        "requested_change": "将文档图形移到 A 指向的普通矩形正下方；两图形水平中心对齐，文档图形顶边与矩形底边相距 20 px。",
+        "preserve": [
+          "文档图形大小"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          580.0,
+          533.33
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "画布中下方偏右、底边为波浪线的文档图形。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.88888888888889,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "移动到A目标下方",
+            "与A目标水平中心对齐",
+            "最近边缘间距20 px",
+            "保留：文档图形大小"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.change-3",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

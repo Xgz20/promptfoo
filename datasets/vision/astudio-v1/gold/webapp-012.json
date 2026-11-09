@@ -1,0 +1,342 @@
+{
+  "id": "webapp-012",
+  "version": "1.0.0-draft",
+  "title": "清理数据弹窗：时间范围与勾选条件",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 96,
+    "original_record": {
+      "source_row": 96,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/layout_grounding/f6fc365d913e8c181014f824c596f899.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "original": {
+        "image_path": "layout_grounding/f6fc365d913e8c181014f824c596f899.png",
+        "image_size": [
+          1280,
+          720
+        ],
+        "name": "Navigation Bar",
+        "explanation": "This region contains all the navigation tools such as back, forward, and reload buttons, as well as the address bar and other navigation elements.",
+        "platform": "Chromium",
+        "bbox": [
+          3.75,
+          19.54285714285714,
+          1099.75,
+          92.57142857142856
+        ]
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/layout_grounding/f6fc365d913e8c181014f824c596f899.png",
+    "sha256": "e91a46e1f889bd1e32cc57935556272033ac2d8b517ee650a8a96e4f31becf7d",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1280,
+    720
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1280,
+    720
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    1
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "弹窗标题和 Time range 当前值分别是什么？",
+      "reference_answer": "Delete browsing data；Last 15 minutes",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Delete browsing data"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "Last 15 minutes"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "Cookies and other site data、Cached images and files 两项当前分别是否勾选？",
+      "reference_answer": "Cookies and other site data已勾选；Cached images and files已勾选",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "Cookies and other site data已勾选"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Cached images and files已勾选"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "弹窗底部 Cancel 与 Delete data 按钮的左右关系是什么？",
+      "reference_answer": "Cancel在Delete data左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Cancel在Delete data左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "时间范围改为“Last 24 hours”。下拉框宽度不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          395
+        ],
+        [
+          697,
+          395
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          513,
+          364,
+          703,
+          400
+        ],
+        "reference_point": [
+          697,
+          395
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "弹窗中 Time range 对应的下拉框",
+        "target_point": [
+          387.222,
+          359.091
+        ],
+        "requested_change": "时间范围改为Last 24 hours",
+        "preserve": [
+          "下拉框宽度"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "弹窗中 Time range 对应的下拉框"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "时间范围改为Last 24 hours",
+            "保留：下拉框宽度"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "取消勾选此项。Browsing history 仍保持勾选。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          494
+        ],
+        [
+          457,
+          494
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          442,
+          479,
+          459,
+          496
+        ],
+        "reference_point": [
+          457,
+          494
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "Cookies and other site data 左侧复选框",
+        "target_point": [
+          253.889,
+          449.091
+        ],
+        "requested_change": "取消该复选框勾选",
+        "preserve": [
+          "Browsing history仍保持勾选"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Cookies and other site data 左侧复选框"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "取消该复选框勾选",
+            "保留：Browsing history仍保持勾选"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}
