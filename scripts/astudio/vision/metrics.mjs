@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 
+import { pivotCaseDetails } from './case-details.mjs';
 import { DIMENSIONS } from './score.mjs';
 
 const sum = (values) => values.reduce((total, value) => total + value, 0);
@@ -156,6 +157,7 @@ export function buildReport({ manifest, config, pricing, records }) {
     overall,
     scenes,
     capabilities,
+    case_details: pivotCaseDetails(records, manifest.models),
     records,
     pricing,
   };

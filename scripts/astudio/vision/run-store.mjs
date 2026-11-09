@@ -2,12 +2,13 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { checkpointDefinitions, checkpointResults } from './case-details.mjs';
 import { bytes, hash, read, verifiedJSON } from './files.mjs';
 import { reviewPath, reviewRequest, scoreCandidate, technicalFailureReview } from './judge.mjs';
 import { candidatePath } from './live-provider.mjs';
 import { buildReport } from './metrics.mjs';
 import { estimateCost } from './pricing.mjs';
-import { DIMENSIONS, semanticCheckpoints } from './score.mjs';
+import { DIMENSIONS } from './score.mjs';
 
 export function datasetCases() {
   return bytes('cases.jsonl').toString('utf8').trim().split('\n').map(JSON.parse);
@@ -15,17 +16,16 @@ export function datasetCases() {
 
 export function plannedPoints(row) {
   const gold = verifiedJSON(row.metadata.gold_path, row.metadata.gold_sha256);
-  const points = semanticCheckpoints(gold);
+  const points = checkpointDefinitions(gold);
   return {
     applicable_points: Object.fromEntries(
       DIMENSIONS.map((dimension) => [
         dimension,
-        dimension === '精确坐标定位'
-          ? gold.annotations.length || Object.keys(gold.geometry).length
-          : points.filter((point) => point.dimension === dimension).length,
+        points.filter((point) => point.dimension === dimension).length,
       ]),
     ),
     annotation_count: gold.annotations.length,
+    checkpoint_definitions: points,
   };
 }
 
@@ -47,7 +47,8 @@ export function loadRun(runRoot) {
       const candidate = fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : null;
       let result = null,
         reviewError = null,
-        provenance = null;
+        provenance = null,
+        semanticReview = null;
       if (candidate) {
         assert.equal(candidate.model_id, model.id);
         assert.equal(candidate.case_id, id);
@@ -57,11 +58,13 @@ export function loadRun(runRoot) {
         jobs.push({ row, candidate });
         const file = reviewPath(runRoot, model.id, id);
         if (candidate.status === 'error') {
-          result = scoreCandidate(row, candidate, technicalFailureReview(request));
+          semanticReview = technicalFailureReview(request);
+          result = scoreCandidate(row, candidate, semanticReview);
           provenance = { mode: 'technical_failure_rule' };
         } else if (candidate.status === 'ok' && fs.existsSync(file)) {
           const reviewed = JSON.parse(fs.readFileSync(file, 'utf8'));
-          result = scoreCandidate(row, candidate, reviewed.review);
+          semanticReview = reviewed.review;
+          result = scoreCandidate(row, candidate, semanticReview);
           provenance = reviewed.provenance;
         }
         const errorFile = file.replace(/\.json$/, '.error.json');
@@ -69,12 +72,15 @@ export function loadRun(runRoot) {
           reviewError = JSON.parse(fs.readFileSync(errorFile, 'utf8')).error;
         }
       }
+      const { checkpoint_definitions: definitions, ...planned } = plannedPoints(row);
       records.push({
         model_id: model.id,
         model_name: model.name,
         case_id: id,
+        case_name: row.description,
         scene: row.metadata.scene,
-        ...plannedPoints(row),
+        ...planned,
+        checkpoints: checkpointResults(definitions, result, semanticReview),
         candidate,
         result,
         review_error: reviewError,
