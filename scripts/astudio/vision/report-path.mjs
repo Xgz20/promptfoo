@@ -19,7 +19,7 @@ export function reportTimestamp(generatedAt) {
       .formatToParts(date)
       .map((part) => [part.type, part.value]),
   );
-  return `${parts.year}${parts.month}${parts.day}_${parts.hour}${parts.minute}${parts.second}_${String(date.getUTCMilliseconds()).padStart(3, '0')}`;
+  return `${parts.year}${parts.month}${parts.day}_${parts.hour}${parts.minute}${parts.second}`;
 }
 
 export function timestampedReportPath({ runRoot, runId, requestedPath, generatedAt }) {
