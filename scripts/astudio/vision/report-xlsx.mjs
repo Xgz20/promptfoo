@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 
+import { REPO } from './files.mjs';
 import { writeJSON } from './live-provider.mjs';
 import { publishReport, timestampedReportPath } from './report-path.mjs';
 import { reportForRun } from './run-store.mjs';
@@ -18,6 +20,10 @@ const { values } = parseArgs({
 assert.ok(values['run-dir'], '请指定 --run-dir');
 const runRoot = path.resolve(values['run-dir']);
 const report = reportForRun(runRoot);
+report.report_source_revision = execFileSync('git', ['rev-parse', 'HEAD'], {
+  cwd: REPO,
+  encoding: 'utf8',
+}).trim();
 const requested = timestampedReportPath({
   runRoot,
   runId: report.run_id,

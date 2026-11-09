@@ -141,6 +141,12 @@ export function buildReport({ manifest, config, pricing, records }) {
     selected_cases: manifest.case_ids.length,
     source_revision: manifest.source_revision,
     source_dirty: manifest.source_dirty ?? false,
+    execution: {
+      model_concurrency: manifest.concurrency ?? null,
+      per_model_concurrency: manifest.per_model_concurrency ?? null,
+      max_tokens: manifest.max_tokens ?? null,
+      candidate_timeout_ms: manifest.candidate_timeout_ms ?? null,
+    },
     formulas: {
       overall: '各题最终分之和 / 计划题数',
       scene: '场景内各题最终分之和 / 场景计划题数',

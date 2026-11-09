@@ -294,11 +294,21 @@ test('the report rejects duplicates and out-of-plan results', () => {
     models: [{ id: 'test/model', name: '测试' }],
     case_ids: ['a', 'b'],
     scenes: [{ id: 'canvas', name: '画布' }],
+    concurrency: 8,
+    per_model_concurrency: 1,
+    max_tokens: 32768,
+    candidate_timeout_ms: 600000,
   };
   const a = record('a', 1, 1, 100),
     b = record('b', 1, 9, 100 / 9);
   const report = buildReport({ manifest, config, pricing: snapshot([]), records: [a, b] });
   assert.equal(report.capabilities[0].rate, 0.2);
+  assert.deepEqual(report.execution, {
+    model_concurrency: 8,
+    per_model_concurrency: 1,
+    max_tokens: 32768,
+    candidate_timeout_ms: 600000,
+  });
   assert.throws(
     () => buildReport({ manifest, config, pricing: snapshot([]), records: [a, a] }),
     /重复结果/,
