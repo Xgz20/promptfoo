@@ -1,0 +1,1562 @@
+{
+  "version": "1.0.1",
+  "date": "2026-11-09",
+  "scene": "网页与应用截图",
+  "status": "试点题库；模型未运行；题目审核状态见review/design-review-status.json",
+  "task_count": 20,
+  "annotation_count": 40,
+  "content_question_count": 60,
+  "excluded": [
+    "手绘线框",
+    "画布对象及流程图专项",
+    "实际编辑操作"
+  ],
+  "coverage": {
+    "网页内容与导航": 5,
+    "检索与列表": 5,
+    "表单与设置": 5,
+    "应用工作台与弹窗": 5
+  },
+  "capability_coverage": {
+    "文字识别": {
+      "task_count": 20,
+      "task_ids": [
+        "webapp-001",
+        "webapp-002",
+        "webapp-003",
+        "webapp-004",
+        "webapp-005",
+        "webapp-006",
+        "webapp-007",
+        "webapp-008",
+        "webapp-009",
+        "webapp-010",
+        "webapp-011",
+        "webapp-012",
+        "webapp-013",
+        "webapp-014",
+        "webapp-015",
+        "webapp-016",
+        "webapp-017",
+        "webapp-018",
+        "webapp-019",
+        "webapp-020"
+      ],
+      "nominal_weight": 20,
+      "annotation_count": 0
+    },
+    "对象属性与状态识别": {
+      "task_count": 20,
+      "task_ids": [
+        "webapp-001",
+        "webapp-002",
+        "webapp-003",
+        "webapp-004",
+        "webapp-005",
+        "webapp-006",
+        "webapp-007",
+        "webapp-008",
+        "webapp-009",
+        "webapp-010",
+        "webapp-011",
+        "webapp-012",
+        "webapp-013",
+        "webapp-014",
+        "webapp-015",
+        "webapp-016",
+        "webapp-017",
+        "webapp-018",
+        "webapp-019",
+        "webapp-020"
+      ],
+      "nominal_weight": 20,
+      "annotation_count": 0
+    },
+    "空间布局与连接关系识别": {
+      "task_count": 20,
+      "task_ids": [
+        "webapp-001",
+        "webapp-002",
+        "webapp-003",
+        "webapp-004",
+        "webapp-005",
+        "webapp-006",
+        "webapp-007",
+        "webapp-008",
+        "webapp-009",
+        "webapp-010",
+        "webapp-011",
+        "webapp-012",
+        "webapp-013",
+        "webapp-014",
+        "webapp-015",
+        "webapp-016",
+        "webapp-017",
+        "webapp-018",
+        "webapp-019",
+        "webapp-020"
+      ],
+      "nominal_weight": 15,
+      "annotation_count": 0
+    },
+    "批注目标识别": {
+      "task_count": 20,
+      "task_ids": [
+        "webapp-001",
+        "webapp-002",
+        "webapp-003",
+        "webapp-004",
+        "webapp-005",
+        "webapp-006",
+        "webapp-007",
+        "webapp-008",
+        "webapp-009",
+        "webapp-010",
+        "webapp-011",
+        "webapp-012",
+        "webapp-013",
+        "webapp-014",
+        "webapp-015",
+        "webapp-016",
+        "webapp-017",
+        "webapp-018",
+        "webapp-019",
+        "webapp-020"
+      ],
+      "nominal_weight": 15,
+      "annotation_count": 40
+    },
+    "批注意图理解": {
+      "task_count": 20,
+      "task_ids": [
+        "webapp-001",
+        "webapp-002",
+        "webapp-003",
+        "webapp-004",
+        "webapp-005",
+        "webapp-006",
+        "webapp-007",
+        "webapp-008",
+        "webapp-009",
+        "webapp-010",
+        "webapp-011",
+        "webapp-012",
+        "webapp-013",
+        "webapp-014",
+        "webapp-015",
+        "webapp-016",
+        "webapp-017",
+        "webapp-018",
+        "webapp-019",
+        "webapp-020"
+      ],
+      "nominal_weight": 20,
+      "annotation_count": 40
+    },
+    "精确坐标定位": {
+      "task_count": 20,
+      "task_ids": [
+        "webapp-001",
+        "webapp-002",
+        "webapp-003",
+        "webapp-004",
+        "webapp-005",
+        "webapp-006",
+        "webapp-007",
+        "webapp-008",
+        "webapp-009",
+        "webapp-010",
+        "webapp-011",
+        "webapp-012",
+        "webapp-013",
+        "webapp-014",
+        "webapp-015",
+        "webapp-016",
+        "webapp-017",
+        "webapp-018",
+        "webapp-019",
+        "webapp-020"
+      ],
+      "nominal_weight": 10,
+      "annotation_count": 40
+    }
+  },
+  "coverage_note": "六维每维均覆盖20题；前三维各20个独立内容问题，后三维各40条批注。",
+  "model_run_performed": false,
+  "scoring": {
+    "weights": {
+      "文字识别": 20,
+      "对象属性与状态识别": 20,
+      "空间布局与连接关系识别": 15,
+      "批注目标识别": 15,
+      "批注意图理解": 20,
+      "精确坐标定位": 10
+    },
+    "unit": "每题按六维度计算0～100分，20题等权平均；四个子场景各5题。",
+    "content": "前三维按本题明确提出的content_questions评分；每个原子检查点0或1，维度内等权。只评所问事实，内容问题不依赖箭头绑定正确。",
+    "binding": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。",
+    "intent": "按本题所有批注意图的唯一原子检查点0或1计分，维度内原子项等权。将原目标身份替换为“该批注目标”后评价要求；错认原对象不重复扣意图分。但把新的参照对象、目标值、作用范围或保留条件理解错仍扣相应项。",
+    "geometry": "逐批注独立判定坐标，维度内批注等权。对象代表点反归一化后落在Gold的bbox内即命中；连线点距Gold折线≤12个最终输入图像像素即命中。null或错误点计0。语义身份错误不覆盖几何判定。",
+    "aggregation": "设该题适用维度集合为D，维度正确率r_d∈[0,1]、名义权重w_d，则题分=100×Σ(w_d×r_d)/Σw_d。文字识别不适用的题权重分母为80，其余为100；不适用不是满分或0分。整批维度得分率为适用题的该维度正确率均值；总分取20个题分均值，不能把整批维度均值直接乘固定权重代替总分。",
+    "not_applicable": "本批20题均有原截图文字、属性状态、布局问题，六维全部适用；不以批注文字代替截图OCR。",
+    "atomic": "原子项独立评分；一个原子项含不可分的对象—关系或属性—值绑定时需整体正确。并列独立事实必须拆项。相同要求跨字段或跨批注表达可匹配，但只在Gold指定归属计分。允许语义等价与等值单位转换；文字大小写、首尾空白不影响分数，缺字错字或数字值错误不得分。",
+    "contradictions": "同一事实既正确又明确矛盾且未自行纠正，相关检查点不得分；无关事实不受影响。布局关系与对象属性分别检查，不将一个箭头误绑当作内容问题答错。",
+    "extra_edits": "新增无对应批注的修改要求或额外重复编辑记录，每条扣10个题目百分制分，最低0；字段间复述和分别解释协同批注不算多报。总分和六维得分分开记录扣分。",
+    "complete": "所有适用维度全部原子项正确、全部批注目标与坐标正确且无多报，才算整题全对。",
+    "failure": "已实际调用但失败或无最终返回：本题所有适用维度记0，另报技术失败。尚未按新版提示词调用：标待重测，绝不当0或发布新版总分。",
+    "historical": "旧版首次回答原样保存；新增内容问题缺失记未测，不补扣分。可对未改变的问题作旧答诊断，但不得把旧答重评冒充新版实跑。",
+    "review": "内容按检查点人工/助手初评并标注复核状态；几何与格式程序计算。schema通过不等于内容正确，不调用额外模型裁判。",
+    "annotation_completeness": "并列主指标：完整正确批注数/全部标准批注数×100%。同一条批注的目标识别正确、全部意图要求正确（含Gold显式共享要求）、代表点命中原目标，三者同时满足才通过。按40条标准批注等权；不纳入独立内容小问，不改变六维权重。技术失败计未通过；额外修改沿用原扣分与整题全对规则。"
+  },
+  "measurement_protocol": {
+    "unit": "图像理解工具单次调用",
+    "input": "固定input.png和prompt.txt，不向被测工具提供Gold、源文件或DOM",
+    "output": "只评分被测图像理解工具的首次原始返回；判断是否理解图片与批注，不执行图片编辑；不计入Agent补写、追问、读图脚本或其他工具恢复结果",
+    "failure": "分别记录工具失败率、超时率和耗时；已返回但信息不完整按缺失评分点扣分，不能记成Agent超时",
+    "comparison": "所有工具使用同一20题及相同输入处理条件；主表报告全20题均分，纯失败/无响应题记0，同时另报成功返回题均分和技术失败率，禁止仅用完成子集排名"
+  },
+  "input_policy": "仅发送model-inputs中对应题的input.png和prompt.txt；不要发送review、sources或SVG构建文件。",
+  "source_policy": "公开素材用于底图；中文修改批注、题干、参考答案与评分点为本次新建，不沿用上游原题答案。",
+  "tasks": [
+    {
+      "id": "webapp-001",
+      "title": "安装完成页：按钮文案与相对布局",
+      "difficulty": "基础",
+      "content_group": "网页内容与导航",
+      "application": "Website",
+      "source_dataset": "Design2Code-hf",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 6,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-001/input.png",
+      "prompt": "model-inputs/webapp-001/prompt.txt",
+      "gold": "review/webapp-001/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-002",
+      "title": "文章页：标题样式与分享入口",
+      "difficulty": "基础",
+      "content_group": "网页内容与导航",
+      "application": "Website",
+      "source_dataset": "Design2Code-hf",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 5,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-002/input.png",
+      "prompt": "model-inputs/webapp-002/prompt.txt",
+      "gold": "review/webapp-002/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-003",
+      "title": "隐私说明页：多级标题与日期",
+      "difficulty": "基础",
+      "content_group": "网页内容与导航",
+      "application": "Website",
+      "source_dataset": "Design2Code-hf",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-003/input.png",
+      "prompt": "model-inputs/webapp-003/prompt.txt",
+      "gold": "review/webapp-003/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-004",
+      "title": "活动日程页：日期层级与跨批注样式",
+      "difficulty": "中等",
+      "content_group": "网页内容与导航",
+      "application": "Website",
+      "source_dataset": "Design2Code-hf",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 6,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-004/input.png",
+      "prompt": "model-inputs/webapp-004/prompt.txt",
+      "gold": "review/webapp-004/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-005",
+      "title": "期刊网页与书签侧栏：同类控件消歧",
+      "difficulty": "进阶",
+      "content_group": "网页内容与导航",
+      "application": "Brave",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 5,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-005/input.png",
+      "prompt": "model-inputs/webapp-005/prompt.txt",
+      "gold": "review/webapp-005/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-006",
+      "title": "主题商店：卡片内容与标签选中态",
+      "difficulty": "中等",
+      "content_group": "检索与列表",
+      "application": "Chromium",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 5,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-006/input.png",
+      "prompt": "model-inputs/webapp-006/prompt.txt",
+      "gold": "review/webapp-006/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-007",
+      "title": "搜索结果页：查询词与筛选状态",
+      "difficulty": "中等",
+      "content_group": "检索与列表",
+      "application": "DuckDuckGo",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-007/input.png",
+      "prompt": "model-inputs/webapp-007/prompt.txt",
+      "gold": "review/webapp-007/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-008",
+      "title": "媒体库：选中导航与缩略图范围",
+      "difficulty": "中等",
+      "content_group": "检索与列表",
+      "application": "Emby",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 6,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-008/input.png",
+      "prompt": "model-inputs/webapp-008/prompt.txt",
+      "gold": "review/webapp-008/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-009",
+      "title": "任务清单：完成状态与局部复选框",
+      "difficulty": "进阶",
+      "content_group": "检索与列表",
+      "application": "WeKan",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-009/input.png",
+      "prompt": "model-inputs/webapp-009/prompt.txt",
+      "gold": "review/webapp-009/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-010",
+      "title": "文件列表：重复名称与跨批注排序",
+      "difficulty": "进阶",
+      "content_group": "检索与列表",
+      "application": "Nextcloud",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 5,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-010/input.png",
+      "prompt": "model-inputs/webapp-010/prompt.txt",
+      "gold": "review/webapp-010/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-011",
+      "title": "浏览器通知设置：单选项与例外入口",
+      "difficulty": "中等",
+      "content_group": "表单与设置",
+      "application": "Brave",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 5,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-011/input.png",
+      "prompt": "model-inputs/webapp-011/prompt.txt",
+      "gold": "review/webapp-011/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-012",
+      "title": "清理数据弹窗：时间范围与勾选条件",
+      "difficulty": "进阶",
+      "content_group": "表单与设置",
+      "application": "Chromium",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-012/input.png",
+      "prompt": "model-inputs/webapp-012/prompt.txt",
+      "gold": "review/webapp-012/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-013",
+      "title": "书籍批量编辑：字段值与独立开关",
+      "difficulty": "进阶",
+      "content_group": "表单与设置",
+      "application": "Calibre",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-013/input.png",
+      "prompt": "model-inputs/webapp-013/prompt.txt",
+      "gold": "review/webapp-013/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-014",
+      "title": "文件属性：同名权限控件消歧",
+      "difficulty": "中等",
+      "content_group": "表单与设置",
+      "application": "Nemo",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-014/input.png",
+      "prompt": "model-inputs/webapp-014/prompt.txt",
+      "gold": "review/webapp-014/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-015",
+      "title": "权限菜单：勾选与蓝色高亮的区别",
+      "difficulty": "进阶",
+      "content_group": "表单与设置",
+      "application": "Matrix",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-015/input.png",
+      "prompt": "model-inputs/webapp-015/prompt.txt",
+      "gold": "review/webapp-015/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-016",
+      "title": "卡片编辑器：左右面板与局部样式",
+      "difficulty": "中等",
+      "content_group": "应用工作台与弹窗",
+      "application": "Anki",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 6,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-016/input.png",
+      "prompt": "model-inputs/webapp-016/prompt.txt",
+      "gold": "review/webapp-016/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-017",
+      "title": "屏幕共享弹窗：开关与灰色按钮",
+      "difficulty": "中等",
+      "content_group": "应用工作台与弹窗",
+      "application": "Jitsi",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-017/input.png",
+      "prompt": "model-inputs/webapp-017/prompt.txt",
+      "gold": "review/webapp-017/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-018",
+      "title": "会议投票：候选项与发布按钮",
+      "difficulty": "中等",
+      "content_group": "应用工作台与弹窗",
+      "application": "Jitsi",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-018/input.png",
+      "prompt": "model-inputs/webapp-018/prompt.txt",
+      "gold": "review/webapp-018/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-019",
+      "title": "后台配置引导：完成标识与卡片重排",
+      "difficulty": "中等",
+      "content_group": "应用工作台与弹窗",
+      "application": "Metabase",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 6,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-019/input.png",
+      "prompt": "model-inputs/webapp-019/prompt.txt",
+      "gold": "review/webapp-019/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "webapp-020",
+      "title": "网页编辑工作台：提示条与插入面板",
+      "difficulty": "中等",
+      "content_group": "应用工作台与弹窗",
+      "application": "WordPress",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "intent_checkpoint_count": 6,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/webapp-020/input.png",
+      "prompt": "model-inputs/webapp-020/prompt.txt",
+      "gold": "review/webapp-020/gold.json",
+      "status": "draft"
+    }
+  ]
+}

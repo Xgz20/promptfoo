@@ -1,0 +1,342 @@
+{
+  "id": "canvas-008",
+  "version": "0.4.3-draft",
+  "title": "邮件原型设计稿：工具栏与首行状态",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "drawio-diagrams",
+    "kind": "open_source_diagram_template",
+    "url": "https://github.com/jgraph/drawio-diagrams/blob/cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01/templates/layout/gmail_wireframe.xml",
+    "license_observed": "Apache-2.0（所下载仓库根目录 LICENSE；保留原文件与版权许可）",
+    "repository_commit": "cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01",
+    "original_file": "repos/drawio-diagrams/templates/layout/gmail_wireframe.xml",
+    "original_sha256": "3fd10b3c705ad1f92e82c4e32a2e3587014bbe404b0e9c721097c727b2b90955",
+    "renderer": "source-build/render-sources.mjs + pinned viewer-static.min.js",
+    "renderer_sha256": "35b8ef54369e938ad2399d3c8ce3945591d4b200a01f6942d0e39743bea1f1a1",
+    "path_in_collection": "pilots/canvas-20261106/source-build/templates__layout__gmail_wireframe.png",
+    "sha256": "f6a737d432c3152b26b839fec68b942b93c6218ed15a2923dd5983d5bab9e749"
+  },
+  "source_image_size": [
+    1244,
+    841
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1244,
+    841
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1500,
+    1231
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "文字识别",
+      "question": "读取撰写按钮的文字，以及顶部带放大镜图标的搜索框中显示的文字。",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "按钮文字 COMPOSE"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "搜索框文字 mxGraph"
+        }
+      ],
+      "reference_answer": "按钮文字 COMPOSE；搜索框文字 mxGraph。",
+      "id": "text-1"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "邮件第一行的星标是实心还是空心、轮廓是什么颜色？同行复选框是否勾选？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "星标为空心"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "星标轮廓为灰色"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "复选框已勾选"
+        }
+      ],
+      "reference_answer": "星标为空心；星标轮廓为灰色；复选框已勾选。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "原图第一行的复选框、星标、标签形图标从左到右如何排列？侧栏在邮件列表哪一侧？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "复选框在星标左侧"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "星标在标签形图标左侧"
+        },
+        {
+          "id": "layout-1.3",
+          "expected": "侧栏在列表左侧"
+        }
+      ],
+      "reference_answer": "复选框在星标左侧；星标在标签形图标左侧；侧栏在列表左侧。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10.0,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "按钮宽度改为 180 px。\n左边缘和高度不变，\n文字、边框与其他控件不变。",
+      "arrow_path_input_px": [
+        [
+          185,
+          260
+        ],
+        [
+          185,
+          547
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          58,
+          530,
+          205,
+          561
+        ],
+        "reference_point": [
+          185,
+          547
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "左侧栏上方的 COMPOSE 按钮。",
+        "requested_change": "将COMPOSE按钮宽度改为180 px，固定左边缘并保持高度。",
+        "preserve": [
+          "左边缘位置",
+          "高度",
+          "COMPOSE文字",
+          "边框",
+          "其他控件"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          123.33,
+          444.35
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "左侧栏上方的 COMPOSE 按钮。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 13.333333333333334,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "按钮宽度改为180 px",
+            "保留：左边缘位置",
+            "保留：高度",
+            "保留：COMPOSE文字",
+            "保留：边框",
+            "保留：其他控件（B计分的其他行星标及首行勾选状态除外，首行星标按B修改）"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3",
+            "A.preserve-4",
+            "A.preserve-5"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ],
+      "shared_constraints": [
+        {
+          "text": "其他行星标不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：其他行星标"
+        },
+        {
+          "text": "第一行复选框保持勾选",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：第一行复选框已勾选状态"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "仅把这一行的星标填成黄色。\n其他行星标与首行勾选不变。",
+      "arrow_path_input_px": [
+        [
+          865,
+          225
+        ],
+        [
+          323,
+          525
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          309,
+          510,
+          339,
+          536
+        ],
+        "reference_point": [
+          323,
+          525
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "邮件列表第一行、勾选框右侧的空心星形图标。",
+        "requested_change": "把邮件第一行的星标填充为黄色。",
+        "preserve": [
+          "其他行星标",
+          "第一行复选框已勾选状态"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          215.33,
+          426.48
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "邮件列表第一行、勾选框右侧的空心星形图标。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 6.666666666666667,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "星标改为黄色实心填充",
+            "保留：其他行星标",
+            "保留：第一行复选框已勾选状态"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1",
+            "B.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

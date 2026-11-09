@@ -1,0 +1,156 @@
+{
+  "task_id": "poster-002",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    1500,
+    1000
+  ],
+  "input_sha256": "734fa37de0210de6928e55459340992f63b41183d0f011ae3bc5ff320cfd54d0",
+  "prompt_sha256": "d24c7b30ed02725e9d0a16314a9889e0367a33352d09749084cc74ac885803b5",
+  "source": {
+    "dataset": "MDVP-Bench",
+    "url": "https://huggingface.co/datasets/Afeng-x/Draw-and-Understand",
+    "source_row_zero_based": 51,
+    "original_record_row": 1,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDVP-Bench/MDVP-bench/multipanel_Inter_Relationship/images/44.png",
+    "local_original": "sources/poster-002.png",
+    "original_sha256": "1c50894c1ccaf19b67c3196293d9a0ac1b9ea7e984503a7aa0db4a567634120e",
+    "size": [
+      1500,
+      1000
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明CC BY-NC 4.0；非商业使用限制。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "包含帽子和鞋的图标下面写的完整英文说明是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "Remove Your Hat and Shoes。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "全部圆形主题图标共有几个？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "7个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "包含投币箱的图标，在上排还是下排？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "下排。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "标题和图标文字的主色是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "蓝灰、深蓝或深灰蓝均可"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：包含投币箱的完整蓝色圆形背景，不含下方文字。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        633,
+        573,
+        867,
+        807
+      ],
+      "center_input_px": [
+        750.0,
+        690.0
+      ],
+      "reference_point": {
+        "x": 500.0,
+        "y": 690.0
+      },
+      "tolerance_input_px": 20,
+      "scope": "包含投币箱的完整蓝色圆形背景，不含下方文字"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-002",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "Remove Your Hat and Shoes。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "7个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "下排。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "深蓝灰色。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 500.0,
+          "y": 690.0
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

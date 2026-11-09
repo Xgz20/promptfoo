@@ -1,0 +1,156 @@
+{
+  "task_id": "document-003",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1654,
+    2338
+  ],
+  "input_sha256": "4373c1b02b0a61ddad54d8ead2ba12078f41e01bb2abeefd11a7031d22932fe6",
+  "prompt_sha256": "2fbfe88fa94f78b148a95ba5cf73c1e9b3e90345d879f79bf77bd46b535923b3",
+  "source": {
+    "dataset": "MDPBench",
+    "url": "https://huggingface.co/datasets/Delores-Lin/MDPBench",
+    "source_row_zero_based": 24,
+    "original_record_row": 24,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDPBench/MDPBench_img_public/zh_financialpaper_46.jpg",
+    "local_original": "sources/document-003.jpg",
+    "original_sha256": "e3c1aa1fbd52efd8288632232b08a52ff20a015ef7cbd8c52b1ee925038079c6",
+    "size": [
+      1654,
+      2338
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明Apache-2.0；保留文档内原出版方、公司及作者署名，不扩张第三方页面权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "页面左上角的报告日期是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "24 Sep 2023／2023年9月24日。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "右侧正文中，黄色高亮背景共有几处？每个连续高亮词组算一处。",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "4处。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "包含“现价”“目标价”的信息面板相对于正文项目符号列表，在左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "左侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "信息面板“目标价”这一行的金额是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "人民币24.50元"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：右上角中英文机构标志的整体字形，不含周围白边。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        1338,
+        111,
+        1542,
+        199
+      ],
+      "center_input_px": [
+        1440.0,
+        155.0
+      ],
+      "reference_point": {
+        "x": 870.617,
+        "y": 66.296
+      },
+      "tolerance_input_px": 20,
+      "scope": "右上角中英文机构标志的整体字形，不含周围白边"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-003",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "24 Sep 2023／2023年9月24日。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "4处。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "Rmb24.50。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 870.617,
+          "y": 66.296
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

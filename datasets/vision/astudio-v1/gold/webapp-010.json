@@ -1,0 +1,345 @@
+{
+  "id": "webapp-010",
+  "version": "1.0.0-draft",
+  "title": "文件列表：重复名称与跨批注排序",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 132,
+    "original_record": {
+      "source_row": 132,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/layout_grounding/90fe1db2e55cd87c95e30a0bbbe0aac1.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "original": {
+        "image_path": "layout_grounding/90fe1db2e55cd87c95e30a0bbbe0aac1.png",
+        "image_size": [
+          1920,
+          1080
+        ],
+        "name": "Sidebar",
+        "explanation": "This region contains the sidebar with links to different sections of the application such as dashboard, files, and activity.",
+        "platform": "Nextcloud",
+        "bbox": [
+          112.71177978515625,
+          203.07859497070314,
+          290.31177978515626,
+          1051.6500235421317
+        ]
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/layout_grounding/90fe1db2e55cd87c95e30a0bbbe0aac1.png",
+    "sha256": "45f47b37006cd1c3399854363857fe088d4a7e5a57016d38551f969ba4d4d8dd",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1920,
+    1080
+  ],
+  "crop_xywh": [
+    100,
+    100,
+    1600,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.8625
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "列表中 Documents 文件夹与 New document.odt 文件的大小分别是多少？",
+      "reference_answer": "Documents为1.1 MB；New document.odt为8 KB",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Documents为1.1 MB"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "New document.odt为8 KB"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "侧栏哪一项用蓝色背景高亮？列表中 Photos 行的复选框有勾吗？",
+      "reference_answer": "All files高亮；Photos行复选框未勾选",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "All files高亮"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Photos行复选框未勾选"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "左侧导航与文件列表的左右关系是什么？",
+      "reference_answer": "导航在文件列表左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "导航在文件列表左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "列表中的这个文件改名为“项目说明.odt”。保留这一行的 Shared 标识。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          219.0
+        ],
+        [
+          1415,
+          219.0
+        ],
+        [
+          1415,
+          770.1625
+        ],
+        [
+          586.35,
+          770.1625
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          456.1125,
+          747.7375,
+          631.2,
+          773.6125
+        ],
+        "reference_point": [
+          586.35,
+          770.1625
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "下方文件列表内的 New document.odt 名称，不是上方最近编辑卡片",
+        "target_point": [
+          325.75,
+          700.148
+        ],
+        "requested_change": "文件名改为项目说明.odt",
+        "preserve": [
+          "该行Shared标识"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "下方文件列表内的 New document.odt 名称，不是上方最近编辑卡片"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.0,
+          "points_per_checkpoint": 4.0,
+          "checkpoints": [
+            "文件名改为项目说明.odt",
+            "保留：该行Shared标识"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "把这一整行移到 A 所指文件行的正下方。名称和文件夹大小数值不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          689.0
+        ],
+        [
+          1428,
+          689.0
+        ],
+        [
+          1428,
+          663.2125
+        ],
+        [
+          1397.1,
+          663.2125
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          339.675,
+          619.225,
+          1404.0,
+          675.2875
+        ],
+        "reference_point": [
+          1397.1,
+          663.2125
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "下方列表中的 Photos 文件夹整行",
+        "target_point": [
+          776.167,
+          602.92
+        ],
+        "requested_change": "将Photos整行移到A所指文件行正下方",
+        "preserve": [
+          "Photos名称",
+          "该行文件夹大小数值"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "下方列表中的 Photos 文件夹整行"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 12.0,
+          "points_per_checkpoint": 4.0,
+          "checkpoints": [
+            "将Photos整行移到A所指文件行正下方",
+            "保留：Photos名称",
+            "保留：该行文件夹大小数值"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1",
+            "B.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

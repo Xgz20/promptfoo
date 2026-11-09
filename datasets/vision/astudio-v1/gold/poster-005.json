@@ -1,0 +1,160 @@
+{
+  "task_id": "poster-005",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    672,
+    448
+  ],
+  "input_sha256": "7c139772964379f1c9b620112211845f34b3e7df2b5a08be0faea113d3864c3f",
+  "prompt_sha256": "29d26aec6bf11b24e70b973415ba1c5d86915eff0de4abe9bb96bf5c758e6836",
+  "source": {
+    "dataset": "MDVP-Bench",
+    "url": "https://huggingface.co/datasets/Afeng-x/Draw-and-Understand",
+    "source_row_zero_based": 43,
+    "original_record_row": 3,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDVP-Bench/MDVP-bench/multipanel_Inter_Relationship/images/u=856418766,3773125614&fm=253&app=138&f=JPEG.png",
+    "local_original": "sources/poster-005.png",
+    "original_sha256": "74a10e6a06774f049e4226bb671ed5a731426d95f8ddafcaa00f860ef9b92047",
+    "size": [
+      672,
+      448
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明CC BY-NC 4.0；非商业使用限制。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "两只手握手图标下面的英文词是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "Empathy。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "图中用于展示技能的圆形插图共有几个？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "10个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "面具插图与盘腿坐姿插图在同一列吗？若是，哪一个在上？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "同列"
+        },
+        {
+          "id": "C3.2",
+          "text": "盘腿坐姿在面具上方"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "上排含手部特写的图标表达的是竖起哪一根手指？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "拇指。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：上排含手部特写的完整圆形色块，不含下面文字。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        410,
+        81,
+        520,
+        194
+      ],
+      "center_input_px": [
+        465.0,
+        137.5
+      ],
+      "reference_point": {
+        "x": 691.964,
+        "y": 306.92
+      },
+      "tolerance_input_px": 20,
+      "scope": "上排含手部特写的完整圆形色块，不含下面文字"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-005",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "Empathy。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "10个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "在同一列；盘腿坐姿插图在上。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "拇指。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 691.964,
+          "y": 306.92
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

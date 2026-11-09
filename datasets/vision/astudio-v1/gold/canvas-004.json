@@ -1,0 +1,394 @@
+{
+  "id": "canvas-004",
+  "version": "0.4.2-draft",
+  "title": "节点图：重命名节点与删除指定连线",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "ScreenSpot-Pro",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+    "license_observed": "MIT（已下载的官方数据卡）",
+    "normalized_row_0based": 12,
+    "original_record": {
+      "img_filename": "blender_windows/screenshot_2024-12-02_13-35-25.png",
+      "bbox": [
+        977,
+        1031,
+        1051,
+        1060
+      ],
+      "instruction": "Conect the Group Input Offset to the Set Position Node Offset.",
+      "instruction_cn": "将组输入偏移连接到设定位置节点偏移。",
+      "id": "blender_windows_35",
+      "application": "blender",
+      "platform": "windows",
+      "img_size": [
+        2560,
+        1440
+      ],
+      "ui_type": "text",
+      "group": "Creative"
+    },
+    "path_in_collection": "datasets/ScreenSpot-Pro/images/blender_windows/screenshot_2024-12-02_13-35-25.png",
+    "sha256": "b26c9fb5314af0a177319298c447989e15beac72e8082a83d43d9b6f7c19c4da"
+  },
+  "source_image_size": [
+    2560,
+    1440
+  ],
+  "crop_xywh": [
+    580,
+    780,
+    1060,
+    380
+  ],
+  "placement_x_y_scale": [
+    40,
+    320,
+    1.2
+  ],
+  "input_size": [
+    1500,
+    900
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "文字识别",
+      "question": "读取节点图中间节点和最右侧节点的标题。",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "中间节点标题 Set Position"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "最右节点标题 Group Output"
+        }
+      ],
+      "reference_answer": "中间节点标题 Set Position；最右节点标题 Group Output。",
+      "id": "text-1"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "中间节点标题栏是什么颜色？中间节点到最右节点的原有曲线是什么颜色？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "标题栏为绿色或青绿色"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "原有曲线为绿色或青绿色"
+        }
+      ],
+      "reference_answer": "标题栏为绿色或青绿色；原有曲线为绿色或青绿色。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "左侧 Group Input 的 Offset 接口连接到哪个节点的哪个接口？说明连接方向。",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Group Input 的 Offset 输出连接到 Set Position 的 Offset 输入"
+        }
+      ],
+      "reference_answer": "Group Input 的 Offset 输出连接到 Set Position 的 Offset 输入。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10.0,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "把这个节点的标题改为“位置调整”。\n节点的接口、参数和剩余连线不变。",
+      "arrow_path_input_px": [
+        [
+          610,
+          235
+        ],
+        [
+          610,
+          300
+        ],
+        [
+          724,
+          444
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          526.0,
+          426.8,
+          761.2,
+          664.4
+        ],
+        "reference_point": [
+          724.0,
+          443.6
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "节点图中间的绿色标题节点，当前标题为 Set Position。",
+        "requested_change": "将中间 Set Position 节点的标题改为“位置调整”。",
+        "preserve": [
+          "节点的接口",
+          "节点的参数",
+          "除B指定删除连线以外的连线"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          482.67,
+          492.89
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "节点图中间的绿色标题节点，当前标题为 Set Position。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.571428571428571,
+          "points_per_checkpoint": 2.857142857142857,
+          "checkpoints": [
+            "将节点标题改为“位置调整”",
+            "保留：节点的接口",
+            "保留：节点的参数"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ],
+      "shared_constraints": [
+        {
+          "text": "除B指定删除连线之外的连线保持不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：其他连线"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "删除这条连线。\n两端节点保留，其他连线不变。",
+      "arrow_path_input_px": [
+        [
+          950,
+          235
+        ],
+        [
+          980,
+          300
+        ],
+        [
+          880,
+          570
+        ]
+      ],
+      "geometry": {
+        "type": "polyline",
+        "bbox_xyxy": [
+          760.0,
+          480.8,
+          994.0,
+          641.6
+        ],
+        "reference_point": [
+          880.0,
+          569.6
+        ],
+        "coordinate_system": "input image pixels",
+        "polyline": [
+          [
+            761.2,
+            485.6
+          ],
+          [
+            779.2,
+            488.0
+          ],
+          [
+            798.4,
+            495.2
+          ],
+          [
+            817.6,
+            507.2
+          ],
+          [
+            836.8,
+            525.2
+          ],
+          [
+            856.0,
+            548.0
+          ],
+          [
+            875.2,
+            572.0
+          ],
+          [
+            894.4,
+            593.6
+          ],
+          [
+            913.6,
+            611.6
+          ],
+          [
+            932.8,
+            623.6
+          ],
+          [
+            956.8,
+            632.0
+          ],
+          [
+            988.0,
+            634.4
+          ]
+        ],
+        "max_distance_px": 12
+      },
+      "reference_answer": {
+        "target_description": "从中间 Set Position 节点的 Geometry 输出端，到右侧 Group Output 节点的 Geometry 输入端的绿色连线。",
+        "requested_change": "断开 Set Position（按A改名后为“位置调整”）的 Geometry 输出到 Group Output 的 Geometry 输入的这条连线。",
+        "preserve": [
+          "Set Position节点本身（标题按A修改）",
+          "Group Output节点本身",
+          "其他连线"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          586.67,
+          632.89
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "从中间 Set Position 节点的 Geometry 输出端，到右侧 Group Output 节点的 Geometry 输入端的绿色连线。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 11.428571428571429,
+          "points_per_checkpoint": 2.857142857142857,
+          "checkpoints": [
+            "删除或断开本批注指向的原有连接",
+            "保留：Set Position节点本身（标题按A修改）",
+            "保留：Group Output节点本身",
+            "保留：其他连线"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1",
+            "B.preserve-2",
+            "B.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

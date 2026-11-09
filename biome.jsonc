@@ -18,6 +18,9 @@
       "**/*.mjs",
       "**/*.cjs",
       "!!.codex",
+      // Frozen visual Gold and response contracts are compared byte-for-byte with source snapshots.
+      "!!datasets/vision/astudio-v1/gold",
+      "!!datasets/vision/astudio-v1/contracts",
       // Unmodified upstream js-yaml distribution bundled for installed agent skills.
       "!!plugins/promptfoo/skills/promptfoo-provider-setup/scripts/vendor",
       "!!drizzle",

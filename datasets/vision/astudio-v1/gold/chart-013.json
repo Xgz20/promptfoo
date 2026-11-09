@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-013",
+  "version": "1.0.0",
+  "scene": "统计图表",
+  "input_size": [
+    1240,
+    700
+  ],
+  "input_sha256": "3ec87adaa1872ababbe60a676693d6ae1b6a64dbf2958c655d629be0c6b07c4a",
+  "prompt_sha256": "7dfd91382e45fc9e1ed16733fdd546f1889bf76589b473f5c78c0ade7d91630f",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 38,
+    "original_record_row": 38,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/a3938166df93c596c9dfa9bf.jpg",
+    "local_original": "sources/chart-013.jpg",
+    "original_sha256": "a3938166df93c596c9dfa9bf053665d35871556692b5a68c213e3f4961a9475b",
+    "size": [
+      1240,
+      700
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "Males图中Prostate标出的百分比是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "12%。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "Females的Other比Breast高多少个百分点？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "31−17=14个百分点"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "Females与Males两张图的左右关系是什么？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "Females在Males左侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "两张图比较，哪一组的Lung占比更大？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "Males／男性。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：顶部蓝底白字标题的蓝色矩形背景整体，不含左侧页面装饰边条。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        40,
+        9,
+        534,
+        63
+      ],
+      "center_input_px": [
+        287.0,
+        36.0
+      ],
+      "reference_point": {
+        "x": 231.452,
+        "y": 51.429
+      },
+      "tolerance_input_px": 20,
+      "scope": "顶部蓝底白字标题的蓝色矩形背景整体，不含左侧页面装饰边条"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-013",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "12%。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "14个百分点。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "Females在Males左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "Males／男性。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 231.452,
+          "y": 51.429
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

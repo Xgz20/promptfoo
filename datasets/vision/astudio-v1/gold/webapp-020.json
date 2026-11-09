@@ -1,0 +1,347 @@
+{
+  "id": "webapp-020",
+  "version": "1.0.0-draft",
+  "title": "网页编辑工作台：提示条与插入面板",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 156,
+    "original_record": {
+      "source_row": 156,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/layout_grounding/cc8f5ef15c5cbf9f916b27f907c8192f.png",
+          "width": 1440,
+          "height": 876
+        }
+      ],
+      "original": {
+        "image_path": "layout_grounding/cc8f5ef15c5cbf9f916b27f907c8192f.png",
+        "image_size": [
+          1440,
+          876
+        ],
+        "name": "Editor Tools",
+        "explanation": "This region contains tools for editing and formatting content, such as buttons for adding blocks, undoing and redoing actions, and accessing the document overview.",
+        "platform": "WordPress",
+        "bbox": [
+          73.20937500000001,
+          93.85714285714285,
+          273.00937500000003,
+          127.64571428571428
+        ]
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/layout_grounding/cc8f5ef15c5cbf9f916b27f907c8192f.png",
+    "sha256": "5b4f269b5d04ab40b91609273d92d8aa7c869413513984b433792d8acebd1ab0",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1440,
+    876
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1440,
+    876
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.9583333333333334
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "正文页面标题与右下插入面板搜索框内的文字分别是什么？",
+      "reference_answer": "New page；Butt",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "New page"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "Butt"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "正文黑色圆角按钮的文字颜色是什么？右下 Buttons 选项是否有蓝色边框？",
+      "reference_answer": "按钮文字为白色；Buttons选项有蓝色边框",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "按钮文字为白色"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Buttons选项有蓝色边框"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "自动保存提示条与正文页面标题的上下关系是什么？",
+      "reference_answer": "自动保存提示条在正文页面标题上方",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "自动保存提示条在正文页面标题上方"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "按钮文字改为“查看更多”。保留黑色底色和圆角形状。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          658.70833
+        ],
+        [
+          673.75,
+          658.70833
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          405.41667,
+          613.66667,
+          682.375,
+          669.25
+        ],
+        "reference_point": [
+          673.75,
+          658.70833
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "正文内 Get more memes from Elon 黑色圆角按钮",
+        "target_point": [
+          374.306,
+          598.826
+        ],
+        "requested_change": "按钮文字改为查看更多",
+        "preserve": [
+          "黑色底色",
+          "圆角形状"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "正文内 Get more memes from Elon 黑色圆角按钮"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "按钮文字改为查看更多",
+            "保留：黑色底色",
+            "保留：圆角形状"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "把这条提示移到正文标题正下方，左边缘与标题对齐。提示文字不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          689.0
+        ],
+        [
+          1428,
+          689.0
+        ],
+        [
+          1428,
+          305.08333
+        ],
+        [
+          1363.75,
+          305.08333
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          24.0,
+          235.125,
+          1404.0,
+          316.58333
+        ],
+        "reference_point": [
+          1363.75,
+          305.08333
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "顶部包含自动保存提醒和View the autosave链接的整条浅黄色提示条",
+        "target_point": [
+          757.639,
+          277.348
+        ],
+        "requested_change": "整条提示移到正文New page标题正下方；提示条左边缘与标题左边缘对齐",
+        "preserve": [
+          "提示文字"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "顶部包含自动保存提醒和View the autosave链接的整条浅黄色提示条"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "整条提示移到正文New page标题正下方",
+            "提示条左边缘与标题左边缘对齐",
+            "保留：提示文字"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

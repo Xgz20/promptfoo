@@ -1,0 +1,311 @@
+{
+  "id": "canvas-013",
+  "version": "0.4.2-draft",
+  "title": "住宅平面画布：家具识别与旋转排布",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "drawio-diagrams",
+    "kind": "open_source_diagram_template",
+    "url": "https://github.com/jgraph/drawio-diagrams/blob/cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01/templates/plans/floor_plan_1.xml",
+    "license_observed": "Apache-2.0（所下载仓库根目录 LICENSE；保留原文件与版权许可）",
+    "repository_commit": "cc78dc2e7df8cf3ad437e6f876fbc33d2d0b7e01",
+    "original_file": "repos/drawio-diagrams/templates/plans/floor_plan_1.xml",
+    "original_sha256": "02a2d2d7f954606db48b0e09d92434db7cf8159a4a92862c2db15b67ff8210e3",
+    "renderer": "source-build/render-sources.mjs + pinned viewer-static.min.js",
+    "renderer_sha256": "35b8ef54369e938ad2399d3c8ce3945591d4b200a01f6942d0e39743bea1f1a1",
+    "path_in_collection": "pilots/canvas-20261106/source-build/templates__plans__floor_plan_1.png",
+    "sha256": "58986b48aaac8e52fda76ad4637ef7d172472ee2d31a687059ac9aebbf90e6a8"
+  },
+  "source_image_size": [
+    1449,
+    696
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1449,
+    696
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1509,
+    1306
+  ],
+  "capabilities": [
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "住宅平面图的右侧客厅茶几是什么形状、长边朝哪个方向？餐区桌子是什么形状？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "茶几为长方形"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "茶几长边竖向"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "餐桌为椭圆形"
+        }
+      ],
+      "reference_answer": "茶几为长方形；茶几长边竖向；餐桌为椭圆形。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "只看原图，客厅茶几与两张双人沙发的相对位置如何？茶几下侧是否还有一把单人椅？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "茶几在上侧沙发下方"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "茶几在右侧沙发左方"
+        },
+        {
+          "id": "layout-1.3",
+          "expected": "茶几下方有一把单人椅"
+        }
+      ],
+      "reference_answer": "茶几在上侧沙发下方；茶几在右侧沙发左方；茶几下方有一把单人椅。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": false,
+      "points": 0,
+      "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 12.5,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "以自身中心顺时针旋转 90°。\n只转这张茶几，尺寸和其他家具不变。",
+      "arrow_path_input_px": [
+        [
+          635,
+          225
+        ],
+        [
+          1310,
+          800
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          1258,
+          714,
+          1321,
+          817
+        ],
+        "reference_point": [
+          1310,
+          800
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "右侧客厅沙发围合区中间的竖向矩形茶几。",
+        "requested_change": "以茶几自身中心为轴，在画面平面内顺时针旋转90°。",
+        "preserve": [
+          "茶几中心位置",
+          "茶几尺寸",
+          "除B指定移动的扶手椅外的其他家具"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          868.12,
+          612.56
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "右侧客厅沙发围合区中间的竖向矩形茶几。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 2.0,
+          "checkpoints": [
+            "顺时针旋转",
+            "旋转角度90°",
+            "保留：茶几中心位置",
+            "保留：茶几尺寸",
+            "保留：除B指定移动的扶手椅外的其他家具"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.change-2",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "移到 A 旋转后的茶几正下方，\n水平居中，边缘间距 30 px。\n扶手椅大小和朝向不变。",
+      "arrow_path_input_px": [
+        [
+          1316,
+          1081
+        ],
+        [
+          1316,
+          915
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          1254,
+          862,
+          1328,
+          929
+        ],
+        "reference_point": [
+          1316,
+          915
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "客厅茶几下方、靠近底部窗户的单人扶手椅。",
+        "requested_change": "移动下方扶手椅到A旋转后茶几的正下方，水平中心对齐，边缘间距30 px。",
+        "preserve": [
+          "扶手椅大小",
+          "扶手椅朝向"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          872.1,
+          700.61
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "客厅茶几下方、靠近底部窗户的单人扶手椅。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 2.0,
+          "checkpoints": [
+            "移到A旋转后的茶几下方",
+            "与旋转后茶几水平中心对齐",
+            "最近边缘间距30 px",
+            "保留：扶手椅大小",
+            "保留：扶手椅朝向"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.change-3",
+            "B.preserve-1",
+            "B.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

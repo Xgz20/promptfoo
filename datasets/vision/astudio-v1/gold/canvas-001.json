@@ -1,0 +1,238 @@
+{
+  "id": "canvas-001",
+  "version": "0.4.2-draft",
+  "title": "单个图形：理解填充修改与保留要求",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "license_observed": "MIT（已下载的官方数据卡）",
+    "normalized_row_0based": 82,
+    "original_record": {
+      "image_path": "element_grounding/f149e8f7cb32fdfefebc73054af4bb5f.png",
+      "image_size": [
+        1920,
+        914
+      ],
+      "prompt_to_evaluate": "increase width",
+      "bbox": [
+        1794.12158203125,
+        266.62452209472656,
+        1818.12158203125,
+        279.6816649518694
+      ],
+      "platform": "draw.io",
+      "category": "Button",
+      "element_type": "icon"
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/f149e8f7cb32fdfefebc73054af4bb5f.png",
+    "sha256": "8bc150cc7c06a7c53bbf83b2f93ce07e8d1b6bd98e5a2316963f5c98452c5e7a"
+  },
+  "source_image_size": [
+    1920,
+    914
+  ],
+  "crop_xywh": [
+    406,
+    130,
+    1064,
+    726
+  ],
+  "placement_x_y_scale": [
+    24,
+    110,
+    1
+  ],
+  "input_size": [
+    1500,
+    900
+  ],
+  "capabilities": [
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "网格画布中的圆形目前是什么填充色、什么轮廓色？它是否显示选中控制点？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "白色填充"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "黑色轮廓"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "显示蓝色选中控制点"
+        }
+      ],
+      "reference_answer": "白色填充；黑色轮廓；显示蓝色选中控制点。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "只看原图，圆形与矩形之间的上下关系如何？两者的水平中心是否大致对齐？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "圆形在矩形上方"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "两者水平中心大致对齐"
+        }
+      ],
+      "reference_answer": "圆形在矩形上方；两者水平中心大致对齐。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": false,
+      "points": 0,
+      "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 18.75,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 25.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 12.5,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "填充改成浅蓝色。\n边框保持黑色，\n大小和位置不变。",
+      "arrow_path_input_px": [
+        [
+          1120,
+          342
+        ],
+        [
+          1088,
+          342
+        ],
+        [
+          760,
+          342
+        ],
+        [
+          568,
+          450
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          499,
+          423,
+          600,
+          525
+        ],
+        "reference_point": [
+          568,
+          450
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "画布中上方、矩形上方的圆形（带蓝色选中控制点）。",
+        "requested_change": "将该圆形的填充颜色改为浅蓝色。",
+        "preserve": [
+          "黑色边框",
+          "圆形大小",
+          "圆形位置"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          378.67,
+          500.0
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 15.0,
+          "checkpoints": [
+            "画布中上方、矩形上方的圆形（带蓝色选中控制点）。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 20.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "将填充改为浅蓝色",
+            "保留：黑色边框",
+            "保留：圆形大小",
+            "保留：圆形位置"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 10.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

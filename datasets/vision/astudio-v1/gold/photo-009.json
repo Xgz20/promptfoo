@@ -1,0 +1,167 @@
+{
+  "task_id": "photo-009",
+  "version": "1.0.0",
+  "scene": "日常照片",
+  "input_size": [
+    512,
+    341
+  ],
+  "input_sha256": "c952d0f414119a2e2774e3b59cd530d01f52372f404cae092bae41ca4b52f8e4",
+  "prompt_sha256": "0d501e867192ea4f0ec50e1698fc6b2ac7ec66f53e82e2d5e4462966b9e9da11",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "repository": "https://github.com/MMStar-Benchmark/MMStar",
+    "source_row_zero_based": 344,
+    "upstream_index": "344",
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/7736109b9bf100b89c0d5a73.jpg",
+    "local_original": "sources/photo-009.jpg",
+    "original_sha256": "7736109b9bf100b89c0d5a737871b7155591a4a9913cacf68c00768958edc703",
+    "size": [
+      512,
+      341
+    ],
+    "snapshot": "Local MMStar.tsv SHA-256 38a99f4a33743665e6990961a9a0072b07f7ac6a74d1555b43c4f82145377cb4",
+    "upstream_commit": null,
+    "pin_note": "下载时使用main，未保存commit；复现以实际TSV和图像哈希为准，不虚构commit。",
+    "license_status": "数据卡/项目仓库未列出统一图像许可证；仅记录公开可获取，不声明再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "画面主体人物正在进行什么运动？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "动作识别"
+      ],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "识别为高尔夫运动"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "主体人物的上衣是什么颜色？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "颜色属性"
+      ],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "上衣为绿色或青绿色"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "只描述主体人物的上半身姿势：身体是直立、前倾弯腰，还是躺着？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "动作识别"
+      ],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "上半身前倾弯腰"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "主体人物的长影子主要向画面左侧还是右侧延伸？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [
+        "光影空间"
+      ],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "影子主要向右延伸"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：主体人物整体，不含地面影子和手持细杆。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "预测中心与Gold中心的欧氏距离≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        187,
+        71,
+        264,
+        296
+      ],
+      "center_input_px": [
+        225.5,
+        183.5
+      ],
+      "reference_point": {
+        "x": 440.43,
+        "y": 538.123
+      },
+      "tolerance_input_px": 20,
+      "scope": "主体人物整体，不含地面影子和手持细杆"
+    }
+  },
+  "reference_answer": {
+    "task_id": "photo-009",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "高尔夫／高尔夫推杆。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "绿色／青绿色。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "前倾弯腰。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "向右侧延伸。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 440.43,
+          "y": 538.123
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

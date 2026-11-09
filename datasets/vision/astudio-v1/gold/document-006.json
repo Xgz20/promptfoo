@@ -1,0 +1,156 @@
+{
+  "task_id": "document-006",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1434,
+    2026
+  ],
+  "input_sha256": "ff3af6fae90d7995c076b6cc4d855281c5929f898377c87bb2f0dd4ad83599c7",
+  "prompt_sha256": "011d441e3090a195ff5101bf0e2c5b5a2fd4b42d869e3a14dac8ad002d00792e",
+  "source": {
+    "dataset": "MDPBench",
+    "url": "https://huggingface.co/datasets/Delores-Lin/MDPBench",
+    "source_row_zero_based": 29,
+    "original_record_row": 29,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDPBench/MDPBench_img_public/zh_note_12.jpg",
+    "local_original": "sources/document-006.jpg",
+    "original_sha256": "b9aabea9eaa33bdf0788a06dbea22521127f9fb71fd687363331a47e374626db",
+    "size": [
+      1434,
+      2026
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明Apache-2.0；保留文档内原出版方、公司及作者署名，不扩张第三方页面权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "第一张表中，棉花对应的“分布”内容是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "德干高原西北部。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "整页可见几个有完整外边框的表格块？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "3个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "第一张表的“分布”列相对于“农作物”列，在左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "右侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "表头内的斜线填色主要是什么颜色？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "粉色／浅紫红色。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：最下面一张表的完整表格外边框范围，含表头，不含上下小标题。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        172,
+        1506,
+        1231,
+        1751
+      ],
+      "center_input_px": [
+        701.5,
+        1628.5
+      ],
+      "reference_point": {
+        "x": 489.191,
+        "y": 803.801
+      },
+      "tolerance_input_px": 20,
+      "scope": "最下面一张表的完整表格外边框范围，含表头，不含上下小标题"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-006",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "德干高原西北部。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "3个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "粉色／浅紫红色。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 489.191,
+          "y": 803.801
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

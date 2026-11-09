@@ -1,0 +1,156 @@
+{
+  "task_id": "poster-003",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    1500,
+    1000
+  ],
+  "input_sha256": "037ac9cb050cd6256d0ea80e1ab1a0770a7f7b716472da84fd7a7afceaf48a7c",
+  "prompt_sha256": "f5b88f6647d51212a3c64d31d0725117ba51ab9bed5e289fd022b0c2822465fa",
+  "source": {
+    "dataset": "MDVP-Bench",
+    "url": "https://huggingface.co/datasets/Afeng-x/Draw-and-Understand",
+    "source_row_zero_based": 56,
+    "original_record_row": 6,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDVP-Bench/MDVP-bench/multipanel_Inter_Relationship/images/45.png",
+    "local_original": "sources/poster-003.png",
+    "original_sha256": "227be84b9de7f65e50f906d0caaddad45050e2276584faa7821885517da169ac",
+    "size": [
+      1500,
+      1000
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明CC BY-NC 4.0；非商业使用限制。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "剪贴手工插图下面的英文标签是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "Scrapbooking。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "人物怀里抱着的动物是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "猫。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "清洁服务与瑜伽两幅插图，哪一幅更靠画面右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "瑜伽插图在右侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "图中清洁工具的刷头主要是什么颜色？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "黄色／金黄色。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：盘腿坐姿人物的可见整体，含头发、手和腿，不含白色背景或文字。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        1113,
+        374,
+        1449,
+        726
+      ],
+      "center_input_px": [
+        1281.0,
+        550.0
+      ],
+      "reference_point": {
+        "x": 854.0,
+        "y": 550.0
+      },
+      "tolerance_input_px": 20,
+      "scope": "盘腿坐姿人物的可见整体，含头发、手和腿，不含白色背景或文字"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-003",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "Scrapbooking。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "猫。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "瑜伽插图在右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "黄色／金黄色。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 854.0,
+          "y": 550.0
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

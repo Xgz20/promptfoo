@@ -1,0 +1,346 @@
+{
+  "id": "webapp-019",
+  "version": "1.0.0-draft",
+  "title": "后台配置引导：完成标识与卡片重排",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 126,
+    "original_record": {
+      "source_row": 126,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/layout_grounding/19837f36dd86d363c1638bcc97dbac2c.png",
+          "width": 1920,
+          "height": 910
+        }
+      ],
+      "original": {
+        "image_path": "layout_grounding/19837f36dd86d363c1638bcc97dbac2c.png",
+        "image_size": [
+          1920,
+          910
+        ],
+        "name": "Input and Selection",
+        "explanation": "This region contains input elements such as radio buttons and check boxes for selecting options and configuring settings.",
+        "platform": "Metabase",
+        "bbox": [
+          423.06000366210935,
+          258.7,
+          1126.2599853515624,
+          905.0599960327148
+        ]
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/layout_grounding/19837f36dd86d363c1638bcc97dbac2c.png",
+    "sha256": "d598f7a5d4bdf1084252d28d86d3f8c321a1dc2fe393c22abf0662851a92423b",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1920,
+    910
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1600,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.8625
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "主内容区标题和左侧 Updates 旁徽标中的数字各是什么？",
+      "reference_answer": "Getting set up；1",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Getting set up"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "1"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "Invite team members 与 Add a database 左侧各是什么标记？",
+      "reference_answer": "Invite team members左侧为圆形勾号；Add a database左侧为空心圆圈",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "Invite team members左侧为圆形勾号"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Add a database左侧为空心圆圈"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "Setup 导航列表与主内容卡片区的左右关系是什么？",
+      "reference_answer": "Setup导航列表在主内容卡片区左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Setup导航列表在主内容卡片区左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "卡片标题改为“配置邮件”。下方说明文字不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          500.2
+        ],
+        [
+          570.825,
+          500.2
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          475.0875,
+          482.0875,
+          574.275,
+          503.65
+        ],
+        "reference_point": [
+          570.825,
+          500.2
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "Set up email 卡片的标题文字",
+        "target_point": [
+          317.125,
+          454.727
+        ],
+        "requested_change": "标题改为配置邮件",
+        "preserve": [
+          "该卡片下方说明文字"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Set up email 卡片的标题文字"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 6.666666666666667,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "标题改为配置邮件",
+            "保留：该卡片下方说明文字"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "整张卡片移到 A 所在卡片正上方，左边缘对齐，边缘间距 16 px。卡片文字不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          689.0
+        ],
+        [
+          1428,
+          689.0
+        ],
+        [
+          1428,
+          675.2875
+        ],
+        [
+          906.3375,
+          675.2875
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          406.0875,
+          583.0,
+          911.5125,
+          683.9125
+        ],
+        "reference_point": [
+          906.3375,
+          675.2875
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "Set Slack credentials 整张卡片",
+        "target_point": [
+          503.521,
+          613.898
+        ],
+        "requested_change": "整张卡片移到A所在邮件卡片上方；两卡片左边缘对齐；相邻边缘间距16 px",
+        "preserve": [
+          "该卡片文字"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Set Slack credentials 整张卡片"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 13.333333333333334,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "整张卡片移到A所在邮件卡片上方",
+            "两卡片左边缘对齐",
+            "相邻边缘间距16 px",
+            "保留：该卡片文字"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.change-3",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

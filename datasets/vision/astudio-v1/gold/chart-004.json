@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-004",
+  "version": "1.0.2",
+  "scene": "统计图表",
+  "input_size": [
+    630,
+    357
+  ],
+  "input_sha256": "be4120b94a2ad618767e0fe320d4dc323c98a461cae1ecd3b23e1c9a30cc6318",
+  "prompt_sha256": "9fbf55d71bb35764f334fd2c4a4d5c48f732e06710c588ef2c3c3308b17158f5",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 51,
+    "original_record_row": 51,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/b39b33d6031f7365639e0222.jpg",
+    "local_original": "sources/chart-004.jpg",
+    "original_sha256": "b39b33d6031f7365639e0222f9833fe177b31de1dfe9b443e914c76cb013805b",
+    "size": [
+      630,
+      357
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "F-18 E/F柱顶标注的成本数值是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "11000"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "只比较Rafale、F-16、JAS 39三根实心柱，哪一根最高？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "Rafale。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "EuroFighter与Rafale在画面的左右关系是什么？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "EuroFighter在Rafale左侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "F-35栏标出的最高和最低成本估值相差多少美元？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "10000"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：Rafale的有色实心柱实体，不含柱顶数字和下方名称。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        260,
+        178,
+        325,
+        323
+      ],
+      "center_input_px": [
+        292.5,
+        250.5
+      ],
+      "reference_point": {
+        "x": 464.286,
+        "y": 701.681
+      },
+      "tolerance_input_px": 20,
+      "scope": "Rafale的有色实心柱实体，不含柱顶数字和下方名称"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-004",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "11,000。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "Rafale。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "EuroFighter在Rafale左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "10,000。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 464.286,
+          "y": 701.681
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

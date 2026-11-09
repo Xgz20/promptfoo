@@ -1,0 +1,342 @@
+{
+  "id": "webapp-018",
+  "version": "1.0.0-draft",
+  "title": "会议投票：候选项与发布按钮",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 112,
+    "original_record": {
+      "source_row": 112,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/layout_grounding/54b554aeadf0d71118c98db3af7952a0.png",
+          "width": 1920,
+          "height": 904
+        }
+      ],
+      "original": {
+        "image_path": "layout_grounding/54b554aeadf0d71118c98db3af7952a0.png",
+        "image_size": [
+          1920,
+          904
+        ],
+        "name": "Participant Interaction Region",
+        "explanation": "This region contains tools for participants to interact with each other and the meeting, including chat, raise hand, and screen sharing.",
+        "platform": "Jitsi",
+        "bbox": [
+          881.9199462890625,
+          804.56,
+          1397.9199462890624,
+          871.7142758614676
+        ]
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/layout_grounding/54b554aeadf0d71118c98db3af7952a0.png",
+    "sha256": "17d293e5edf975cb47f2be80b9c76ac97f243f24a677afea6967803965e9ba81",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1920,
+    904
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1500,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.92
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "投票卡片的标题和 By 后的作者名分别是什么？",
+      "reference_answer": "Fav Sport；Satvik Singh",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Fav Sport"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "Satvik Singh"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "Cricket 和 Football 两个候选项当前各是否勾选？",
+      "reference_answer": "Cricket未勾选；Football未勾选",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "Cricket未勾选"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Football未勾选"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "卡片内 Edit 与 Send 按钮的左右关系是什么？",
+      "reference_answer": "Edit在Send左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Edit在Send左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "按钮文字改为“发布投票”。保留蓝色底色。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          502.96
+        ],
+        [
+          366.24,
+          502.96
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          288.04,
+          496.52,
+          371.76,
+          547.12
+        ],
+        "reference_point": [
+          366.24,
+          502.96
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "投票卡片内蓝色 Send 按钮",
+        "target_point": [
+          203.467,
+          457.236
+        ],
+        "requested_change": "按钮文字改为发布投票",
+        "preserve": [
+          "蓝色底色"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "投票卡片内蓝色 Send 按钮"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "按钮文字改为发布投票",
+            "保留：蓝色底色"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "勾选此项。Football 保持未勾选。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          409.12
+        ],
+        [
+          99.44,
+          409.12
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          78.28,
+          388.88,
+          102.2,
+          411.88
+        ],
+        "reference_point": [
+          99.44,
+          409.12
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "Cricket 左侧的复选框",
+        "target_point": [
+          55.244,
+          371.927
+        ],
+        "requested_change": "勾选Cricket对应复选框",
+        "preserve": [
+          "Football保持未勾选"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Cricket 左侧的复选框"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "勾选Cricket对应复选框",
+            "保留：Football保持未勾选"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

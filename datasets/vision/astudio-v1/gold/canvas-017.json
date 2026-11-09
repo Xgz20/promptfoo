@@ -1,0 +1,359 @@
+{
+  "id": "canvas-017",
+  "version": "0.4.2-draft",
+  "title": "几何工程画布：圆与辅助线分离",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "ScreenSpot-Pro",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+    "license_observed": "MIT（已下载的官方数据卡）",
+    "normalized_row_0based": 8,
+    "original_record": {
+      "img_filename": "autocad_windows/screenshot_2024-12-05_11-05-59.png",
+      "bbox": [
+        121,
+        120,
+        201,
+        143
+      ],
+      "instruction": "Threaded blind hole tool",
+      "instruction_cn": "螺纹盲孔工具",
+      "id": "autocad_windows_25",
+      "application": "autocad",
+      "platform": "windows",
+      "img_size": [
+        3840,
+        1080
+      ],
+      "ui_type": "text",
+      "group": "CAD"
+    },
+    "path_in_collection": "datasets/ScreenSpot-Pro/images/autocad_windows/screenshot_2024-12-05_11-05-59.png",
+    "sha256": "cfc40ded38ac3954effab891c795d360b1a31f6cf57b2ef8120049473d6af83d"
+  },
+  "source_image_size": [
+    3840,
+    1080
+  ],
+  "crop_xywh": [
+    425,
+    175,
+    1260,
+    675
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1
+  ],
+  "input_size": [
+    1500,
+    1285
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "文字识别",
+      "question": "读取外侧矩形上方的水平尺寸数字和左侧的竖向尺寸数字。",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "水平尺寸 56"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "竖向尺寸 23"
+        }
+      ],
+      "reference_answer": "水平尺寸 56；竖向尺寸 23。",
+      "id": "text-1"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "圆的轮廓是什么颜色？水平和竖直辅助线各是什么颜色、实线还是虚线？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "圆轮廓为白色"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "水平线为青色"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "水平线为实线"
+        },
+        {
+          "id": "appearance-1.4",
+          "expected": "竖直线为青色"
+        },
+        {
+          "id": "appearance-1.5",
+          "expected": "竖直线为实线"
+        }
+      ],
+      "reference_answer": "圆轮廓为白色；水平线为青色；水平线为实线；竖直线为青色；竖直线为实线。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "只看原图，圆心是否位于两条辅助线的交点？圆相对外侧矩形是否居中？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "圆心位于辅助线交点"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "圆在外侧矩形中心"
+        }
+      ],
+      "reference_answer": "圆心位于辅助线交点；圆在外侧矩形中心。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10.0,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "圆直径改为原来的 80%。\n圆心不动；矩形和尺寸标注不改。",
+      "arrow_path_input_px": [
+        [
+          635,
+          225
+        ],
+        [
+          823,
+          754
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          662,
+          607,
+          851,
+          797
+        ],
+        "reference_point": [
+          823,
+          754
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "白色大矩形内部、两条青色辅助线交点处的白色圆。",
+        "requested_change": "将该圆的直径缩小为原来的80%，圆心固定。",
+        "preserve": [
+          "圆心",
+          "外侧矩形",
+          "尺寸标注"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          548.67,
+          586.77
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "白色大矩形内部、两条青色辅助线交点处的白色圆。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.88888888888889,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "圆直径改为原来的80%",
+            "保留：圆心",
+            "保留：外侧矩形",
+            "保留：尺寸标注"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "经过 A 圆心的这条水平辅助线改成虚线。\n青色、位置和长度不变，\n竖直辅助线保持实线。",
+      "arrow_path_input_px": [
+        [
+          1055,
+          1060
+        ],
+        [
+          1055,
+          701
+        ]
+      ],
+      "geometry": {
+        "type": "polyline",
+        "bbox_xyxy": [
+          250,
+          698,
+          1263,
+          704
+        ],
+        "reference_point": [
+          1055,
+          701
+        ],
+        "coordinate_system": "input image pixels",
+        "polyline": [
+          [
+            253,
+            701
+          ],
+          [
+            1260,
+            701
+          ]
+        ],
+        "max_distance_px": 12
+      },
+      "reference_answer": {
+        "target_description": "穿过A圆心、从画面左向右延伸的青色水平辅助线。",
+        "requested_change": "只将经过A圆心的青色水平辅助线改为虚线。",
+        "preserve": [
+          "青色",
+          "线的位置",
+          "线的长度",
+          "竖直辅助线保持实线"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          703.33,
+          545.53
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "穿过A圆心、从画面左向右延伸的青色水平辅助线。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 11.11111111111111,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "水平辅助线改为虚线",
+            "保留：青色",
+            "保留：线的位置",
+            "保留：线的长度",
+            "保留：竖直辅助线保持实线"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1",
+            "B.preserve-2",
+            "B.preserve-3",
+            "B.preserve-4"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-012",
+  "version": "1.0.0",
+  "scene": "统计图表",
+  "input_size": [
+    1280,
+    792
+  ],
+  "input_sha256": "8ed65507ccf7824ad2ce7df416c8ab3ecbf6d746776d543054f39e4642768427",
+  "prompt_sha256": "2257e8b8a1f5296161ab9f7633d9dfb7457da2c7f46f8e58e4b7d6c78c5b1c14",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 23,
+    "original_record_row": 23,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/a16b7b6640a39f89756296df.jpg",
+    "local_original": "sources/chart-012.jpg",
+    "original_sha256": "a16b7b6640a39f89756296df70492aee7386219a9b327f3fff247e69c35b8bbb",
+    "size": [
+      1280,
+      792
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "右侧黑色提示框中写的是哪个月和年份？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "April 2021／2021年4月。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "左侧非食品线上消费的绿色曲线最高峰最接近哪一年？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "2021年。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "右侧Smiggle对应曲线在图例中使用什么颜色？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "深蓝色／藏蓝色。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "左侧2022附近，食品线上消费的实线相对对应的2017–19虚线延伸线，是在其上方还是下方？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "上方。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：右侧含日期的黑色圆角提示框，取框体，不含指示箭头。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        1034,
+        302,
+        1210,
+        353
+      ],
+      "center_input_px": [
+        1122.0,
+        327.5
+      ],
+      "reference_point": {
+        "x": 876.562,
+        "y": 413.51
+      },
+      "tolerance_input_px": 20,
+      "scope": "右侧含日期的黑色圆角提示框，取框体，不含指示箭头"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-012",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "April 2021／2021年4月。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "2021年。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "深蓝色／藏蓝色。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "上方。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 876.562,
+          "y": 413.51
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

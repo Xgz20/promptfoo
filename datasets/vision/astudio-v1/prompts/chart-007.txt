@@ -1,0 +1,11 @@
+请只根据这张图片回答问题。没有新增文字或箭头修改批注；原有标题、标签、对话框、图例和连线均是图片内容。不要实际修改图片，不借助外部知识推断。看不清或无法确定时回答“无法确定”。
+定位题G1要求所指目标【可见外接矩形中心】，不是任意内部点。遵守题目包含/排除范围，画外部分不补全。以整张图左上角为原点，x向右、y向下：x=1000×横坐标/图片宽度，y=1000×纵坐标/图片高度，范围0～1000。
+只输出JSON：{"task_id":"chart-007","content_answers":[{"id":"C1","answer":"文字答案","target_point":null},...,{"id":"G1","answer":null,"target_point":{"x":500,"y":500}}]}。
+逐个回答全部ID且各一次。内容题填answer，target_point为null；G1填target_point，answer为null，无法定位则target_point也为null。示例坐标仅说明格式，不是答案。
+
+题目：
+C1：纵轴标出的单位是什么？
+C2：Males - Total Play系列的最高点属于哪个年龄组？
+C3：图例中Females - In-depth Play对应的是实线、虚线还是点线？
+C4：75–84年龄组的Total Play中，女性还是男性更高？
+G1：请定位：整行图表标题Average Daily Video Game Play by Gender and Age的字形。返回其可见外接矩形的中心点。

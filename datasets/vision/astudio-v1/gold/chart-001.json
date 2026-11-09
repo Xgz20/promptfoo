@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-001",
+  "version": "1.0.0",
+  "scene": "统计图表",
+  "input_size": [
+    862,
+    575
+  ],
+  "input_sha256": "f14b3f510d51419dcc9c20d3e8fcf38523682ba3fcbb289a7d78662543e3bf5d",
+  "prompt_sha256": "e5cb044576f8b2a47b146f363866c4b94c2e09891da096a5c03ee10702907d6b",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 4,
+    "original_record_row": 4,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/18c0ef09ab140a2086e04b1d.jpg",
+    "local_original": "sources/chart-001.jpg",
+    "original_sha256": "18c0ef09ab140a2086e04b1d494864fab201b830d567b0022bc6f5889b4e509d",
+    "size": [
+      862,
+      575
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "图例中带projection字样的系列对应哪一段年份？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "年份为2019–2023"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "2014–2018系列中，哪一类的负增长幅度最大？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "Housing／住房。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "Welfare与Energy两组柱中，哪组在画面更左侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "Welfare在Energy左侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "2019–2023系列共有多少个类别的柱低于零线？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "低于零线的类别数量为3"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：Defence类别中2014–2018系列的柱形实体，不含文字与零线。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        205,
+        143,
+        222,
+        249
+      ],
+      "center_input_px": [
+        213.5,
+        196.0
+      ],
+      "reference_point": {
+        "x": 247.68,
+        "y": 340.87
+      },
+      "tolerance_input_px": 20,
+      "scope": "Defence类别中2014–2018系列的柱形实体，不含文字与零线"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-001",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "2019–2023。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "Housing／住房。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "Welfare在Energy左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "3个。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 247.68,
+          "y": 340.87
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

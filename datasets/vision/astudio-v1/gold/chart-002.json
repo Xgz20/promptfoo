@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-002",
+  "version": "1.0.1",
+  "scene": "统计图表",
+  "input_size": [
+    700,
+    500
+  ],
+  "input_sha256": "dfd2ee22101b26d0661b3a1b1c26d7da9fdaa900b173064282ca0f31b563efc0",
+  "prompt_sha256": "6b528b361af449fc4a2fc5857db08e288e158f7ce5934f48e6a00ba32226557d",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 13,
+    "original_record_row": 13,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/e8a102c0328ca658c4b04637.jpg",
+    "local_original": "sources/chart-002.jpg",
+    "original_sha256": "e8a102c0328ca658c4b0463790aca152ea27e663c1f47140b572b8e4f74e0d52",
+    "size": [
+      700,
+      500
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "纵轴最高的带文字金额刻度是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "80000000美元，接受8000万美元"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "FY2018系列中金额最高的是哪个类别？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "识别Benefits and Insurance或福利与保险"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "图例在整张图的左上、右上、左下、右下哪个区域？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "右上。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "Debt Service类别中，FY2018金额相对FY2015是增加还是减少？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "增加。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：顶部大标题整行字形，不含其下方图例。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        39,
+        29,
+        662,
+        55
+      ],
+      "center_input_px": [
+        350.5,
+        42.0
+      ],
+      "reference_point": {
+        "x": 500.714,
+        "y": 84.0
+      },
+      "tolerance_input_px": 20,
+      "scope": "顶部大标题整行字形，不含其下方图例"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-002",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "$80,000,000。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "Benefits and Insurance。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "右上。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "增加。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 500.714,
+          "y": 84.0
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

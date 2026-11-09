@@ -1,0 +1,343 @@
+{
+  "id": "webapp-007",
+  "version": "1.0.0-draft",
+  "title": "搜索结果页：查询词与筛选状态",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 18,
+    "original_record": {
+      "source_row": 18,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/element_grounding/6b84a553107dae3ffc67414190c43de7.png",
+          "width": 2876,
+          "height": 1640
+        }
+      ],
+      "original": {
+        "image_path": "element_grounding/6b84a553107dae3ffc67414190c43de7.png",
+        "image_size": [
+          2876,
+          1640
+        ],
+        "prompt_to_evaluate": "https://duckduckgo.com>settings",
+        "bbox": [
+          325.965390625,
+          536.5142857142857,
+          829.265390625,
+          576.3428571428572
+        ],
+        "platform": "DuckDuckGo",
+        "category": "Input Elements",
+        "element_type": "text"
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/6b84a553107dae3ffc67414190c43de7.png",
+    "sha256": "079b5aa70092dfa4756656944e4bc8f35de5562ccc89ecb0449c02d4ef4b5f70",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    2876,
+    1640
+  ],
+  "crop_xywh": [
+    150,
+    190,
+    1800,
+    1300
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.6538461538461539
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "顶部搜索框内的查询词和第一条主搜索结果的标题分别是什么？",
+      "reference_answer": "duckduckgo search settings；DuckDuckGo Settings",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "duckduckgo search settings"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "DuckDuckGo Settings"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "筛选行中 India (en) 左边的开关、Safe search 分别是什么状态？",
+      "reference_answer": "India (en)左边开关关闭（灰色，滑块在左）；Safe search为off/关闭",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "India (en)左边开关关闭（灰色，滑块在左）"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Safe search为off/关闭"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "Chat 与齿轮图标的左右关系是什么？",
+      "reference_answer": "Chat在齿轮图标左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Chat在齿轮图标左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "标题文字改为橙色。文字内容不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          383.11538
+        ],
+        [
+          409.11538,
+          383.11538
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          146.26923,
+          360.88462,
+          411.07692,
+          386.38462
+        ],
+        "reference_point": [
+          409.11538,
+          383.11538
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "第一条主结果的 DuckDuckGo Settings 标题链接，非下方同名子链接",
+        "target_point": [
+          227.286,
+          348.287
+        ],
+        "requested_change": "标题文字颜色改为橙色",
+        "preserve": [
+          "标题文字内容"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "第一条主结果的 DuckDuckGo Settings 标题链接，非下方同名子链接"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "标题文字颜色改为橙色",
+            "保留：标题文字内容"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "输入内容替换为“浏览器隐私设置”。输入框宽度不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          194.80769
+        ],
+        [
+          998.88462,
+          194.80769
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          128.61538,
+          145.11538,
+          1007.38462,
+          201.34615
+        ],
+        "reference_point": [
+          998.88462,
+          194.80769
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "顶部显示查询词的主搜索输入框",
+        "target_point": [
+          554.936,
+          177.098
+        ],
+        "requested_change": "输入内容替换为浏览器隐私设置",
+        "preserve": [
+          "输入框宽度"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "顶部显示查询词的主搜索输入框"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 10.0,
+          "points_per_checkpoint": 5.0,
+          "checkpoints": [
+            "输入内容替换为浏览器隐私设置",
+            "保留：输入框宽度"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

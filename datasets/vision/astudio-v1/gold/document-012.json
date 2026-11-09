@@ -1,0 +1,156 @@
+{
+  "task_id": "document-012",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1024,
+    628
+  ],
+  "input_sha256": "031920677a4a220dce4e69bcb80246ae376c108b2bee2eaf77f0fa01dda16e69",
+  "prompt_sha256": "9392337936969d07f22fdb4d61ed3c840b66ccbd8cf21cca6a6a55c7c15b43b8",
+  "source": {
+    "dataset": "PublicTicketPhotos",
+    "url": "https://voxchina.org/show-3-159.html",
+    "source_row_zero_based": 0,
+    "original_record_row": 0,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/PublicTicketPhotos/invoice.jpg",
+    "local_original": "sources/document-012.jpg",
+    "original_sha256": "dd07769167400fc6d0fb33b878dc1395001e746bce3ac07aae0979eafb15461f",
+    "size": [
+      1024,
+      628
+    ],
+    "snapshot": "逐图原URL、下载字节SHA-256固定；页面证据及抓取失败状态留档。",
+    "license_status": "公开网页实拍照片：原页面与图片URL、抓取字节和SHA-256留档。未查到允许再分发的明确开放许可证，不标为开源。仅纳入本地研究试点，公开发布需另核授权。来源中的既有遮盖与标记完整保留；本项目未添加文字、箭头或修图。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "发票顶部印刷的票种全称是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "广西增值税普通发票。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "价税合计的小写金额是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "680.00元，接受680元"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "购买方信息区在销售方信息区的上方还是下方？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "上方。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "票纸两侧打孔是圆形还是三角形？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "圆形。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：票面顶部覆盖标题附近的红色椭圆印章整体，不含旁边文字。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        492,
+        199,
+        596,
+        264
+      ],
+      "center_input_px": [
+        544.0,
+        231.5
+      ],
+      "reference_point": {
+        "x": 531.25,
+        "y": 368.631
+      },
+      "tolerance_input_px": 20,
+      "scope": "票面顶部覆盖标题附近的红色椭圆印章整体，不含旁边文字"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-012",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "广西增值税普通发票。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "¥680.00。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "上方。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "圆形。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 531.25,
+          "y": 368.631
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

@@ -1,0 +1,171 @@
+{
+  "task_id": "photo-013",
+  "version": "1.0.1",
+  "scene": "日常照片",
+  "input_size": [
+    512,
+    377
+  ],
+  "input_sha256": "c81ea2023af17940a470207a0e46858a2dc3f2f273059d0858961fb1d7d7d1f2",
+  "prompt_sha256": "04a5a0a91437ccdb2235393808316aac3080d79f6149435c319297dac38913f2",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "repository": "https://github.com/MMStar-Benchmark/MMStar",
+    "source_row_zero_based": 123,
+    "upstream_index": "123",
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/0c9c462403aa5931f2031d7d.jpg",
+    "local_original": "sources/photo-013.jpg",
+    "original_sha256": "0c9c462403aa5931f2031d7d20108aa0ac4a58424e47d50bdcba383c3eab5f14",
+    "size": [
+      512,
+      377
+    ],
+    "snapshot": "Local MMStar.tsv SHA-256 38a99f4a33743665e6990961a9a0072b07f7ac6a74d1555b43c4f82145377cb4",
+    "upstream_commit": null,
+    "pin_note": "下载时使用main，未保存commit；复现以实际TSV和图像哈希为准，不虚构commit。",
+    "license_status": "数据卡/项目仓库未列出统一图像许可证；仅记录公开可获取，不声明再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "发光标识区域中使用的主要底色与文字/图案颜色分别是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "颜色属性"
+      ],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "底色绿色或青绿色"
+        },
+        {
+          "id": "C1.2",
+          "text": "文字图案白色"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "标识中字母左边的人形图案表现的是坐姿、站立不动，还是迈步行走/奔跑？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "图标状态"
+      ],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "人形迈步或奔跑"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "左侧发光标识上的箭头朝画面哪一侧？这里问的是原照片路标，不是修改批注。",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [
+        "方向判断"
+      ],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "原路标箭头向左"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "读出发光标识上的主要英文单词；不要抄水印。",
+      "dimension": "文字识别",
+      "tags": [
+        "自然文字"
+      ],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "完整识别EXIT"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：右侧含主要英文单词和人形图案的独立长方形标识板，不包括左侧箭头板及延伸背景。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "预测中心与Gold中心的欧氏距离≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        237,
+        217,
+        391,
+        256
+      ],
+      "center_input_px": [
+        314.0,
+        236.5
+      ],
+      "reference_point": {
+        "x": 613.281,
+        "y": 627.321
+      },
+      "tolerance_input_px": 20,
+      "scope": "右侧含主要英文单词和人形图案的独立长方形标识板，不包括左侧箭头板及延伸背景"
+    }
+  },
+  "reference_answer": {
+    "task_id": "photo-013",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "底色绿色／青绿，文字图案白色。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "迈步行走／奔跑。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "EXIT",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 613.281,
+          "y": 627.321
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

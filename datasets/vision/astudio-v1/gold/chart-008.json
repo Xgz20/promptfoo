@@ -1,0 +1,160 @@
+{
+  "task_id": "chart-008",
+  "version": "1.0.0",
+  "scene": "统计图表",
+  "input_size": [
+    620,
+    770
+  ],
+  "input_sha256": "56b56bc3a25203c42e7671950e2b65304ec76b16e772fafe976d88c61b909b2d",
+  "prompt_sha256": "4cc277469fad0b2ff0bed27d196a992c6270ce759ff5d81ed3b827db51338db5",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 27,
+    "original_record_row": 27,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/ad0c083b7d27d6b59f80657f.jpg",
+    "local_original": "sources/chart-008.jpg",
+    "original_sha256": "ad0c083b7d27d6b59f80657f28e1e85d6c756f2b1c7219b4cd9d39c2056558ad",
+    "size": [
+      620,
+      770
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "图中说明的价格单位是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "美元"
+        },
+        {
+          "id": "C1.2",
+          "text": "每片药"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "2017年的三条曲线中，哪一种药的终点最低？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "Levitra。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "三种药品名称中，Cialis文字在Viagra文字的上方还是下方？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "下方。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "2007到2017年，三条曲线是否有任一条整体下降？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "无整体下降的曲线"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：标题Increasing pill costs整行字形。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        133,
+        20,
+        487,
+        73
+      ],
+      "center_input_px": [
+        310.0,
+        46.5
+      ],
+      "reference_point": {
+        "x": 500.0,
+        "y": 60.39
+      },
+      "tolerance_input_px": 20,
+      "scope": "标题Increasing pill costs整行字形"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-008",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "每片药的美元价格。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "Levitra。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "下方。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "没有，三条均上升。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 500.0,
+          "y": 60.39
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

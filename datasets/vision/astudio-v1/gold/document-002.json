@@ -1,0 +1,156 @@
+{
+  "task_id": "document-002",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1434,
+    2025
+  ],
+  "input_sha256": "eeec303aa92bf11ff5a675d2f45044701b2bd50cc10c49153a84c177687877aa",
+  "prompt_sha256": "bfc1194cd8c3eb382ad264d8713bd37237aa5b8a361a8a527e81ecfec2f7740b",
+  "source": {
+    "dataset": "MDPBench",
+    "url": "https://huggingface.co/datasets/Delores-Lin/MDPBench",
+    "source_row_zero_based": 23,
+    "original_record_row": 23,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDPBench/MDPBench_img_public/zh_exampaper_36.jpg",
+    "local_original": "sources/document-002.jpg",
+    "original_sha256": "e1ca2f7be12470d27d322826de5b0fcf89fe6b817cd9a1d4fb54596701db1c4d",
+    "size": [
+      1434,
+      2025
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明Apache-2.0；保留文档内原出版方、公司及作者署名，不扩张第三方页面权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "“阅读理解”标题旁标出的总分是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "51分。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "“阅读理解”标题与前面那一段游记之间，是否有明显的大块留白？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "有。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "标记[甲]与[乙]的两段文字，哪段在上？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "[甲]在上。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "第2道选择题实际提供了几个字母标记的选项？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "4个。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：页面右上角最醒目的黑色英文页眉字形整体，不含下方横线。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        1122,
+        64,
+        1355,
+        130
+      ],
+      "center_input_px": [
+        1238.5,
+        97.0
+      ],
+      "reference_point": {
+        "x": 863.668,
+        "y": 47.901
+      },
+      "tolerance_input_px": 20,
+      "scope": "页面右上角最醒目的黑色英文页眉字形整体，不含下方横线"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-002",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "51分。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "有。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "[甲]在上。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "4个。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 863.668,
+          "y": 47.901
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

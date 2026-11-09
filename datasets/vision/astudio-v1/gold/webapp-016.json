@@ -1,0 +1,347 @@
+{
+  "id": "webapp-016",
+  "version": "1.0.0-draft",
+  "title": "卡片编辑器：左右面板与局部样式",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 2,
+    "original_record": {
+      "source_row": 2,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/element_grounding/22463f53046cd76581981742c6e7ef65.png",
+          "width": 1366,
+          "height": 718
+        }
+      ],
+      "original": {
+        "image_path": "element_grounding/22463f53046cd76581981742c6e7ef65.png",
+        "image_size": [
+          1366,
+          718
+        ],
+        "prompt_to_evaluate": "front template",
+        "bbox": [
+          228.805,
+          171.29428571428573,
+          339.7925,
+          193.86
+        ],
+        "platform": "Anki",
+        "category": "Input Elements",
+        "element_type": "text"
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/22463f53046cd76581981742c6e7ef65.png",
+    "sha256": "bd030a57729130bd8e7bbe99086c0c33e6737d7dea59c656871f14ce30d3d5bd",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1366,
+    718
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1366,
+    718
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    1
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "预览区显示的算式文字和弹窗底部中间按钮文字分别是什么？",
+      "reference_answer": "2+2=?；Flip",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "2+2=?"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "Flip"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "Template 区与 Preview 区各选中了哪个单选项？",
+      "reference_answer": "Template区选中Styling；Preview区选中Front Preview",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "Template区选中Styling"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "Preview区选中Front Preview"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "Template 编辑区和 Preview 预览区的左右关系是什么？",
+      "reference_answer": "Template编辑区在Preview预览区左侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "Template编辑区在Preview预览区左侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "这段文字改为蓝色。字号不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          337
+        ],
+        [
+          951,
+          337
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          893,
+          319,
+          954,
+          340
+        ],
+        "reference_point": [
+          951,
+          337
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "右侧预览区的红色2+2=?文字",
+        "target_point": [
+          528.333,
+          306.364
+        ],
+        "requested_change": "该预览文字颜色改为蓝色",
+        "preserve": [
+          "字号"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "右侧预览区的红色2+2=?文字"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 6.666666666666667,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "该预览文字颜色改为蓝色",
+            "保留：字号"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "移到 Flip 按钮左侧，垂直中心对齐，边缘间距 20 px。文字不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          689.0
+        ],
+        [
+          1428,
+          689.0
+        ],
+        [
+          1428,
+          694
+        ],
+        [
+          1032,
+          694
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          960,
+          675,
+          1037,
+          698
+        ],
+        "reference_point": [
+          1032,
+          694
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "弹窗底部的 Save 按钮",
+        "target_point": [
+          573.333,
+          630.909
+        ],
+        "requested_change": "移动到Flip按钮左侧；与Flip按钮垂直中心对齐；相邻边缘间距20 px",
+        "preserve": [
+          "按钮文字"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "弹窗底部的 Save 按钮"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 13.333333333333334,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "移动到Flip按钮左侧",
+            "与Flip按钮垂直中心对齐",
+            "相邻边缘间距20 px",
+            "保留：按钮文字"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.change-3",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

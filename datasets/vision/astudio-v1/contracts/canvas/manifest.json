@@ -1,0 +1,1618 @@
+{
+  "version": "0.4.3-draft",
+  "date": "2026-11-06",
+  "scene": "设计画布与图示",
+  "status": "六维评分修订；题图不变，提示词与评分已更新；模型实测结果见报告，审核状态见review/design-review-status.json；未正式入库",
+  "task_count": 20,
+  "annotation_count": 45,
+  "excluded": [
+    "手绘线框"
+  ],
+  "revision": {
+    "scope": "固定20题与四组各5题，不扩展场景",
+    "previous_version": "0.3.6-draft",
+    "changed": "新增独立画面内容问题；六维评分；取消目标错误整条归零；原PNG与批注不变",
+    "patch_from": "0.4.2-draft",
+    "patch_note": "仅canvas-008明确顶部搜索框；未改题保留原Gold版本与字节，审核结论按哈希匹配",
+    "task_versions": {
+      "canvas-001": "0.4.2-draft",
+      "canvas-002": "0.4.2-draft",
+      "canvas-003": "0.4.2-draft",
+      "canvas-004": "0.4.2-draft",
+      "canvas-005": "0.4.2-draft",
+      "canvas-006": "0.4.2-draft",
+      "canvas-007": "0.4.2-draft",
+      "canvas-008": "0.4.3-draft",
+      "canvas-009": "0.4.2-draft",
+      "canvas-010": "0.4.2-draft",
+      "canvas-011": "0.4.2-draft",
+      "canvas-012": "0.4.2-draft",
+      "canvas-013": "0.4.2-draft",
+      "canvas-014": "0.4.2-draft",
+      "canvas-015": "0.4.2-draft",
+      "canvas-016": "0.4.2-draft",
+      "canvas-017": "0.4.2-draft",
+      "canvas-018": "0.4.2-draft",
+      "canvas-019": "0.4.2-draft",
+      "canvas-020": "0.4.2-draft"
+    }
+  },
+  "capability_coverage": {
+    "文字识别": {
+      "definition": "读取原画面指定位置的文字、数字和标签；不把读取新增批注当作 OCR。",
+      "task_count": 14,
+      "task_ids": [
+        "canvas-004",
+        "canvas-005",
+        "canvas-006",
+        "canvas-007",
+        "canvas-008",
+        "canvas-009",
+        "canvas-010",
+        "canvas-011",
+        "canvas-012",
+        "canvas-014",
+        "canvas-016",
+        "canvas-017",
+        "canvas-018",
+        "canvas-020"
+      ],
+      "nominal_weight": 20,
+      "content_checkpoint_count": 36,
+      "annotation_count": 0
+    },
+    "对象属性与状态识别": {
+      "definition": "识别指定对象的形状、颜色、线型及可见选中、勾选等状态。",
+      "task_count": 20,
+      "task_ids": [
+        "canvas-001",
+        "canvas-002",
+        "canvas-003",
+        "canvas-004",
+        "canvas-005",
+        "canvas-006",
+        "canvas-007",
+        "canvas-008",
+        "canvas-009",
+        "canvas-010",
+        "canvas-011",
+        "canvas-012",
+        "canvas-013",
+        "canvas-014",
+        "canvas-015",
+        "canvas-016",
+        "canvas-017",
+        "canvas-018",
+        "canvas-019",
+        "canvas-020"
+      ],
+      "nominal_weight": 20,
+      "content_checkpoint_count": 70,
+      "annotation_count": 0
+    },
+    "空间布局与连接关系识别": {
+      "definition": "判断原画面的相对位置、排列、分组和连接关系；不评价要求修改后的布局。",
+      "task_count": 20,
+      "task_ids": [
+        "canvas-001",
+        "canvas-002",
+        "canvas-003",
+        "canvas-004",
+        "canvas-005",
+        "canvas-006",
+        "canvas-007",
+        "canvas-008",
+        "canvas-009",
+        "canvas-010",
+        "canvas-011",
+        "canvas-012",
+        "canvas-013",
+        "canvas-014",
+        "canvas-015",
+        "canvas-016",
+        "canvas-017",
+        "canvas-018",
+        "canvas-019",
+        "canvas-020"
+      ],
+      "nominal_weight": 15,
+      "content_checkpoint_count": 44,
+      "annotation_count": 0
+    },
+    "批注目标识别": {
+      "definition": "将每条批注的箭头绑定到原画面中的对象或连线，区分同名、相邻目标。",
+      "task_count": 20,
+      "task_ids": [
+        "canvas-001",
+        "canvas-002",
+        "canvas-003",
+        "canvas-004",
+        "canvas-005",
+        "canvas-006",
+        "canvas-007",
+        "canvas-008",
+        "canvas-009",
+        "canvas-010",
+        "canvas-011",
+        "canvas-012",
+        "canvas-013",
+        "canvas-014",
+        "canvas-015",
+        "canvas-016",
+        "canvas-017",
+        "canvas-018",
+        "canvas-019",
+        "canvas-020"
+      ],
+      "nominal_weight": 15,
+      "content_checkpoint_count": 0,
+      "annotation_count": 45
+    },
+    "批注意图理解": {
+      "definition": "理解批注要求的变化、目标值、参照对象、范围和保留条件；不执行修改。",
+      "task_count": 20,
+      "task_ids": [
+        "canvas-001",
+        "canvas-002",
+        "canvas-003",
+        "canvas-004",
+        "canvas-005",
+        "canvas-006",
+        "canvas-007",
+        "canvas-008",
+        "canvas-009",
+        "canvas-010",
+        "canvas-011",
+        "canvas-012",
+        "canvas-013",
+        "canvas-014",
+        "canvas-015",
+        "canvas-016",
+        "canvas-017",
+        "canvas-018",
+        "canvas-019",
+        "canvas-020"
+      ],
+      "nominal_weight": 20,
+      "content_checkpoint_count": 0,
+      "annotation_count": 45
+    },
+    "精确坐标定位": {
+      "definition": "在整张原输入图上给出目标代表点，按目标框或折线容差判定。",
+      "task_count": 20,
+      "task_ids": [
+        "canvas-001",
+        "canvas-002",
+        "canvas-003",
+        "canvas-004",
+        "canvas-005",
+        "canvas-006",
+        "canvas-007",
+        "canvas-008",
+        "canvas-009",
+        "canvas-010",
+        "canvas-011",
+        "canvas-012",
+        "canvas-013",
+        "canvas-014",
+        "canvas-015",
+        "canvas-016",
+        "canvas-017",
+        "canvas-018",
+        "canvas-019",
+        "canvas-020"
+      ],
+      "nominal_weight": 10,
+      "content_checkpoint_count": 0,
+      "annotation_count": 45
+    }
+  },
+  "coverage": {
+    "图形与版式": 5,
+    "界面设计稿": 5,
+    "空间与模型画布": 5,
+    "节点与关系图": 5
+  },
+  "coverage_note": "六项即正式评分维度；按题去重。前三项由独立内容问题覆盖，后三项由45条批注覆盖。",
+  "measurement_protocol": {
+    "unit": "图像理解工具单次调用",
+    "input": "固定input.png和prompt.txt，不向被测工具提供Gold、源文件或DOM",
+    "output": "只评分被测图像理解工具的首次原始返回；判断是否理解图片与批注，不执行图片编辑；不计入Agent补写、追问、读图脚本或其他工具恢复结果",
+    "failure": "分别记录工具失败率、超时率和耗时；已返回但信息不完整按缺失评分点扣分，不能记成Agent超时",
+    "comparison": "所有工具使用同一20题及相同输入处理条件；主表报告全20题均分，纯失败/无响应题记0，同时另报成功返回题均分和技术失败率，禁止仅用完成子集排名"
+  },
+  "input_policy": "仅发送model-inputs中对应题的input.png和prompt.txt；不要发送review、sources或SVG构建文件。",
+  "source_policy": "公开素材用于底图；中文修改批注、题干、参考答案与评分点为本次新建，不沿用上游原题答案。",
+  "scoring": {
+    "weights": {
+      "文字识别": 20,
+      "对象属性与状态识别": 20,
+      "空间布局与连接关系识别": 15,
+      "批注目标识别": 15,
+      "批注意图理解": 20,
+      "精确坐标定位": 10
+    },
+    "unit": "每题按六维度计算0～100分，20题等权平均；四个场景各5题。",
+    "content": "前三维按本题明确提出的content_questions评分；每个原子检查点0或1，维度内等权。只评所问事实，内容问题不依赖箭头绑定正确。",
+    "binding": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。",
+    "intent": "按本题所有批注意图的唯一原子检查点0或1计分，维度内原子项等权。将原目标身份替换为“该批注目标”后评价要求；错认原对象不重复扣意图分。但把新的参照对象、目标值、作用范围或保留条件理解错仍扣相应项。",
+    "geometry": "逐批注独立判定坐标，维度内批注等权。对象代表点反归一化后落在Gold的bbox内即命中；连线点距Gold折线≤12个最终输入图像像素即命中。null或错误点计0。语义身份错误不覆盖几何判定。",
+    "aggregation": "设该题适用维度集合为D，维度正确率r_d∈[0,1]、名义权重w_d，则题分=100×Σ(w_d×r_d)/Σw_d。文字识别不适用的题权重分母为80，其余为100；不适用不是满分或0分。整批维度得分率为适用题的该维度正确率均值；总分取20个题分均值，不能把整批维度均值直接乘固定权重代替总分。",
+    "not_applicable": "canvas-001/002/003/013/015/019不设置原画面文字题；不通过抄批注、题号或坐标轴字母凑OCR。其余14题覆盖文字识别，其他五维覆盖20题。",
+    "atomic": "原子项独立评分；一个原子项含不可分的对象—关系或属性—值绑定时需整体正确。并列独立事实必须拆项。相同要求跨字段或跨批注表达可匹配，但只在Gold指定归属计分。允许语义等价与等值单位转换；文字大小写、首尾空白不影响分数，缺字错字或数字值错误不得分。",
+    "contradictions": "同一事实既正确又明确矛盾且未自行纠正，相关检查点不得分；无关事实不受影响。布局关系与对象属性分别检查，不将一个箭头误绑当作内容问题答错。",
+    "extra_edits": "新增无对应批注的修改要求或额外重复编辑记录，每条扣10个题目百分制分，最低0；字段间复述和分别解释协同批注不算多报。总分和六维得分分开记录扣分。",
+    "complete": "所有适用维度全部原子项正确、全部批注目标与坐标正确且无多报，才算整题全对。",
+    "failure": "已实际调用但失败或无最终返回：本题所有适用维度记0，另报技术失败。尚未按新版提示词调用：标待重测，绝不当0或发布新版总分。",
+    "historical": "旧版首次回答原样保存；新增内容问题缺失记未测，不补扣分。可对未改变的问题作旧答诊断，但不得把旧答重评冒充新版实跑。",
+    "review": "内容按检查点人工/助手初评并标注复核状态；几何与格式程序计算。schema通过不等于内容正确，不调用额外模型裁判。"
+  },
+  "tasks": [
+    {
+      "id": "canvas-001",
+      "title": "单个图形：理解填充修改与保留要求",
+      "content_group": "图形与版式",
+      "application": "draw.io",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 1,
+      "content_question_count": 2,
+      "content_checkpoint_count": 5,
+      "intent_checkpoint_count": 4,
+      "capabilities": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": false,
+          "points": 0,
+          "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 12.5,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-001/input.png",
+      "prompt": "model-inputs/canvas-001/prompt.txt",
+      "gold": "review/canvas-001/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-002",
+      "title": "两个批注：添加文字并调整相对位置",
+      "content_group": "图形与版式",
+      "application": "draw.io",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 2,
+      "content_checkpoint_count": 6,
+      "intent_checkpoint_count": 9,
+      "capabilities": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": false,
+          "points": 0,
+          "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 12.5,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-002/input.png",
+      "prompt": "model-inputs/canvas-002/prompt.txt",
+      "gold": "review/canvas-002/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-003",
+      "title": "三个批注：颜色、移动与删除分别绑定",
+      "content_group": "图形与版式",
+      "application": "LibreOffice Draw",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 3,
+      "content_question_count": 2,
+      "content_checkpoint_count": 8,
+      "intent_checkpoint_count": 12,
+      "capabilities": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": false,
+          "points": 0,
+          "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 12.5,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-003/input.png",
+      "prompt": "model-inputs/canvas-003/prompt.txt",
+      "gold": "review/canvas-003/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-004",
+      "title": "节点图：重命名节点与删除指定连线",
+      "content_group": "节点与关系图",
+      "application": "Blender",
+      "source_dataset": "ScreenSpot-Pro",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 5,
+      "intent_checkpoint_count": 7,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-004/input.png",
+      "prompt": "model-inputs/canvas-004/prompt.txt",
+      "gold": "review/canvas-004/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-005",
+      "title": "多画板移动端稿：图标缩放、按钮间距与选中项",
+      "content_group": "界面设计稿",
+      "application": "draw.io 设计稿",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 3,
+      "content_question_count": 3,
+      "content_checkpoint_count": 7,
+      "intent_checkpoint_count": 15,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-005/input.png",
+      "prompt": "model-inputs/canvas-005/prompt.txt",
+      "gold": "review/canvas-005/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-006",
+      "title": "复杂表单设计稿：字段、多选状态与重复按钮",
+      "content_group": "界面设计稿",
+      "application": "draw.io 设计稿",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 3,
+      "content_question_count": 3,
+      "content_checkpoint_count": 8,
+      "intent_checkpoint_count": 10,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-006/input.png",
+      "prompt": "model-inputs/canvas-006/prompt.txt",
+      "gold": "review/canvas-006/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-007",
+      "title": "列表与状态设计稿：重复按钮中的准确定位",
+      "content_group": "界面设计稿",
+      "application": "draw.io 设计稿",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 8,
+      "intent_checkpoint_count": 10,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-007/input.png",
+      "prompt": "model-inputs/canvas-007/prompt.txt",
+      "gold": "review/canvas-007/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-008",
+      "title": "邮件原型设计稿：工具栏与首行状态",
+      "content_group": "界面设计稿",
+      "application": "draw.io 设计稿",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 8,
+      "intent_checkpoint_count": 9,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-008/input.png",
+      "prompt": "model-inputs/canvas-008/prompt.txt",
+      "gold": "review/canvas-008/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-009",
+      "title": "复杂材质节点：接口连线与数值参数",
+      "content_group": "节点与关系图",
+      "application": "Blender",
+      "source_dataset": "ScreenSpot-Pro",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 5,
+      "intent_checkpoint_count": 7,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-009/input.png",
+      "prompt": "model-inputs/canvas-009/prompt.txt",
+      "gold": "review/canvas-009/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-010",
+      "title": "多栏规整设计稿：区分同名标题与按钮间距",
+      "content_group": "界面设计稿",
+      "application": "draw.io 设计稿",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 9,
+      "intent_checkpoint_count": 9,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-010/input.png",
+      "prompt": "model-inputs/canvas-010/prompt.txt",
+      "gold": "review/canvas-010/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-011",
+      "title": "图标组合：等比缩放与文字对齐",
+      "content_group": "图形与版式",
+      "application": "Illustrator",
+      "source_dataset": "ScreenSpot-Pro",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 7,
+      "intent_checkpoint_count": 9,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-011/input.png",
+      "prompt": "model-inputs/canvas-011/prompt.txt",
+      "gold": "review/canvas-011/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-012",
+      "title": "分层版式：成组交换与局部属性修改",
+      "content_group": "图形与版式",
+      "application": "draw.io 图示",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 3,
+      "content_question_count": 3,
+      "content_checkpoint_count": 10,
+      "intent_checkpoint_count": 23,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-012/input.png",
+      "prompt": "model-inputs/canvas-012/prompt.txt",
+      "gold": "review/canvas-012/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-013",
+      "title": "住宅平面画布：家具识别与旋转排布",
+      "content_group": "空间与模型画布",
+      "application": "draw.io 图示",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 2,
+      "content_question_count": 2,
+      "content_checkpoint_count": 6,
+      "intent_checkpoint_count": 10,
+      "capabilities": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": false,
+          "points": 0,
+          "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 12.5,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-013/input.png",
+      "prompt": "model-inputs/canvas-013/prompt.txt",
+      "gold": "review/canvas-013/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-014",
+      "title": "七列业务泳道：节点名称与长距离连接",
+      "content_group": "节点与关系图",
+      "application": "draw.io 图示",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 3,
+      "content_question_count": 3,
+      "content_checkpoint_count": 9,
+      "intent_checkpoint_count": 10,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-014/input.png",
+      "prompt": "model-inputs/canvas-014/prompt.txt",
+      "gold": "review/canvas-014/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-015",
+      "title": "办公平面画布：重复工位与批量范围",
+      "content_group": "空间与模型画布",
+      "application": "draw.io 图示",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 2,
+      "content_question_count": 2,
+      "content_checkpoint_count": 9,
+      "intent_checkpoint_count": 13,
+      "capabilities": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": false,
+          "points": 0,
+          "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 12.5,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-015/input.png",
+      "prompt": "model-inputs/canvas-015/prompt.txt",
+      "gold": "review/canvas-015/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-016",
+      "title": "工程画布：重复尺寸与填充区域",
+      "content_group": "空间与模型画布",
+      "application": "AutoCAD",
+      "source_dataset": "ScreenSpot-Pro",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 8,
+      "intent_checkpoint_count": 9,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-016/input.png",
+      "prompt": "model-inputs/canvas-016/prompt.txt",
+      "gold": "review/canvas-016/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-017",
+      "title": "几何工程画布：圆与辅助线分离",
+      "content_group": "空间与模型画布",
+      "application": "AutoCAD",
+      "source_dataset": "ScreenSpot-Pro",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 9,
+      "intent_checkpoint_count": 9,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-017/input.png",
+      "prompt": "model-inputs/canvas-017/prompt.txt",
+      "gold": "review/canvas-017/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-018",
+      "title": "思维导图：分支归属与局部重命名",
+      "content_group": "节点与关系图",
+      "application": "draw.io 图示",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 2,
+      "content_question_count": 3,
+      "content_checkpoint_count": 7,
+      "intent_checkpoint_count": 9,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-018/input.png",
+      "prompt": "model-inputs/canvas-018/prompt.txt",
+      "gold": "review/canvas-018/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-019",
+      "title": "三维编辑画布：重叠对象与可见状态",
+      "content_group": "空间与模型画布",
+      "application": "Blender",
+      "source_dataset": "UI-Vision",
+      "annotation_count": 2,
+      "content_question_count": 2,
+      "content_checkpoint_count": 6,
+      "intent_checkpoint_count": 10,
+      "capabilities": [
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": false,
+          "points": 0,
+          "reason": "不设原画面文字识别问题；不使用批注文字凑OCR"
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 18.75,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 25.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 12.5,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-019/input.png",
+      "prompt": "model-inputs/canvas-019/prompt.txt",
+      "gold": "review/canvas-019/gold.json",
+      "status": "draft"
+    },
+    {
+      "id": "canvas-020",
+      "title": "多阶段生产流程：虚线消息、条件分支与子流程",
+      "content_group": "节点与关系图",
+      "application": "draw.io 图示",
+      "source_dataset": "drawio-diagrams",
+      "annotation_count": 3,
+      "content_question_count": 3,
+      "content_checkpoint_count": 10,
+      "intent_checkpoint_count": 14,
+      "capabilities": [
+        "文字识别",
+        "对象属性与状态识别",
+        "空间布局与连接关系识别",
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "dimension_rubric": [
+        {
+          "dimension": "文字识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "对象属性与状态识别",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "空间布局与连接关系识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注目标识别",
+          "nominal_weight": 15,
+          "applicable": true,
+          "points": 15.0,
+          "reason": null
+        },
+        {
+          "dimension": "批注意图理解",
+          "nominal_weight": 20,
+          "applicable": true,
+          "points": 20.0,
+          "reason": null
+        },
+        {
+          "dimension": "精确坐标定位",
+          "nominal_weight": 10,
+          "applicable": true,
+          "points": 10.0,
+          "reason": null
+        }
+      ],
+      "input_image": "model-inputs/canvas-020/input.png",
+      "prompt": "model-inputs/canvas-020/prompt.txt",
+      "gold": "review/canvas-020/gold.json",
+      "status": "draft"
+    }
+  ],
+  "historical_executions": [
+    {
+      "version": "0.3.6-draft",
+      "model": "DeepSeek-V4.1-Flash",
+      "task_count": 20,
+      "scope": "旧版首次返回，不能充当本版实跑成绩",
+      "report": "../../../../../docs/eval-results/deepseek-v4_1-flash-canvas-20261106/legacy-v0.3.6.html"
+    }
+  ],
+  "historical_agent_execution": {
+    "runId": "astudio-canvas-pilot-20261106",
+    "application": "AStudio",
+    "model": "Spark-X2.6 / High",
+    "completed": 2,
+    "timeouts": 2,
+    "per_task_time_budget_seconds": 600,
+    "report": "/Users/admin/work/iflytek/2026/202606/astroncode/eval-harness/docs/eval-results/astudio-canvas-pilot-20261106.html",
+    "scope": "canvas-001..004；Agent流程诊断，不是首次图像工具输出评分"
+  },
+  "model_executions": [
+    {
+      "version": "0.4.3-draft",
+      "model": "DeepSeek-V4.1-Flash",
+      "run_id": "canvas-deepseek-v4_1-flash-20261106-v043",
+      "task_count": 20,
+      "api_calls": 20,
+      "status": "completed",
+      "manifest_sha256": "20d796c07502527eb65de8b3137fd1258bc70bd19bd297cdc26d9061c6d0aede",
+      "report": "../../../../../docs/eval-results/deepseek-v4_1-flash-canvas-20261106/index.html",
+      "scoring_status": "assistant_reviewed_human_unconfirmed"
+    }
+  ]
+}

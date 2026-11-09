@@ -1,0 +1,156 @@
+{
+  "task_id": "chart-011",
+  "version": "1.0.1",
+  "scene": "统计图表",
+  "input_size": [
+    1280,
+    704
+  ],
+  "input_sha256": "f8dce5320e2579b194eee5edd1d8cbe8be396eae322eefd343c1588896f73cf9",
+  "prompt_sha256": "79d55e7dc63cde7db847df743bc12aa8bf2d5ec0741d0de4f0c6e1748915ef0a",
+  "source": {
+    "dataset": "ChartQAPro",
+    "url": "https://huggingface.co/datasets/ahmed-masry/ChartQAPro",
+    "source_row_zero_based": 16,
+    "original_record_row": 16,
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/ChartQAPro/images/3564ae4fae16544dc8a8c1df.jpg",
+    "local_original": "sources/chart-011.jpg",
+    "original_sha256": "3564ae4fae16544dc8a8c1df2eaa0ac2039862ab50b2532266ae3ba1a0aece18",
+    "size": [
+      1280,
+      704
+    ],
+    "snapshot": "test parquet SHA-256 feb03a5579e49114b45350b75aed7f674e285f795a425c83e22f400095c91489",
+    "license_status": "数据卡声明MIT；图表内保留原出版方署名，不扩张第三方素材权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "左侧圆环中Australia的占比是多少？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "61%"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "右侧Used从2019年到2021年增加了多少个百分点？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "19个百分点；不能答19%的相对增长率"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "右侧图例中Not used对应什么颜色？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "绿色。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "左侧图中占比最小的国家或地区是哪一个？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "Hong Kong／香港。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：右侧2020年的Used柱形实体，不含数字与标签。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        910,
+        401,
+        966,
+        574
+      ],
+      "center_input_px": [
+        938.0,
+        487.5
+      ],
+      "reference_point": {
+        "x": 732.812,
+        "y": 692.472
+      },
+      "tolerance_input_px": 20,
+      "scope": "右侧2020年的Used柱形实体，不含数字与标签"
+    }
+  },
+  "reference_answer": {
+    "task_id": "chart-011",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "61%。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "19个百分点。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "绿色。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "Hong Kong／香港。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 732.812,
+          "y": 692.472
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

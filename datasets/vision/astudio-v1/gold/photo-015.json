@@ -1,0 +1,186 @@
+{
+  "task_id": "photo-015",
+  "version": "1.0.1",
+  "scene": "日常照片",
+  "input_size": [
+    512,
+    398
+  ],
+  "input_sha256": "fc2af01a384c425de0a36e977e5e07707c94b947d4575c6cc6ecb41df24f6cf0",
+  "prompt_sha256": "1bea03e94ea082553994ab3c69a02b7fb98bfd5505d2913bc664fbecff47679b",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "repository": "https://github.com/MMStar-Benchmark/MMStar",
+    "source_row_zero_based": 305,
+    "upstream_index": "305",
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/0bf181b8aec616b8b22916c3.jpg",
+    "local_original": "sources/photo-015.jpg",
+    "original_sha256": "0bf181b8aec616b8b22916c33142a55ab2f7c149a5f61ad1effaabf8f94b6b39",
+    "size": [
+      512,
+      398
+    ],
+    "snapshot": "Local MMStar.tsv SHA-256 38a99f4a33743665e6990961a9a0072b07f7ac6a74d1555b43c4f82145377cb4",
+    "upstream_commit": null,
+    "pin_note": "下载时使用main，未保存commit；复现以实际TSV和图像哈希为准，不虚构commit。",
+    "license_status": "数据卡/项目仓库未列出统一图像许可证；仅记录公开可获取，不声明再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "前景人物佩戴的眼部物品是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "物体识别"
+      ],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "识别为太阳镜或墨镜"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "他手中大牌子的底色是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "颜色属性"
+      ],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "牌子底色白色"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "只数前景人物直接扶住大牌子的、清楚可见的手，有几只？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "数量判断"
+      ],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "可见扶牌的手为2只"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "这块大牌子与前景人物的躯干之间是什么遮挡关系？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [
+        "遮挡关系"
+      ],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "牌子在前，遮挡人物躯干"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "question": "逐字读出前景大牌子最上方、字号最大的一行英文。只读这一行。",
+      "dimension": "文字识别",
+      "tags": [
+        "自然文字"
+      ],
+      "checks": [
+        {
+          "id": "C5.1",
+          "text": "完整识别TAX the Rich"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：前景人物手持的大文字牌整体，不包括手和人物。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "预测中心与Gold中心的欧氏距离≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        113,
+        150,
+        400,
+        398
+      ],
+      "center_input_px": [
+        256.5,
+        274.0
+      ],
+      "reference_point": {
+        "x": 500.977,
+        "y": 688.442
+      },
+      "tolerance_input_px": 20,
+      "scope": "前景人物手持的大文字牌整体，不包括手和人物"
+    }
+  },
+  "reference_answer": {
+    "task_id": "photo-015",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "太阳镜／墨镜。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "白色。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "2只。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "牌子挡住躯干的一部分。",
+        "target_point": null
+      },
+      {
+        "id": "C5",
+        "answer": "TAX the Rich",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 500.977,
+          "y": 688.442
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

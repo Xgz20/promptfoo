@@ -1,0 +1,336 @@
+{
+  "id": "webapp-002",
+  "version": "1.0.0-draft",
+  "title": "文章页：标题样式与分享入口",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "Design2Code-hf",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/SALT-NLP/Design2Code-hf",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 13,
+    "original_record": {
+      "source_file": "datasets/Design2Code-hf/data/train-00000-of-00001.parquet",
+      "source_row": 13,
+      "collection_index": 13,
+      "images": [
+        {
+          "path": "normalized/Design2Code-hf/images/df83f1a42c87782b5c660d98.png",
+          "width": 1280,
+          "height": 3157,
+          "sha256": "df83f1a42c87782b5c660d98a8e9b7f265a3060efdd5ff42ac4ac28ad84d9c80",
+          "field": "image"
+        }
+      ],
+      "original": {
+        "html_path": "normalized/Design2Code-hf/html/0013.html"
+      }
+    },
+    "path_in_collection": "normalized/Design2Code-hf/images/df83f1a42c87782b5c660d98.png",
+    "sha256": "df83f1a42c87782b5c660d98a8e9b7f265a3060efdd5ff42ac4ac28ad84d9c80",
+    "license_observed": "ODC-By（数据卡）；上游项目另注明research use only",
+    "license_evidence": "sources/licenses/Design2Code-hf-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1280,
+    3157
+  ],
+  "crop_xywh": [
+    0,
+    0,
+    1280,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.9444444444444444
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "页面顶部站点名称和文章发布日期分别是什么？",
+      "reference_answer": "DIGITAL INSPIRATION；July 25, 2007",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "DIGITAL INSPIRATION"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "July 25, 2007"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "文章大标题的文字颜色和所在横幅的底色分别是什么？",
+      "reference_answer": "标题文字为白色；横幅底色为绿色或青绿色",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "标题文字为白色"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "横幅底色为绿色或青绿色"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "SHARE 入口位于正文第一段的哪一侧？",
+      "reference_answer": "SHARE位于正文第一段右侧",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "SHARE位于正文第一段右侧"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "字号缩小为原来的 80%。文字内容和颜色不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          501.38889
+        ],
+        [
+          407.44444,
+          501.38889
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          154.33333,
+          364.44444,
+          968.44444,
+          508.94444
+        ],
+        "reference_point": [
+          407.44444,
+          501.38889
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "绿色横幅中的三行文章大标题",
+        "target_point": [
+          226.358,
+          455.808
+        ],
+        "requested_change": "标题字号改为原来的80%",
+        "preserve": [
+          "标题文字内容",
+          "标题文字颜色"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "绿色横幅中的三行文章大标题"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 12.0,
+          "points_per_checkpoint": 4.0,
+          "checkpoints": [
+            "标题字号改为原来的80%",
+            "保留：标题文字内容",
+            "保留：标题文字颜色"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "文字改为“分享”。位置不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          659.0
+        ],
+        [
+          1428,
+          659.0
+        ],
+        [
+          1428,
+          713.88889
+        ],
+        [
+          1008.11111,
+          713.88889
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          959.0,
+          701.61111,
+          1010.94444,
+          717.66667
+        ],
+        "reference_point": [
+          1008.11111,
+          713.88889
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "正文右侧的 SHARE 文字入口",
+        "target_point": [
+          560.062,
+          648.99
+        ],
+        "requested_change": "文案改为分享",
+        "preserve": [
+          "入口位置"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "正文右侧的 SHARE 文字入口"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.0,
+          "points_per_checkpoint": 4.0,
+          "checkpoints": [
+            "文案改为分享",
+            "保留：入口位置"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}

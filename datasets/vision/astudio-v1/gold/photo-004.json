@@ -1,0 +1,167 @@
+{
+  "task_id": "photo-004",
+  "version": "1.0.2",
+  "scene": "日常照片",
+  "input_size": [
+    512,
+    341
+  ],
+  "input_sha256": "35f6d2bbe4ce4ac5cdb1b70caa3553b1ee702596cd59708343ce477db39535b6",
+  "prompt_sha256": "20555c1508c39aca14be6be9a27a462e5e4632b7c231a6ac66d8bbecd6665a0e",
+  "source": {
+    "dataset": "MMStar",
+    "url": "https://huggingface.co/datasets/Lin-Chen/MMStar",
+    "repository": "https://github.com/MMStar-Benchmark/MMStar",
+    "source_row_zero_based": 297,
+    "upstream_index": "297",
+    "source_path": "mining/repos/vision-benchmarks-20261105/normalized/MMStar/images/30a8fdf01aa7500a846ccfd4.jpg",
+    "local_original": "sources/photo-004.jpg",
+    "original_sha256": "30a8fdf01aa7500a846ccfd4f2d7b377229c98b862fc3c0f1514765744a73ef3",
+    "size": [
+      512,
+      341
+    ],
+    "snapshot": "Local MMStar.tsv SHA-256 38a99f4a33743665e6990961a9a0072b07f7ac6a74d1555b43c4f82145377cb4",
+    "upstream_commit": null,
+    "pin_note": "下载时使用main，未保存commit；复现以实际TSV和图像哈希为准，不虚构commit。",
+    "license_status": "数据卡/项目仓库未列出统一图像许可证；仅记录公开可获取，不声明再分发授权。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "盘中成串且向上立起的长条形水果是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "物体识别"
+      ],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "识别为香蕉；同时断言该对象为其他种类则此项不得分"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "盘中两颗靠前、近圆形且大小相近的水果主要是什么颜色？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "颜色属性"
+      ],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "主要为绿色"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "画面中果盘后方有几个细长支杆、顶部为圆盘形的器物？",
+      "dimension": "对象属性与状态识别",
+      "tags": [
+        "数量判断"
+      ],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "这类器物为2个"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "盘中带明显朝上短果梗的近圆形水果，相对于成串且向上立起的长条形水果，在画面的左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [
+        "左右关系"
+      ],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "带朝上果梗的近圆形水果在成串竖立的长条形水果右侧"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：盘中较大的近圆形水果（位于另一颗近圆形水果右边，排除长条水果）。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "预测中心与Gold中心的欧氏距离≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        265,
+        109,
+        383,
+        213
+      ],
+      "center_input_px": [
+        324.0,
+        161.0
+      ],
+      "reference_point": {
+        "x": 632.812,
+        "y": 472.141
+      },
+      "tolerance_input_px": 20,
+      "scope": "盘中较大的近圆形水果（位于另一颗近圆形水果右边，排除长条水果）"
+    }
+  },
+  "reference_answer": {
+    "task_id": "photo-004",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "香蕉。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "绿色。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "2个。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 632.812,
+          "y": 472.141
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

@@ -1,0 +1,156 @@
+{
+  "task_id": "document-007",
+  "version": "1.0.0",
+  "scene": "文档与票据",
+  "input_size": [
+    1449,
+    2046
+  ],
+  "input_sha256": "52f0203f26cb3207c2d698f64b4403d8b77b43b7dbe1f087882adf038cefc9b8",
+  "prompt_sha256": "da67771113d5ae69e3fded2d781a3c41dfeb4fd8b4be1e9df49fd0fbcaaccbff",
+  "source": {
+    "dataset": "MDPBench",
+    "url": "https://huggingface.co/datasets/Delores-Lin/MDPBench",
+    "source_row_zero_based": 36,
+    "original_record_row": 36,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDPBench/MDPBench_img_public/zh_textbook_40.jpg",
+    "local_original": "sources/document-007.jpg",
+    "original_sha256": "dba02046b5dfbe614048440bfb6e095a72be47a859d89d75a2096115ee71e4a8",
+    "size": [
+      1449,
+      2046
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明Apache-2.0；保留文档内原出版方、公司及作者署名，不扩张第三方页面权利。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "表8-6上方的表名是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "库存现金收入日记账。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "两个表的记录区是否已经填有交易数字？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "没有，记录区为空。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "表8-6中“应贷科目”位于“现金收入合计”的左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "左侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "表8-6“现金收入合计”的金额栏按位值分成几小列？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "万、千、百、十、元、角、分共7列"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：表8-7的完整表格外边框范围，包含表头和空白记录行，不含表名或页数栏。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        115,
+        947,
+        1311,
+        1372
+      ],
+      "center_input_px": [
+        713.0,
+        1159.5
+      ],
+      "reference_point": {
+        "x": 492.063,
+        "y": 566.716
+      },
+      "tolerance_input_px": 20,
+      "scope": "表8-7的完整表格外边框范围，包含表头和空白记录行，不含表名或页数栏"
+    }
+  },
+  "reference_answer": {
+    "task_id": "document-007",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "库存现金收入日记账。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "没有，记录区为空。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "左侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "7列。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 492.063,
+          "y": 566.716
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

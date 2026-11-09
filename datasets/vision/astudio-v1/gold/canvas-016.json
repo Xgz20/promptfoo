@@ -1,0 +1,387 @@
+{
+  "id": "canvas-016",
+  "version": "0.4.2-draft",
+  "title": "工程画布：重复尺寸与填充区域",
+  "scene": "设计画布与图示",
+  "source": {
+    "dataset": "ScreenSpot-Pro",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/likaixin/ScreenSpot-Pro",
+    "license_observed": "MIT（已下载的官方数据卡）",
+    "normalized_row_0based": 5,
+    "original_record": {
+      "img_filename": "autocad_windows/screenshot_2024-12-05_09-11-52.png",
+      "bbox": [
+        91,
+        278,
+        172,
+        310
+      ],
+      "instruction": "Hand-draw cloud line",
+      "instruction_cn": "手画云线",
+      "id": "autocad_windows_0",
+      "application": "autocad",
+      "platform": "windows",
+      "img_size": [
+        3840,
+        1080
+      ],
+      "ui_type": "text",
+      "group": "CAD"
+    },
+    "path_in_collection": "datasets/ScreenSpot-Pro/images/autocad_windows/screenshot_2024-12-05_09-11-52.png",
+    "sha256": "3d41495fcb4bacf9715740f6d923b48e30bbac270221de7a2e54cc06e4cf705d"
+  },
+  "source_image_size": [
+    3840,
+    1080
+  ],
+  "crop_xywh": [
+    560,
+    190,
+    610,
+    720
+  ],
+  "placement_x_y_scale": [
+    30,
+    330,
+    1.5
+  ],
+  "input_size": [
+    1500,
+    1690
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "dimension": "文字识别",
+      "question": "读取中央图形右侧上下两个竖向尺寸数字，以及画布左侧青色水平尺寸数字。",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "右侧上方 1000"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "右侧下方 1000"
+        },
+        {
+          "id": "text-1.3",
+          "expected": "左侧 2500"
+        }
+      ],
+      "reference_answer": "右侧上方 1000；右侧下方 1000；左侧 2500。",
+      "id": "text-1"
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "question": "中央三条横向填充区内部纹理的颜色与形式是什么？外轮廓是什么颜色？",
+      "checkpoints": [
+        {
+          "id": "appearance-1.1",
+          "expected": "纹理为绿色"
+        },
+        {
+          "id": "appearance-1.2",
+          "expected": "纹理为斜线填充"
+        },
+        {
+          "id": "appearance-1.3",
+          "expected": "外轮廓为黄色"
+        }
+      ],
+      "reference_answer": "纹理为绿色；纹理为斜线填充；外轮廓为黄色。",
+      "id": "appearance-1"
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "question": "三条横向填充区沿哪个方向排列？中间一条与紫色竖矩形相交还是完全分离？",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "三条填充区上下排列"
+        },
+        {
+          "id": "layout-1.2",
+          "expected": "中间填充区与紫色竖矩形相交"
+        }
+      ],
+      "reference_answer": "三条填充区上下排列；中间填充区与紫色竖矩形相交。",
+      "id": "layout-1"
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15.0,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20.0,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10.0,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "仅将这处尺寸文字改为“1200”。\n尺寸线和几何图形不动；\n下方另一处同名数值不改。",
+      "arrow_path_input_px": [
+        [
+          865,
+          260
+        ],
+        [
+          980,
+          290
+        ],
+        [
+          980,
+          752
+        ],
+        [
+          620,
+          752
+        ],
+        [
+          619.5,
+          765.0
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          586.5,
+          760.5,
+          625.5,
+          844.5
+        ],
+        "reference_point": [
+          619.5,
+          765.0
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "中央图形右侧，上下两处1000尺寸文字中的上方一处。",
+        "requested_change": "仅把上方1000尺寸标注文字替换为1200，不改变尺寸线或实际几何。",
+        "preserve": [
+          "尺寸线",
+          "实际几何图形",
+          "下方1000标注"
+        ],
+        "annotation_id": "A",
+        "target_point": [
+          413.0,
+          452.66
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "中央图形右侧，上下两处1000尺寸文字中的上方一处。"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 8.88888888888889,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "仅把尺寸文字替换为1200",
+            "保留：尺寸线",
+            "保留：除三条横向填充区之外的实际几何图形",
+            "保留：下方1000标注"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1",
+            "A.preserve-2",
+            "A.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ],
+      "shared_constraints": [
+        {
+          "text": "中间横向填充区的轮廓不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：区域轮廓"
+        },
+        {
+          "text": "中间横向填充区的位置不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：区域位置"
+        },
+        {
+          "text": "上下另外两条填充区不变",
+          "scored_in_annotation": "B",
+          "dimension": "批注意图理解",
+          "checkpoint": "保留：上下另外两条填充区"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "这条横向填充区域改成纯橙色。\n去掉斜线，轮廓和位置不变；\n上下两条填充区域不改。",
+      "arrow_path_input_px": [
+        [
+          865,
+          1465
+        ],
+        [
+          980,
+          1450
+        ],
+        [
+          980,
+          930
+        ],
+        [
+          600,
+          930
+        ],
+        [
+          565.5,
+          909.0
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          345.0,
+          879.0,
+          580.5,
+          921.0
+        ],
+        "reference_point": [
+          565.5,
+          909.0
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "target_description": "中央紫色竖矩形中间一条横向矩形填充区。",
+        "requested_change": "把中间横向填充区改为纯橙色填充，移除斜线纹理。",
+        "preserve": [
+          "区域轮廓",
+          "区域位置",
+          "上下另外两条填充区"
+        ],
+        "annotation_id": "B",
+        "target_point": [
+          377.0,
+          537.87
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "中央紫色竖矩形中间一条横向矩形填充区。"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "唯一识别箭头原目标即可；不逐字要求参考描述。与内容问题和意图独立。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 11.11111111111111,
+          "points_per_checkpoint": 2.2222222222222223,
+          "checkpoints": [
+            "填充颜色改为橙色",
+            "去掉斜线纹理，改用纯色填充",
+            "保留：区域轮廓",
+            "保留：区域位置",
+            "保留：上下另外两条填充区"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.preserve-1",
+            "B.preserve-2",
+            "B.preserve-3"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点符合geometry规则"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ],
+  "scoring_note": "rubric中的points为该题名义分值；无文字题时统一乘100/80。六维分别计分，不设跨维归零。内容题按维度内原子检查点等权。"
+}

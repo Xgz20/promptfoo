@@ -1,0 +1,156 @@
+{
+  "task_id": "poster-001",
+  "version": "1.0.0",
+  "scene": "海报、插画与漫画",
+  "input_size": [
+    500,
+    515
+  ],
+  "input_sha256": "5b4d1e6aa7bed9fa27d24862dc9abeb51bec193c9be46b8ea2fca6ea34bf05df",
+  "prompt_sha256": "62c0e16f1edb546c5fff056f445408a8dd01bb3a265ba6a9e19c9ac803961cf6",
+  "source": {
+    "dataset": "MDVP-Bench",
+    "url": "https://huggingface.co/datasets/Afeng-x/Draw-and-Understand",
+    "source_row_zero_based": 50,
+    "original_record_row": 0,
+    "source_path": "mining/repos/vision-benchmarks-20261105/datasets/MDVP-Bench/MDVP-bench/multipanel_Inter_Relationship/images/u=386285352,2538957886&fm=253&app=138&f=JPEG.png",
+    "local_original": "sources/poster-001.png",
+    "original_sha256": "8d5b9a7fa79d28b745d91d1dc9e20cf7d70ced378d420c27c2838f9ec289fe56",
+    "size": [
+      500,
+      515
+    ],
+    "snapshot": "逐图SHA-256及原记录固定；未记录下载commit，不虚构版本",
+    "license_status": "数据卡声明CC BY-NC 4.0；非商业使用限制。",
+    "transform": {
+      "operation": "EXIF transpose then RGB lossless PNG",
+      "exif_orientation": 1,
+      "crop": null,
+      "scale": 1,
+      "overlays": [],
+      "pillow": "11.3.0"
+    },
+    "new_questions": true,
+    "upstream_answers_used": false
+  },
+  "annotations": [],
+  "content_questions": [
+    {
+      "id": "C1",
+      "question": "红色大标题写的英文单词是什么？",
+      "dimension": "文字识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C1.1",
+          "text": "Weather。"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "question": "全部天气示意图共有多少个？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C2.1",
+          "text": "12个。"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "question": "标签Hailing对应的图标位于Lightning的左侧还是右侧？",
+      "dimension": "空间布局与连接关系识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C3.1",
+          "text": "右侧。"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "question": "Sunny对应图标的主体是什么？",
+      "dimension": "对象属性与状态识别",
+      "tags": [],
+      "checks": [
+        {
+          "id": "C4.1",
+          "text": "太阳。"
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "question": "请定位：标签Cloudy上方的云团图标整体，不含文字。返回其可见外接矩形的中心点。",
+      "dimension": "精确坐标定位",
+      "tags": [
+        "中心坐标定位"
+      ],
+      "checks": [
+        {
+          "id": "G1.1",
+          "text": "中心欧氏误差≤20个最终输入像素"
+        }
+      ]
+    }
+  ],
+  "geometry": {
+    "G1": {
+      "kind": "visible_bbox_center",
+      "bbox_input_px": [
+        382,
+        88,
+        489,
+        171
+      ],
+      "center_input_px": [
+        435.5,
+        129.5
+      ],
+      "reference_point": {
+        "x": 871.0,
+        "y": 251.456
+      },
+      "tolerance_input_px": 20,
+      "scope": "标签Cloudy上方的云团图标整体，不含文字"
+    }
+  },
+  "reference_answer": {
+    "task_id": "poster-001",
+    "content_answers": [
+      {
+        "id": "C1",
+        "answer": "Weather。",
+        "target_point": null
+      },
+      {
+        "id": "C2",
+        "answer": "12个。",
+        "target_point": null
+      },
+      {
+        "id": "C3",
+        "answer": "右侧。",
+        "target_point": null
+      },
+      {
+        "id": "C4",
+        "answer": "太阳。",
+        "target_point": null
+      },
+      {
+        "id": "G1",
+        "answer": null,
+        "target_point": {
+          "x": 871.0,
+          "y": 251.456
+        }
+      }
+    ]
+  },
+  "scoring_contract": "../../contract.json"
+}

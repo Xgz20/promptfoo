@@ -1,0 +1,348 @@
+{
+  "id": "webapp-008",
+  "version": "1.0.1",
+  "title": "媒体库：选中导航与缩略图范围",
+  "scene": "网页与应用截图",
+  "source": {
+    "dataset": "UI-Vision",
+    "kind": "benchmark_screenshot",
+    "url": "https://huggingface.co/datasets/ServiceNow/ui-vision",
+    "local_snapshot": "vision-benchmarks-20261105",
+    "upstream_revision": "未记录上游数据集commit；以保留的原文件SHA-256固定本批字节",
+    "normalized_row_0based": 21,
+    "original_record": {
+      "source_row": 21,
+      "images": [
+        {
+          "path": "datasets/UI-Vision/images/element_grounding/946df6b4561531c168cb4b8f1e49dfa3.png",
+          "width": 1920,
+          "height": 1080
+        }
+      ],
+      "original": {
+        "image_path": "element_grounding/946df6b4561531c168cb4b8f1e49dfa3.png",
+        "image_size": [
+          1920,
+          1080
+        ],
+        "prompt_to_evaluate": "Manage Emby server",
+        "bbox": [
+          1826.8054376511966,
+          65.55172750012595,
+          1884.4054376511965,
+          125.72315607155454
+        ],
+        "platform": "Emby",
+        "category": "Button",
+        "element_type": "icon"
+      }
+    },
+    "path_in_collection": "datasets/UI-Vision/images/element_grounding/946df6b4561531c168cb4b8f1e49dfa3.png",
+    "sha256": "79c10c3c1d39fedb3577958453c562f21ec6c7fc9ae0e5557b9572ea0eff9dd5",
+    "license_observed": "MIT（官方数据卡）",
+    "license_evidence": "sources/licenses/UI-Vision-README.md",
+    "annotation_origin": "本项目新建中文文字箭头批注；不沿用上游答案"
+  },
+  "source_image_size": [
+    1920,
+    1080
+  ],
+  "crop_xywh": [
+    0,
+    70,
+    1500,
+    900
+  ],
+  "placement_x_y_scale": [
+    24,
+    100,
+    0.92
+  ],
+  "input_size": [
+    1800,
+    1100
+  ],
+  "capabilities": [
+    "文字识别",
+    "对象属性与状态识别",
+    "空间布局与连接关系识别",
+    "批注目标识别",
+    "批注意图理解",
+    "精确坐标定位"
+  ],
+  "content_questions": [
+    {
+      "id": "text-1",
+      "dimension": "文字识别",
+      "question": "Continue Watching 第一张卡片的片名和年份分别是什么？",
+      "reference_answer": "Who are you?；2012",
+      "checkpoints": [
+        {
+          "id": "text-1.1",
+          "expected": "Who are you?"
+        },
+        {
+          "id": "text-1.2",
+          "expected": "2012"
+        }
+      ]
+    },
+    {
+      "id": "state-1",
+      "dimension": "对象属性与状态识别",
+      "question": "顶部 Home/Favorites 切换区当前哪项突出显示？左侧 Home 导航项的底色是什么？",
+      "reference_answer": "顶部Home突出显示；左侧Home导航项底色为绿色",
+      "checkpoints": [
+        {
+          "id": "state-1.1",
+          "expected": "顶部Home突出显示"
+        },
+        {
+          "id": "state-1.2",
+          "expected": "左侧Home导航项底色为绿色"
+        }
+      ]
+    },
+    {
+      "id": "layout-1",
+      "dimension": "空间布局与连接关系识别",
+      "question": "My Media 与 Continue Watching 两个内容区的上下关系是什么？",
+      "reference_answer": "My Media在Continue Watching上方",
+      "checkpoints": [
+        {
+          "id": "layout-1.1",
+          "expected": "My Media在Continue Watching上方"
+        }
+      ]
+    }
+  ],
+  "dimension_rubric": [
+    {
+      "dimension": "文字识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "对象属性与状态识别",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "空间布局与连接关系识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注目标识别",
+      "nominal_weight": 15,
+      "applicable": true,
+      "points": 15,
+      "reason": null
+    },
+    {
+      "dimension": "批注意图理解",
+      "nominal_weight": 20,
+      "applicable": true,
+      "points": 20,
+      "reason": null
+    },
+    {
+      "dimension": "精确坐标定位",
+      "nominal_weight": 10,
+      "applicable": true,
+      "points": 10,
+      "reason": null
+    }
+  ],
+  "annotations": [
+    {
+      "id": "A",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "这里的文字改为“音乐库”。缩略图不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          204.0
+        ],
+        [
+          1415,
+          204.0
+        ],
+        [
+          1415,
+          461.56
+        ],
+        [
+          1053.48,
+          461.56
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          1015.76,
+          444.08,
+          1070.04,
+          466.16
+        ],
+        "reference_point": [
+          1053.48,
+          461.56
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "A",
+        "target_description": "My Media 区第三张耳机图标卡片下的 Music 名称",
+        "target_point": [
+          585.267,
+          419.6
+        ],
+        "requested_change": "名称改为音乐库",
+        "preserve": [
+          "对应卡片缩略图"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "My Media 区第三张耳机图标卡片下的 Music 名称"
+          ],
+          "checkpoint_ids": [
+            "A.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 6.666666666666667,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "名称改为音乐库",
+            "保留：对应卡片缩略图"
+          ],
+          "checkpoint_ids": [
+            "A.change-1",
+            "A.preserve-1"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "A.point"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "capabilities": [
+        "批注目标识别",
+        "批注意图理解",
+        "精确坐标定位"
+      ],
+      "text": "缩略图以中心为锚点等比放大到 1.2 倍。下方片名不变。",
+      "arrow_path_input_px": [
+        [
+          1440,
+          674.0
+        ],
+        [
+          1428,
+          674.0
+        ],
+        [
+          1428,
+          578.4
+        ],
+        [
+          1007.48,
+          578.4
+        ]
+      ],
+      "geometry": {
+        "type": "bbox",
+        "bbox_xyxy": [
+          708.48,
+          560.0,
+          1013.0,
+          732.04
+        ],
+        "reference_point": [
+          1007.48,
+          578.4
+        ],
+        "coordinate_system": "input image pixels"
+      },
+      "reference_answer": {
+        "annotation_id": "B",
+        "target_description": "Continue Watching 区中间白猫视频的缩略图",
+        "target_point": [
+          559.711,
+          525.818
+        ],
+        "requested_change": "宽度改为原来的1.2倍；高度改为原来的1.2倍",
+        "preserve": [
+          "缩略图中心位置",
+          "下方片名"
+        ]
+      },
+      "rubric": [
+        {
+          "dimension": "批注目标识别",
+          "points": 7.5,
+          "checkpoints": [
+            "Continue Watching 区中间白猫视频的缩略图"
+          ],
+          "checkpoint_ids": [
+            "B.target"
+          ],
+          "rule": "逐批注评价箭头是否绑定正确原目标，0或1，维度内批注等权。名称、特征或位置任一种能唯一确定目标即可；不要求照抄参考描述的所有修饰。目标错误只扣这一维，不使其他维度归零。"
+        },
+        {
+          "dimension": "批注意图理解",
+          "points": 13.333333333333334,
+          "points_per_checkpoint": 3.3333333333333335,
+          "checkpoints": [
+            "宽度改为原来的1.2倍",
+            "高度改为原来的1.2倍",
+            "保留：缩略图中心位置",
+            "保留：下方片名"
+          ],
+          "checkpoint_ids": [
+            "B.change-1",
+            "B.change-2",
+            "B.preserve-1",
+            "B.preserve-2"
+          ]
+        },
+        {
+          "dimension": "精确坐标定位",
+          "points": 5.0,
+          "checkpoints": [
+            "代表点命中该目标bbox"
+          ],
+          "checkpoint_ids": [
+            "B.point"
+          ]
+        }
+      ]
+    }
+  ]
+}
