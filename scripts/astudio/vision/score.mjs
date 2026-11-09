@@ -145,7 +145,8 @@ export function annotationOutcomes(annotations, checks, geometry, status) {
   });
 }
 
-function validateReview(gold, review, status, annotated) {
+export function semanticCheckpoints(gold) {
+  const annotated = gold.annotations.length > 0;
   const expected = new Map();
   for (const q of gold.content_questions) {
     if (!annotated && q.dimension === DIMENSIONS[5]) {
@@ -168,6 +169,11 @@ function validateReview(gold, review, status, annotated) {
       });
     }
   }
+  return [...expected].map(([id, point]) => ({ id, ...point }));
+}
+
+function validateReview(gold, review, status, annotated) {
+  const expected = new Map(semanticCheckpoints(gold).map((point) => [point.id, point]));
   assert.ok(
     idsEqual(
       [...expected.keys()],

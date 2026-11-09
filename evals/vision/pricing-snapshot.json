@@ -1,0 +1,1091 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-09T10:03:02.021355084Z",
+  "sources": [
+    "https://venus.xunfei.cn/pricing",
+    "https://venus.xfinfr.com/public/models",
+    "https://yf2ljykclb.xfchat.iflytek.com/docx/doxrzrtQPKEFmhibd19RT8poe1d"
+  ],
+  "models": [
+    {
+      "id": "qwen/qwen3.8-flash",
+      "name": "Qwen: Qwen3.8 Flash",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 607,
+          "model_id": "qwen/qwen3.8-flash",
+          "provider_id": "alibaba-dashscope",
+          "provider_name": "阿里百炼 DashScope",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "provider_specific",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-08-28T18:12:28Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000008",
+                "output": "0.0000027",
+                "cache": {
+                  "read": "0.0000001",
+                  "write_5m": "0.00000125"
+                },
+                "reasoning_semantic": "nested",
+                "web_search": "0.004",
+                "notes": "Official China pricing: input ¥0.8/M, output ¥2.7/M, cache read ¥0.1/M, explicit cache creation ¥1.25/M; web_search ¥4/1K calls. i2i_search/t2i_search are not enabled for Venus billing."
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000008",
+              "output": "0.0000027",
+              "cache": {
+                "read": "0.0000001",
+                "write_5m": "0.00000125"
+              },
+              "reasoning_semantic": "nested",
+              "web_search": "0.004",
+              "notes": "Official China pricing: input ¥0.8/M, output ¥2.7/M, cache read ¥0.1/M, explicit cache creation ¥1.25/M; web_search ¥4/1K calls. i2i_search/t2i_search are not enabled for Venus billing."
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        }
+      ],
+      "providers": ["alibaba-dashscope"],
+      "architecture": {
+        "input_modalities": ["text", "image", "video"],
+        "modality": "text+image+video->text",
+        "output_modalities": ["text"],
+        "tokenizer": "Qwen"
+      }
+    },
+    {
+      "id": "xiaomi/mimo-v2.6-pro",
+      "name": "Xiaomi: MiMo V2.6 Pro",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 684,
+          "model_id": "xiaomi/mimo-v2.6-pro",
+          "provider_id": "",
+          "applies_to_provider_ids": ["xiaomi-kspmas"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-10-20T10:03:16Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.000003",
+                "output": "0.000006",
+                "cache": {
+                  "read": "0.000000025"
+                }
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.000003",
+              "output": "0.000006",
+              "cache": {
+                "read": "0.000000025"
+              }
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        }
+      ],
+      "providers": ["xiaomi-kspmas"],
+      "architecture": {
+        "input_modalities": ["text", "image", "video"],
+        "modality": "text+image+video->text",
+        "output_modalities": ["text"],
+        "tokenizer": ""
+      }
+    },
+    {
+      "id": "doubao/doubao-seed-2.0-mini",
+      "name": "Doubao: Doubao Seed 2.0 Mini",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 486,
+          "model_id": "doubao/doubao-seed-2.0-mini",
+          "provider_id": "",
+          "applies_to_provider_ids": ["volces-ark"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "0-32k",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 32000,
+          "effective_from": "2026-07-22T02:48:03Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000002",
+                "output": "0.000002",
+                "cache": {
+                  "read": "0.00000004"
+                }
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000002",
+              "output": "0.000002",
+              "cache": {
+                "read": "0.00000004"
+              }
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 487,
+          "model_id": "doubao/doubao-seed-2.0-mini",
+          "provider_id": "",
+          "applies_to_provider_ids": ["volces-ark"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "32k-128k",
+          "tier_min_tokens": 32001,
+          "tier_max_tokens": 128000,
+          "effective_from": "2026-07-22T02:48:03Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000004",
+                "output": "0.000004",
+                "cache": {
+                  "read": "0.00000008"
+                }
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000004",
+              "output": "0.000004",
+              "cache": {
+                "read": "0.00000008"
+              }
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 488,
+          "model_id": "doubao/doubao-seed-2.0-mini",
+          "provider_id": "",
+          "applies_to_provider_ids": ["volces-ark"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "128k-256k",
+          "tier_min_tokens": 128001,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-07-22T02:48:03Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000008",
+                "output": "0.000008",
+                "cache": {
+                  "read": "0.00000016"
+                }
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000008",
+              "output": "0.000008",
+              "cache": {
+                "read": "0.00000016"
+              }
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        }
+      ],
+      "providers": ["volces-ark"],
+      "architecture": {
+        "input_modalities": ["text", "image", "audio", "video"],
+        "modality": "text+image+audio+video->text",
+        "output_modalities": ["text"],
+        "tokenizer": "doubao"
+      }
+    },
+    {
+      "id": "qwen/qwen3-vl-plus",
+      "name": "Qwen: Qwen3-VL-Plus",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 554,
+          "model_id": "qwen/qwen3-vl-plus",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "batch",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "0-32k-batch-file",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 32768,
+          "effective_from": "2026-08-05T12:47:40Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000005",
+                "output": "0.000005",
+                "notes": "Batch File price from browser page."
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000005",
+              "output": "0.000005",
+              "notes": "Batch File price from browser page."
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 555,
+          "model_id": "qwen/qwen3-vl-plus",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "batch",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "32k-128k-batch-file",
+          "tier_min_tokens": 32769,
+          "tier_max_tokens": 131072,
+          "effective_from": "2026-08-05T12:47:40Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.00000075",
+                "output": "0.0000075",
+                "notes": "Batch File price from browser page."
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.00000075",
+              "output": "0.0000075",
+              "notes": "Batch File price from browser page."
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 556,
+          "model_id": "qwen/qwen3-vl-plus",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "batch",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "128k-256k-batch-file",
+          "tier_min_tokens": 131073,
+          "tier_max_tokens": 262144,
+          "effective_from": "2026-08-05T12:47:40Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000015",
+                "output": "0.000015",
+                "notes": "Batch File price from browser page."
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000015",
+              "output": "0.000015",
+              "notes": "Batch File price from browser page."
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 551,
+          "model_id": "qwen/qwen3-vl-plus",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "0-32k",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 32768,
+          "effective_from": "2026-08-05T12:47:40Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.000001",
+                "output": "0.00001",
+                "cache": {
+                  "read": "0.0000002",
+                  "write_5m": "0.00000125"
+                },
+                "notes": "Browser page priority. qwen3-vl-plus equals qwen3-vl-plus-2025-12-19. Page also shows explicit cache hit CNY 0.1/M; Venus cache schema has no separate explicit-hit field."
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.000001",
+              "output": "0.00001",
+              "cache": {
+                "read": "0.0000002",
+                "write_5m": "0.00000125"
+              },
+              "notes": "Browser page priority. qwen3-vl-plus equals qwen3-vl-plus-2025-12-19. Page also shows explicit cache hit CNY 0.1/M; Venus cache schema has no separate explicit-hit field."
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 552,
+          "model_id": "qwen/qwen3-vl-plus",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "32k-128k",
+          "tier_min_tokens": 32769,
+          "tier_max_tokens": 131072,
+          "effective_from": "2026-08-05T12:47:40Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000015",
+                "output": "0.000015",
+                "cache": {
+                  "read": "0.0000003",
+                  "write_5m": "0.000001875"
+                },
+                "notes": "Browser page priority. Page also shows explicit cache hit CNY 0.15/M; Venus cache schema has no separate explicit-hit field."
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000015",
+              "output": "0.000015",
+              "cache": {
+                "read": "0.0000003",
+                "write_5m": "0.000001875"
+              },
+              "notes": "Browser page priority. Page also shows explicit cache hit CNY 0.15/M; Venus cache schema has no separate explicit-hit field."
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 553,
+          "model_id": "qwen/qwen3-vl-plus",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "128k-256k",
+          "tier_min_tokens": 131073,
+          "tier_max_tokens": 262144,
+          "effective_from": "2026-08-05T12:47:40Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.000003",
+                "output": "0.00003",
+                "cache": {
+                  "read": "0.0000006",
+                  "write_5m": "0.00000375"
+                },
+                "notes": "Browser page priority. Page also shows explicit cache hit CNY 0.3/M; Venus cache schema has no separate explicit-hit field."
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.000003",
+              "output": "0.00003",
+              "cache": {
+                "read": "0.0000006",
+                "write_5m": "0.00000375"
+              },
+              "notes": "Browser page priority. Page also shows explicit cache hit CNY 0.3/M; Venus cache schema has no separate explicit-hit field."
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        }
+      ],
+      "providers": ["alibaba-dashscope"],
+      "architecture": {
+        "input_modalities": ["text", "image", "video"],
+        "modality": "text+image+video->text",
+        "output_modalities": ["text"],
+        "tokenizer": "qwen"
+      }
+    },
+    {
+      "id": "zhipu/glm-5.3-flash",
+      "name": "Z.AI: GLM-5.3-Flash",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 630,
+          "model_id": "zhipu/glm-5.3-flash",
+          "provider_id": "baidu-qianfan",
+          "provider_name": "百度千帆 QianFan",
+          "applies_to_provider_ids": ["baidu-qianfan"],
+          "price_source": "provider_specific",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-09-10T02:44:38Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000008",
+                "output": "0.0000028",
+                "cache": {
+                  "read": "0.00000023"
+                },
+                "reasoning_semantic": "nested",
+                "notes": "百度千帆 GLM-5.3-Flash 控制台（2026-09-10）：输入 ¥0.8/M、输出 ¥2.8/M、缓存命中 ¥0.23/M；直连调用 HTTP 200。"
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000008",
+              "output": "0.0000028",
+              "cache": {
+                "read": "0.00000023"
+              },
+              "reasoning_semantic": "nested",
+              "notes": "百度千帆 GLM-5.3-Flash 控制台（2026-09-10）：输入 ¥0.8/M、输出 ¥2.8/M、缓存命中 ¥0.23/M；直连调用 HTTP 200。"
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 606,
+          "model_id": "zhipu/glm-5.3-flash",
+          "provider_id": "tencent-tokenhub",
+          "provider_name": "腾讯 TokenHub",
+          "applies_to_provider_ids": ["tencent-tokenhub"],
+          "price_source": "provider_specific",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-08-28T09:19:46Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000008",
+                "output": "0.0000028",
+                "cache": {
+                  "read": "0.00000023"
+                },
+                "reasoning_semantic": "nested",
+                "notes": "腾讯 TokenHub 控制台浏览器页面（2026-08-28）：输入 ¥0.8/M、输出 ¥2.8/M、缓存命中 ¥0.23/M；直连 usage 验证 reasoning_tokens 嵌套于 output/completion tokens。"
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000008",
+              "output": "0.0000028",
+              "cache": {
+                "read": "0.00000023"
+              },
+              "reasoning_semantic": "nested",
+              "notes": "腾讯 TokenHub 控制台浏览器页面（2026-08-28）：输入 ¥0.8/M、输出 ¥2.8/M、缓存命中 ¥0.23/M；直连 usage 验证 reasoning_tokens 嵌套于 output/completion tokens。"
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        }
+      ],
+      "providers": ["tencent-tokenhub", "baidu-qianfan"],
+      "architecture": {
+        "input_modalities": ["text", "image", "video", "file"],
+        "modality": "text+image+video+file->text",
+        "output_modalities": ["text"],
+        "tokenizer": ""
+      }
+    },
+    {
+      "id": "deepseek/deepseek-v4.1-flash-1017",
+      "name": "DeepSeek: DeepSeek V4.1 Flash 1017",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 682,
+          "model_id": "deepseek/deepseek-v4.1-flash-1017",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "global",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-10-20T09:19:19Z",
+          "timezone": "Asia/Shanghai",
+          "rates": [
+            {
+              "rate_key": "off_peak",
+              "rate_label": "闲时",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.000001",
+                "output": "0.000004",
+                "cache": {
+                  "read": "0.0000001"
+                },
+                "notes": "阿里百炼 deepseek-v4.1-flash-1017 闲时定价（北京时间 22:00-次日 08:00，官方规则“忙时为 8:00-22:00、闲时为 22:00-次日 8:00”）：input ¥1/M、output ¥4/M、cache hit ¥0.1/M。来源：百炼控制台模型详情页（阿里直供）2026-10-20 实读。"
+              }
+            },
+            {
+              "rate_key": "peak",
+              "rate_label": "忙时",
+              "is_default": false,
+              "windows": [
+                {
+                  "start": "08:00",
+                  "end": "22:00"
+                }
+              ],
+              "pricing": {
+                "input": "0.000002",
+                "output": "0.000008",
+                "cache": {
+                  "read": "0.0000002"
+                },
+                "notes": "阿里百炼 deepseek-v4.1-flash-1017 忙时定价（北京时间 08:00-22:00）：input ¥2/M、output ¥8/M、cache hit ¥0.2/M。"
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "peak",
+            "rate_label": "忙时",
+            "is_default": false,
+            "pricing": {
+              "input": "0.000002",
+              "output": "0.000008",
+              "cache": {
+                "read": "0.0000002"
+              },
+              "notes": "阿里百炼 deepseek-v4.1-flash-1017 忙时定价（北京时间 08:00-22:00）：input ¥2/M、output ¥8/M、cache hit ¥0.2/M。"
+            },
+            "local_at": "2026-11-09T18:03:02.021355084+08:00"
+          },
+          "next_change": {
+            "at": "2026-11-09T14:00:00Z",
+            "rate_key": "off_peak",
+            "rate_label": "闲时"
+          }
+        },
+        {
+          "pricing_row_id": 688,
+          "model_id": "deepseek/deepseek-v4.1-flash-1017",
+          "provider_id": "tencent-tokenhub",
+          "provider_name": "腾讯 TokenHub",
+          "applies_to_provider_ids": ["tencent-tokenhub"],
+          "price_source": "provider_specific",
+          "region": "global",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-10-21T06:19:58Z",
+          "timezone": "Asia/Shanghai",
+          "rates": [
+            {
+              "rate_key": "off_peak",
+              "rate_label": "空闲时段",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.000001",
+                "output": "0.000004",
+                "cache": {
+                  "read": "0.00000002"
+                },
+                "notes": "腾讯云 TokenHub ep-68sj0xv5（DeepSeek-V4.1-Flash-1017，非原厂直供通道）空闲时段价：input ¥1/M，output ¥4/M，cache hit ¥0.02/M。来源：腾讯云官方《大模型服务平台 TokenHub 模型价格》文档，2026-10-21 核对；该文档中 DeepSeek-V4.1-Flash-1017 的原厂直供与非直供价一致。高峰为北京时间工作日（周一至周五）09:00-12:00、14:00-18:00，周末全天算空闲；腾讯以服务端接收请求的时间判定时段。venus time_pricing 无星期维度，按每日同时段近似，周末同时段会按高峰价计。"
+              }
+            },
+            {
+              "rate_key": "peak",
+              "rate_label": "高峰时段",
+              "is_default": false,
+              "windows": [
+                {
+                  "start": "09:00",
+                  "end": "12:00"
+                },
+                {
+                  "start": "14:00",
+                  "end": "18:00"
+                }
+              ],
+              "pricing": {
+                "input": "0.000002",
+                "output": "0.000008",
+                "cache": {
+                  "read": "0.00000004"
+                },
+                "notes": "腾讯云 TokenHub ep-68sj0xv5 高峰时段价：input ¥2/M，output ¥8/M，cache hit ¥0.04/M（北京时间工作日 09:00-12:00、14:00-18:00）。"
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "off_peak",
+            "rate_label": "空闲时段",
+            "is_default": true,
+            "pricing": {
+              "input": "0.000001",
+              "output": "0.000004",
+              "cache": {
+                "read": "0.00000002"
+              },
+              "notes": "腾讯云 TokenHub ep-68sj0xv5（DeepSeek-V4.1-Flash-1017，非原厂直供通道）空闲时段价：input ¥1/M，output ¥4/M，cache hit ¥0.02/M。来源：腾讯云官方《大模型服务平台 TokenHub 模型价格》文档，2026-10-21 核对；该文档中 DeepSeek-V4.1-Flash-1017 的原厂直供与非直供价一致。高峰为北京时间工作日（周一至周五）09:00-12:00、14:00-18:00，周末全天算空闲；腾讯以服务端接收请求的时间判定时段。venus time_pricing 无星期维度，按每日同时段近似，周末同时段会按高峰价计。"
+            },
+            "local_at": "2026-11-09T18:03:02.021355084+08:00"
+          },
+          "next_change": {
+            "at": "2026-11-10T01:00:00Z",
+            "rate_key": "peak",
+            "rate_label": "高峰时段"
+          }
+        },
+        {
+          "pricing_row_id": 686,
+          "model_id": "deepseek/deepseek-v4.1-flash-1017",
+          "provider_id": "volces-ark",
+          "provider_name": "火山方舟 Volcengine Ark",
+          "applies_to_provider_ids": ["volces-ark"],
+          "price_source": "provider_specific",
+          "region": "global",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-10-21T05:58:52Z",
+          "timezone": "Asia/Shanghai",
+          "rates": [
+            {
+              "rate_key": "off_peak",
+              "rate_label": "空闲时段",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.000001",
+                "output": "0.000004",
+                "cache": {
+                  "read": "0.00000002"
+                },
+                "notes": "火山方舟 ep-20261020165405-2z256（上游 DeepSeek-V4.1-Flash 标准版｜261017）空闲时段刊例价：input ¥1/M，output ¥4/M，cache hit ¥0.02/M，缓存存储 ¥0.017/百万token/小时。来源：火山方舟官方《模型价格》文档表格（2026-10-20 核对）。注意：火山高峰仅限周一至周五 09:00-12:00、14:00-18:00，venus time_pricing 无星期维度，此处按每日同时段近似，周末同时段会按高峰价计。"
+              }
+            },
+            {
+              "rate_key": "peak",
+              "rate_label": "高峰时段",
+              "is_default": false,
+              "windows": [
+                {
+                  "start": "09:00",
+                  "end": "12:00"
+                },
+                {
+                  "start": "14:00",
+                  "end": "18:00"
+                }
+              ],
+              "pricing": {
+                "input": "0.000002",
+                "output": "0.000008",
+                "cache": {
+                  "read": "0.00000004"
+                },
+                "notes": "火山方舟 ep-20261020165405-2z256 高峰时段刊例价：input ¥2/M，output ¥8/M，cache hit ¥0.04/M（北京时间周一至周五 09:00-12:00、14:00-18:00）。"
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "off_peak",
+            "rate_label": "空闲时段",
+            "is_default": true,
+            "pricing": {
+              "input": "0.000001",
+              "output": "0.000004",
+              "cache": {
+                "read": "0.00000002"
+              },
+              "notes": "火山方舟 ep-20261020165405-2z256（上游 DeepSeek-V4.1-Flash 标准版｜261017）空闲时段刊例价：input ¥1/M，output ¥4/M，cache hit ¥0.02/M，缓存存储 ¥0.017/百万token/小时。来源：火山方舟官方《模型价格》文档表格（2026-10-20 核对）。注意：火山高峰仅限周一至周五 09:00-12:00、14:00-18:00，venus time_pricing 无星期维度，此处按每日同时段近似，周末同时段会按高峰价计。"
+            },
+            "local_at": "2026-11-09T18:03:02.021355084+08:00"
+          },
+          "next_change": {
+            "at": "2026-11-10T01:00:00Z",
+            "rate_key": "peak",
+            "rate_label": "高峰时段"
+          }
+        }
+      ],
+      "providers": ["alibaba-dashscope", "volces-ark", "tencent-tokenhub"],
+      "architecture": {
+        "input_modalities": ["text", "image"],
+        "modality": "text+image->text",
+        "output_modalities": ["text"],
+        "tokenizer": "deepseek"
+      }
+    },
+    {
+      "id": "minimax/minimax-m3",
+      "name": "MiniMax: MiniMax M3",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 436,
+          "model_id": "minimax/minimax-m3",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-06-04T08:56:39Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000042",
+                "output": "0.0000168",
+                "cache": {
+                  "read": "0.00000084"
+                }
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000042",
+              "output": "0.0000168",
+              "cache": {
+                "read": "0.00000084"
+              }
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 689,
+          "model_id": "minimax/minimax-m3",
+          "provider_id": "tencent-tokenhub",
+          "provider_name": "腾讯 TokenHub",
+          "applies_to_provider_ids": ["tencent-tokenhub"],
+          "price_source": "provider_specific",
+          "region": "global",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "0-512k",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 512000,
+          "effective_from": "2026-10-21T08:37:53Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000021",
+                "output": "0.0000084",
+                "cache": {
+                  "read": "0.00000042"
+                },
+                "notes": "腾讯 TokenHub minimax-m3（输入 ≤512k 档）：input ¥2.1/M，output ¥8.4/M，cache hit ¥0.42/M。来源：腾讯云 TokenHub 模型详情页与《TokenHub 模型价格》文档，2026-10-21 核对；阶梯按输入长度分档。"
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000021",
+              "output": "0.0000084",
+              "cache": {
+                "read": "0.00000042"
+              },
+              "notes": "腾讯 TokenHub minimax-m3（输入 ≤512k 档）：input ¥2.1/M，output ¥8.4/M，cache hit ¥0.42/M。来源：腾讯云 TokenHub 模型详情页与《TokenHub 模型价格》文档，2026-10-21 核对；阶梯按输入长度分档。"
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        },
+        {
+          "pricing_row_id": 690,
+          "model_id": "minimax/minimax-m3",
+          "provider_id": "tencent-tokenhub",
+          "provider_name": "腾讯 TokenHub",
+          "applies_to_provider_ids": ["tencent-tokenhub"],
+          "price_source": "provider_specific",
+          "region": "global",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "512k+",
+          "tier_min_tokens": 512001,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-10-21T08:37:53Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000042",
+                "output": "0.0000168",
+                "cache": {
+                  "read": "0.00000084"
+                },
+                "notes": "腾讯 TokenHub minimax-m3（输入 >512k 档）：input ¥4.2/M，output ¥16.8/M，cache hit ¥0.84/M。来源：腾讯云 TokenHub 模型详情页与《TokenHub 模型价格》文档，2026-10-21 核对；阶梯按输入长度分档。"
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000042",
+              "output": "0.0000168",
+              "cache": {
+                "read": "0.00000084"
+              },
+              "notes": "腾讯 TokenHub minimax-m3（输入 >512k 档）：input ¥4.2/M，output ¥16.8/M，cache hit ¥0.84/M。来源：腾讯云 TokenHub 模型详情页与《TokenHub 模型价格》文档，2026-10-21 核对；阶梯按输入长度分档。"
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        }
+      ],
+      "providers": ["alibaba-dashscope", "tencent-tokenhub"],
+      "architecture": {
+        "input_modalities": ["text", "image", "video"],
+        "modality": "text+image+video->text",
+        "output_modalities": ["text"],
+        "tokenizer": ""
+      }
+    },
+    {
+      "id": "moonshot/kimi-k2.6",
+      "name": "Moonshot: Kimi K2.6",
+      "pricing_rules": [
+        {
+          "pricing_row_id": 323,
+          "model_id": "moonshot/kimi-k2.6",
+          "provider_id": "",
+          "applies_to_provider_ids": ["alibaba-dashscope", "tencent-tokenhub"],
+          "price_source": "model_default",
+          "region": "cn",
+          "billing_mode": "on_demand",
+          "billing_unit": "token",
+          "currency": "CNY",
+          "tier_key": "default",
+          "tier_min_tokens": 0,
+          "tier_max_tokens": 0,
+          "effective_from": "2026-05-18T08:00:00Z",
+          "rates": [
+            {
+              "rate_key": "static",
+              "rate_label": "固定价格",
+              "is_default": true,
+              "windows": [],
+              "pricing": {
+                "input": "0.0000065",
+                "output": "0.000027",
+                "cache": {
+                  "read": "0.0000011"
+                }
+              }
+            }
+          ],
+          "current_rate": {
+            "rate_key": "",
+            "rate_label": "",
+            "is_default": true,
+            "pricing": {
+              "input": "0.0000065",
+              "output": "0.000027",
+              "cache": {
+                "read": "0.0000011"
+              }
+            },
+            "local_at": "2026-11-09T10:03:02.021355084Z"
+          }
+        }
+      ],
+      "providers": ["alibaba-dashscope", "tencent-tokenhub"],
+      "architecture": {
+        "input_modalities": ["text", "image", "video"],
+        "modality": "text+image+video->text",
+        "output_modalities": ["text"],
+        "tokenizer": "moonshot"
+      }
+    }
+  ]
+}

@@ -2,6 +2,8 @@
 
 本文定义 `astudio-v1` 当前100题的评分与统计口径，对应评分版本 **`point-mean-v1`**。
 
+后续模型选型的四 Sheet Excel 报告采用已确认的新汇总口径，整体和场景按题平均，能力按正确检查点数/适用检查点数计算。入口与公式见 [视觉模型评测与报告](vision-report.md)。下文保留历史回放的汇总说明，单题判分规则由新旧流程共用。
+
 单题按全部适用得分点计算正确率；能力分项按适用题平均；场景分按场景内题目平均；综合主分对六个场景等权平均。六个能力维度没有额外权重。
 
 当前规则来自 [scoring-policy.json](../../datasets/vision/astudio-v1/scoring-policy.json)，实现见 [score.mjs](../../scripts/astudio/vision/score.mjs) 和 [aggregate.mjs](../../scripts/astudio/vision/aggregate.mjs)。本文说明已有实现，不调整题目或判分标准。
