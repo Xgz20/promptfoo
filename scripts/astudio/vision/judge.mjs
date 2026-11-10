@@ -102,6 +102,7 @@ export async function judgeCandidate(row, candidate, config) {
     baseUrl: config.base_url,
     model: config.model,
     apiKey: process.env[config.api_key_env],
+    timeoutMs: config.timeout_ms ?? 600000,
     parameters: {
       max_tokens: 8192,
       reasoning_effort: config.reasoning_effort,
@@ -150,6 +151,7 @@ export async function judgeCandidate(row, candidate, config) {
       model: config.model,
       reasoning_effort: config.reasoning_effort,
       returned_model: result.returned_model,
+      timeout_ms: config.timeout_ms ?? 600000,
       started_at: result.started_at,
       elapsed_ms: result.elapsed_ms,
       usage: result.usage,
