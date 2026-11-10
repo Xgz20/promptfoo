@@ -39,6 +39,14 @@ export function excelColumn(index) {
   return column;
 }
 
+export function sortModelsByScore(models) {
+  return models.toSorted((left, right) => {
+    const leftScore = Number.isFinite(left.score) ? left.score : -Infinity;
+    const rightScore = Number.isFinite(right.score) ? right.score : -Infinity;
+    return leftScore === rightScore ? 0 : rightScore - leftScore;
+  });
+}
+
 export function caseColumnPlan(models) {
   const visibleHeaders = ['用例 ID', '场景', '用例名称', '检查点'];
   for (const model of models) {

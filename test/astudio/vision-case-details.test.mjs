@@ -14,9 +14,28 @@ import {
   compactLines,
   excelColumn,
   hideColumnDefinitions,
+  sortModelsByScore,
 } from '../../scripts/astudio/vision/workbook-layout.mjs';
 
 const canvas = JSON.parse(fs.readFileSync(path.join(ROOT, 'gold/canvas-001.json'), 'utf8'));
+
+test('comparison models sort by unrounded overall score with stable ties and missing scores last', () => {
+  const models = [
+    { id: 'pending', score: null },
+    { id: 'lower', score: 95.801 },
+    { id: 'zero', score: 0 },
+    { id: 'higher', score: 95.804 },
+    { id: 'tied', score: 95.804 },
+    { id: 'unavailable', score: 'N/A' },
+    { id: 'invalid', score: NaN },
+  ];
+  const original = [...models];
+  assert.deepEqual(
+    sortModelsByScore(models).map((model) => model.id),
+    ['higher', 'tied', 'lower', 'zero', 'pending', 'unavailable', 'invalid'],
+  );
+  assert.deepEqual(models, original);
+});
 
 test('case detail lists all 1041 frozen points including each geometry target once', () => {
   let count = 0,

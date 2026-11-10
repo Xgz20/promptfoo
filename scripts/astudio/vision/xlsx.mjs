@@ -13,6 +13,7 @@ import {
   compactLines,
   excelColumn,
   hideColumnDefinitions,
+  sortModelsByScore,
 } from './workbook-layout.mjs';
 
 const names = ['整体对比', '场景对比', '能力对比', '用例明细', '模型单价'];
@@ -320,6 +321,7 @@ function writeCaseDetails(sheet, report, prices) {
 export async function createReportWorkbook(report) {
   const { Workbook, SpreadsheetFile, JSZip } = await artifactTool();
   const workbook = Workbook.create();
+  const comparisonModels = sortModelsByScore(report.overall);
   const scope = `${report.scope === 'full' ? '全量评测' : '接口验证样本'}。每模型 ${report.selected_cases}/${report.dataset_size} 题。`;
   const context = {
     整体对比: `${scope}成本按候选模型公开实时单价估算，裁判用量另存。`,
@@ -348,7 +350,7 @@ export async function createReportWorkbook(report) {
       '已评 / 计划',
       '调用失败数',
     ],
-    report.overall.map((model) => [
+    comparisonModels.map((model) => [
       model.name,
       valueOr(model.score),
       valueOr(model.latency_seconds),
@@ -362,7 +364,7 @@ export async function createReportWorkbook(report) {
     'VisionOverview',
     [30, 16, 20, 21, 22, 22, 25, 16, 16],
   );
-  report.overall.forEach((model, index) => {
+  comparisonModels.forEach((model, index) => {
     const columns = columnsByModel.get(model.model_id);
     [
       columns.score,
@@ -400,9 +402,10 @@ export async function createReportWorkbook(report) {
   ];
   const sceneLast = table(
     scenes,
-    ['模型', ...categories.map((scene) => `${scene.name}\n（${scene.count}题）`)],
-    report.overall.map((model) => [
+    ['模型', '总平均分', ...categories.map((scene) => `${scene.name}\n（${scene.count}题）`)],
+    comparisonModels.map((model) => [
       model.name,
+      valueOr(model.score),
       ...categories.map((scene) =>
         valueOr(
           report.scenes.find(
@@ -412,10 +415,11 @@ export async function createReportWorkbook(report) {
       ),
     ]),
     'VisionSceneMatrix',
-    [30, ...categories.map(() => 24)],
+    [30, 16, ...categories.map(() => 24)],
   );
-  report.overall.forEach((model, index) => {
+  comparisonModels.forEach((model, index) => {
     const columns = columnsByModel.get(model.model_id);
+    scenes.getCell(6 + index, 2).formulas = [[`='整体对比'!C${7 + index}`]];
     categories.forEach((scene, category) => {
       const formula = meanFormula(
         range(columns.score),
@@ -424,23 +428,24 @@ export async function createReportWorkbook(report) {
         scene.id,
       );
       if (formula) {
-        scenes.getCell(6 + index, 2 + category).formulas = [[formula]];
+        scenes.getCell(6 + index, 3 + category).formulas = [[formula]];
       }
     });
   });
   scenes.getRange(`B7:B${sceneLast}`).format.horizontalAlignment = 'left';
-  scenes.getRange(`C7:${excelColumn(categories.length + 1)}${sceneLast}`).setNumberFormat('0.00');
+  scenes.getRange(`C7:${excelColumn(categories.length + 2)}${sceneLast}`).setNumberFormat('0.00');
   scenes.getRange('B5').values = [
     ['分数范围0～100。红色低分，绿色高分，N/A为尚未完成或无适用题。'],
   ];
-  scoreGradient(scenes, `C7:${excelColumn(categories.length + 1)}${sceneLast}`, 100);
+  scoreGradient(scenes, `C7:${excelColumn(categories.length + 2)}${sceneLast}`, 100);
 
   const dimensions = [...DIMENSIONS, '批注完整正确率'];
   const capabilityLast = table(
     capabilities,
-    ['模型', ...dimensions],
-    report.overall.map((model) => [
+    ['模型', '总平均分', ...dimensions],
+    comparisonModels.map((model) => [
       model.name,
+      valueOr(model.score),
       ...dimensions.map((dimension) =>
         valueOr(
           report.capabilities.find(
@@ -450,15 +455,16 @@ export async function createReportWorkbook(report) {
       ),
     ]),
     'VisionCapabilityMatrix',
-    [30, ...dimensions.map(() => 25)],
+    [30, 16, ...dimensions.map(() => 25)],
   );
-  report.overall.forEach((model, index) => {
+  comparisonModels.forEach((model, index) => {
     const columns = columnsByModel.get(model.model_id);
+    capabilities.getCell(6 + index, 2).formulas = [[`='整体对比'!C${7 + index}`]];
     dimensions.forEach((_dimension, category) => {
       const prefix = category < DIMENSIONS.length ? `dimension_${category}` : 'annotation';
       const earned = range(columns.fields[`${prefix}_earned`]);
       const possible = range(columns.fields[`${prefix}_possible`]);
-      capabilities.getCell(6 + index, 2 + category).formulas = [
+      capabilities.getCell(6 + index, 3 + category).formulas = [
         [
           `=IF(SUM(${possible})=0,"N/A",IF(COUNTIFS(${earned},">=0")=${report.selected_cases},SUM(${earned})/SUM(${possible}),"N/A"))`,
         ],
@@ -466,11 +472,13 @@ export async function createReportWorkbook(report) {
     });
   });
   capabilities.getRange(`B7:B${capabilityLast}`).format.horizontalAlignment = 'left';
-  capabilities.getRange(`C7:I${capabilityLast}`).setNumberFormat('0.00%');
+  capabilities.getRange(`C7:C${capabilityLast}`).setNumberFormat('0.00');
+  capabilities.getRange(`D7:J${capabilityLast}`).setNumberFormat('0.00%');
   capabilities.getRange('B5').values = [
-    ['正确率范围0%～100%。红色低分，绿色高分，N/A保留为灰色。'],
+    ['总平均分为百分制，能力为正确率。红色低分，绿色高分，N/A保留为灰色。'],
   ];
-  scoreGradient(capabilities, `C7:I${capabilityLast}`, 1);
+  scoreGradient(capabilities, `C7:C${capabilityLast}`, 100);
+  scoreGradient(capabilities, `D7:J${capabilityLast}`, 1);
   workbook.recalculate();
   return {
     workbook,
@@ -480,12 +488,14 @@ export async function createReportWorkbook(report) {
     casePlan: plan,
     prices,
     sceneCategories: categories,
+    comparisonModels,
   };
 }
 
 export async function exportReport(report, output, previewDir) {
   const state = await createReportWorkbook(report);
-  const { workbook, SpreadsheetFile, JSZip, sheets, casePlan, sceneCategories } = state;
+  const { workbook, SpreadsheetFile, JSZip, sheets, casePlan, sceneCategories, comparisonModels } =
+    state;
   const check = (actual, expected, label) => {
     if (expected === null) {
       assert.equal(typeof actual, 'string', `缺失指标应显式显示 ${label}`);
@@ -496,7 +506,19 @@ export async function exportReport(report, output, previewDir) {
       );
     }
   };
-  report.overall.forEach((model, index) => {
+  comparisonModels.forEach((model, index) => {
+    sheets.slice(0, 3).forEach((sheet) => {
+      assert.equal(
+        sheet.getRange(`B${7 + index}`).values[0][0],
+        model.name,
+        '对比表模型顺序不一致',
+      );
+      check(
+        sheet.getRange(`C${7 + index}`).values[0][0],
+        model.score,
+        `${model.name} ${sheet.name} 总平均分`,
+      );
+    });
     const cells = sheets[0].getRange(`C${7 + index}:H${7 + index}`).values[0];
     [
       model.score,
@@ -513,7 +535,7 @@ export async function exportReport(report, output, previewDir) {
         (item) => item.model_id === model.model_id && item.scene_id === scene.id,
       );
       check(
-        sheets[1].getCell(6 + index, 2 + category).values[0][0],
+        sheets[1].getCell(6 + index, 3 + category).values[0][0],
         expected.score,
         `${model.name} ${scene.name}`,
       );
@@ -523,7 +545,7 @@ export async function exportReport(report, output, previewDir) {
         (item) => item.model_id === model.model_id && item.name === dimension,
       );
       check(
-        sheets[2].getCell(6 + index, 2 + category).values[0][0],
+        sheets[2].getCell(6 + index, 3 + category).values[0][0],
         expected.rate,
         `${model.name} ${dimension}`,
       );
@@ -564,9 +586,7 @@ export async function exportReport(report, output, previewDir) {
           ? `B1:${excelColumn(casePlan.visibleLast)}8`
           : sheet.name === '模型单价'
             ? 'B1:M26'
-            : sheet.name === '整体对比'
-              ? `B1:J${Math.max(10, report.overall.length + 7)}`
-              : `B1:I${Math.max(10, report.overall.length + 7)}`;
+            : `B1:${sheet.name === '场景对比' ? 'I' : 'J'}${Math.max(10, report.overall.length + 7)}`;
       const preview = await workbook.render({
         sheetName: sheet.name,
         range,
