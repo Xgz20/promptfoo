@@ -33,7 +33,9 @@ try {
   const run = loadRun(runRoot);
   const model = run.manifest.models.find((item) => item.id === values.model);
   assert.ok(model, '模型不在原评测计划中');
-  assert.ok(process.env[run.config.api_key_env], `请设置 ${run.config.api_key_env}`);
+  if (!values['reuse-diagnostic']) {
+    assert.ok(process.env[run.config.api_key_env], `请设置 ${run.config.api_key_env}`);
+  }
   const ids = values.cases.split(',');
   assert.equal(new Set(ids).size, ids.length, '题号重复');
   const jobs = ids.map((id) => {

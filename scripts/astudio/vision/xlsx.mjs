@@ -388,7 +388,7 @@ export async function createReportWorkbook(report) {
     const retries = report.records.filter((record) => record.candidate?.retry).length;
     overall.getRange('B5').values = [
       [
-        `候选模型并发${execution.model_concurrency}，单模型并发${execution.per_model_concurrency}，默认请求参数max_tokens=${execution.max_tokens}。候选失败${failures}题按0分计，缺少完整用量的成本为N/A。${retries ? `补跑${retries}题采用最新请求。` : ''}`,
+        `候选模型并发${execution.model_concurrency}，单模型并发${execution.per_model_concurrency}，默认请求参数max_tokens=${execution.max_tokens}。候选失败${failures}题按0分计，缺少完整用量的成本为N/A。${retries ? `补跑${retries}题采用入选响应。` : ''}`,
       ],
     ];
   }
