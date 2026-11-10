@@ -2,6 +2,8 @@
 
 本流程使用 Promptfoo 采集单图回答，逐点裁判与几何评分生成单题分，最后导出五个 Sheet。指标依据[图像理解测评指标](https://yf2ljykclb.xfchat.iflytek.com/docx/doxrzQ171Iz0NJ2gYjhOlXka39g)，模型名单依据[视觉模型测评选型](https://yf2ljykclb.xfchat.iflytek.com/docx/doxrzrtQPKEFmhibd19RT8poe1d)，价格读取 [Venus 定价页](https://venus.xunfei.cn/pricing) 使用的公开目录接口。
 
+基于本流程结果撰写的四章选型报告样例见 [AStudio视觉模型选型评测报告（2026年11月10日）](reports/vision-model-selection_20261110_165442.md)，包含结论、整体对比、场景对比和能力对比，可供后续报告生成Skill参考结构与证据口径。
+
 ## 五个 Sheet 与计算口径
 
 | Sheet    | 主要内容                                                                                 |
