@@ -48,6 +48,36 @@ export function candidateStatus(result) {
   return !result.error && result.output ? 'ok' : 'error';
 }
 
+export async function requestCandidate(config, meta, messages) {
+  assert.equal(messages.length, 1);
+  const content = messages[0].content;
+  assert.equal(content.length, 2);
+  assert.equal(hash(content[0].text), meta.prompt_sha256, '候选模型题干哈希不一致');
+  assert.equal(
+    hash(Buffer.from(content[1].image_url.url.split(',')[1], 'base64')),
+    meta.image_sha256,
+    '候选模型图片哈希不一致',
+  );
+  const result = await chat({
+    baseUrl: config.baseUrl,
+    model: config.model,
+    apiKey: process.env[config.apiKeyEnv],
+    messages,
+    parameters: config.parameters,
+    timeoutMs: config.timeoutMs,
+  });
+  return {
+    ...result,
+    case_id: meta.case_id,
+    scene: meta.scene,
+    image_sha256: meta.image_sha256,
+    prompt_sha256: meta.prompt_sha256,
+    gold_sha256: meta.gold_sha256,
+    answer_sha256: hash(result.output),
+    status: candidateStatus(result),
+  };
+}
+
 export default class VisionProvider {
   constructor(options) {
     this.config = options.config;
@@ -65,34 +95,7 @@ export default class VisionProvider {
       null,
       '候选记录已存在，请使用断点恢复跳过已完成调用',
     );
-    const messages = JSON.parse(prompt);
-    assert.equal(messages.length, 1);
-    const content = messages[0].content;
-    assert.equal(content.length, 2);
-    assert.equal(hash(content[0].text), meta.prompt_sha256, '候选模型题干哈希不一致');
-    assert.equal(
-      hash(Buffer.from(content[1].image_url.url.split(',')[1], 'base64')),
-      meta.image_sha256,
-      '候选模型图片哈希不一致',
-    );
-    const result = await chat({
-      baseUrl: this.config.baseUrl,
-      model: this.config.model,
-      apiKey: process.env[this.config.apiKeyEnv],
-      messages,
-      parameters: this.config.parameters,
-      timeoutMs: this.config.timeoutMs,
-    });
-    const record = {
-      ...result,
-      case_id: meta.case_id,
-      scene: meta.scene,
-      image_sha256: meta.image_sha256,
-      prompt_sha256: meta.prompt_sha256,
-      gold_sha256: meta.gold_sha256,
-      answer_sha256: hash(result.output),
-      status: candidateStatus(result),
-    };
+    const record = await requestCandidate(this.config, meta, JSON.parse(prompt));
     writeJSON(candidatePath(this.config.runRoot, this.config.model, meta.case_id), record);
     if (record.status === 'invalid_configuration') {
       this.configurationError = record.error ?? '模型配置异常';
@@ -100,7 +103,7 @@ export default class VisionProvider {
     console.log(
       JSON.stringify({ model: record.model_id, case_id: record.case_id, status: record.status }),
     );
-    const usage = normalizeUsage(result.usage);
+    const usage = normalizeUsage(record.usage);
     return {
       output: record.output,
       error: record.error ?? (record.output ? undefined : 'EMPTY_MODEL_OUTPUT'),

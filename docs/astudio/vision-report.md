@@ -106,6 +106,27 @@ node --import tsx scripts/astudio/vision/evaluate-live.mjs \
 
 候选阶段的原生结果用于执行诊断，最终视觉分数由后续逐点判分生成。模型输入仅包含已核验哈希的原图与完整题干。
 
+### 补跑已记录的调用失败
+
+视觉流程的HTTP响应头等待超时默认600秒，由 `REQUEST_TIMEOUT_MS` 控制。应用层总超时由 `--timeout-ms` 单独控制。两层均需允许目标请求的完整执行时间。传输失败记录保留底层错误码和脱敏后的原因。
+
+新批次保存原始字节的 `dataset-cases.jsonl` 快照，补跑、裁判和报告优先读取该快照并核验原哈希。历史批次需要从其 `source_revision` 恢复相同字节的快照，恢复后应校验 `cases_sha256`。图片、题干和Gold继续按原记录中的哈希核验。
+
+```bash
+node scripts/astudio/vision/retry-candidates.mjs \
+  --run-dir RUN_DIR --model zhipu/glm-5.3-flash \
+  --cases canvas-010,poster-012,poster-014 --timeout-ms 600000
+node scripts/astudio/vision/judge-run.mjs --run-dir RUN_DIR --mode api --concurrency 3
+```
+
+补跑按题串行执行，沿用原模型和输出参数。原调用归档到 `candidate-attempts/`，新响应先暂存，再原子替换当前候选记录，随后重新裁判。成功记录再次运行会跳过，发布中断后可复用已暂存的响应。同一轮的候选和裁判锁共同保护补跑过程。
+
+### 输出预算的解释
+
+当前采集流程显式发送 `max_tokens`，命令行默认8192，本次正式批次为32768。该值表达生成上限。支持推理的接口可能将思考token与最终答案共同计入该预算，具体语义以渠道实现为准。
+
+统一预算适合比较既定资源条件下的效果、成本和延迟。以模型推荐配置开展选型时，应冻结各模型的有效输出预算及思考设置，并单列截断率。省略参数后由SDK、网关或供应商决定有效默认值，默认值与模型最大输出容量分别核对。视觉评测框架VLMEvalKit也在模型配置中分别设置输出预算，例如部分推理模型为16384、部分模型为32768。来源见 [VLMEvalKit配置](https://github.com/open-compass/VLMEvalKit/blob/main/vlmeval/config.py) 与 [Inspect生成配置](https://inspect.aisi.org.uk/reference/inspect_ai.model.html#generateconfig)。
+
 ## 在 Codex 客户端会话中完成裁判
 
 当前会话可以读取本地原图、候选回答及标准检查点，输出逐点判断。该方式适合人工协作核验，判分过程通过结构化文件交接。
@@ -161,6 +182,19 @@ API 裁判接收原图、问题、原子标准及原始回答。程序从可信 
 判分成功的记录存入 `reviews/`，可重跑裁判阶段补齐剩余项。已有记录会先经哈希与评分契约检查。异常记录写入对应的 `.error.json`，并在汇总中显示待裁判。判分过程中使用 `.judge.lock` 防止同一轮并行写入。进程异常中止后，应确认该轮裁判进程已结束，再清理残留锁文件。
 
 ## 费用与性能
+
+单题估算成本按四类用量分别计价，单价单位为人民币元/百万token。当前Venus OpenAI Chat返回的缓存读写token属于输入token的组成部分。
+
+```text
+普通输入token = 输入token − 缓存读token − 缓存写token
+单题成本 = (普通输入token × 普通输入单价
+          + 缓存读token × 缓存读单价
+          + 缓存写token × 缓存写单价
+          + 输出token × 输出单价) / 1000000
+单题平均成本 = 本轮各题成本之和 / 计划题数
+```
+
+每题根据实际渠道、请求时间与输入档位匹配价格。缺少用量或价格时保留N/A。补跑后，对比表统计当前候选结果所对应请求的成本，原失败尝试单独归档，历史失败用量缺失时，全部实际支出需通过平台账单核对。
 
 - 耗时使用每次候选请求从发出到完整响应的时长。并发执行时按各题请求时长求平均。
 - 输入、输出、总token使用接口返回的用量。输出token包含接口已计入的推理token。

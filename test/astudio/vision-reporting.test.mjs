@@ -234,6 +234,22 @@ test('transport redacts the credential from upstream errors', async () => {
   assert.ok(result.error.includes('[REDACTED]'));
 });
 
+test('transport failures preserve the underlying error code and redact its message', async () => {
+  const result = await chat({
+    baseUrl: 'https://example.com/v1',
+    model: 'test/model',
+    apiKey: 'test-secret',
+    messages: [],
+    fetcher: async () => {
+      throw new TypeError('fetch failed', {
+        cause: { code: 'UND_ERR_HEADERS_TIMEOUT', message: 'timeout test-secret' },
+      });
+    },
+  });
+  assert.equal(result.error_code, 'UND_ERR_HEADERS_TIMEOUT');
+  assert.equal(result.error_cause, 'timeout [REDACTED]');
+});
+
 test('bounded workers overlap and wait for all active workers before reporting errors', async () => {
   let active = 0,
     peak = 0,

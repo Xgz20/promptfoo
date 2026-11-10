@@ -3,15 +3,22 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { checkpointDefinitions, checkpointResults } from './case-details.mjs';
-import { bytes, hash, read, verifiedJSON } from './files.mjs';
+import { bytes, hash, verifiedJSON } from './files.mjs';
 import { reviewPath, reviewRequest, scoreCandidate, technicalFailureReview } from './judge.mjs';
 import { readCandidate } from './live-provider.mjs';
 import { buildReport } from './metrics.mjs';
 import { estimateCost } from './pricing.mjs';
 import { DIMENSIONS } from './score.mjs';
 
-export function datasetCases() {
-  return bytes('cases.jsonl').toString('utf8').trim().split('\n').map(JSON.parse);
+export function datasetCases(runRoot) {
+  const snapshot = runRoot && path.join(runRoot, 'dataset-cases.jsonl');
+  const data =
+    snapshot && fs.existsSync(snapshot) ? fs.readFileSync(snapshot) : bytes('cases.jsonl');
+  if (runRoot) {
+    const manifest = JSON.parse(fs.readFileSync(path.join(runRoot, 'run.json'), 'utf8'));
+    assert.equal(hash(data), manifest.cases_sha256, '运行后的 JSONL 已经改变');
+  }
+  return data.toString('utf8').trim().split('\n').map(JSON.parse);
 }
 
 export function plannedPoints(row) {
@@ -33,11 +40,11 @@ export function loadRun(runRoot) {
   const manifest = JSON.parse(fs.readFileSync(path.join(runRoot, 'run.json'), 'utf8'));
   const pricing = JSON.parse(fs.readFileSync(path.join(runRoot, 'pricing.json'), 'utf8'));
   const config = manifest.config;
-  assert.equal(hash(bytes('cases.jsonl')), manifest.cases_sha256, '运行后的 JSONL 已经改变');
   assert.equal(hash(JSON.stringify(pricing)), manifest.pricing_sha256, '运行价格快照已经改变');
-  const rows = datasetCases().filter((row) => manifest.case_ids.includes(row.metadata.case_id));
+  const rows = datasetCases(runRoot).filter((row) =>
+    manifest.case_ids.includes(row.metadata.case_id),
+  );
   assert.equal(rows.length, manifest.case_ids.length, '当前题集与运行记录不匹配');
-  assert.equal(read('manifest.json').cases_sha256, manifest.cases_sha256, '运行后的题集已经改变');
   const jobs = [];
   const records = [];
   for (const model of manifest.models) {

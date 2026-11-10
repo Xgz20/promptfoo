@@ -16,7 +16,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(runRoot, 'run.json'), 'utf
 const model = manifest.models.find((item) => item.id === values.model);
 assert.ok(model, '模型不在本轮计划中');
 const { config } = manifest;
-const tests = datasetCases().filter(
+const tests = datasetCases(runRoot).filter(
   (row) =>
     manifest.case_ids.includes(row.metadata.case_id) &&
     !readCandidate(runRoot, model.id, row.metadata),

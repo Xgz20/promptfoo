@@ -63,6 +63,8 @@ export async function chat({
       usage: null,
       output: '',
       error: error.message.replaceAll(apiKey, '[REDACTED]'),
+      error_code: error.cause?.code ?? error.code ?? null,
+      error_cause: error.cause?.message?.replaceAll(apiKey, '[REDACTED]') ?? null,
     };
   }
 }

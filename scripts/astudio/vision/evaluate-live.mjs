@@ -5,7 +5,7 @@ import path from 'node:path';
 import { parseArgs } from 'node:util';
 
 import { forEachConcurrent } from './concurrency.mjs';
-import { hash, REPO, read } from './files.mjs';
+import { bytes, hash, REPO, read } from './files.mjs';
 import { exportSessionJudge } from './judge.mjs';
 import { modelKey, writeJSON } from './live-provider.mjs';
 import { fetchForVision } from './network.mjs';
@@ -126,6 +126,7 @@ if (values.resume) {
   manifest = existing;
 } else {
   fs.mkdirSync(runRoot); // Existing runs require an explicit, hash-checked resume.
+  fs.writeFileSync(path.join(runRoot, 'dataset-cases.jsonl'), bytes('cases.jsonl'));
   const pricing = await refreshPricing(config.models);
   writeJSON(path.join(runRoot, 'pricing.json'), pricing);
   manifest.pricing_sha256 = hash(JSON.stringify(pricing));
