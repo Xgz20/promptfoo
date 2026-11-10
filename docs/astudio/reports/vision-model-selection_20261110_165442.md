@@ -49,7 +49,7 @@ Qwen3-VL-Plus的千题成本最低，为3.99元，总分为85.57分。Qwen3.8 Fl
 - 首轮异常记录为GLM 3次、MiMo 9次，其余模型0次。GLM记录为约301秒的传输失败，客户端响应头等待上限随后由300秒修正为600秒。MiMo记录为输出达到32768 token、结束原因为length且候选记录中的最终回答为空。同参数诊断与补跑能取得正常回答，原9次的完整响应留存缺口限制了逐条内部原因归因。
 - 本版采用GLM三题和MiMo九题重新评分后的结果。MiMo两题采用首次同参数完整诊断响应，其余七题重新调用。首轮异常列保留原批次记录数，当前各模型均有100份已评分结果。
 
-数据附件包括[Excel完整报告][excel]、[逐题评分与汇总JSON][results]、[运行参数清单][run]和[价格快照][pricing]，按本机评测产物目录保存。模型和指标依据分别为[视觉模型测评选型][models]与[图像理解测评指标][metrics]。
+数据附件包括[Excel完整报告][excel]、[逐题评分与汇总JSON快照][results]、[运行参数清单][run]和[价格快照][pricing]，按本机评测产物目录保存。结果JSON与本版Excel采用同一份固定数据，复核时可随报告一起提供。模型和指标依据分别为[视觉模型测评选型][models]与[图像理解测评指标][metrics]。
 
 ## 3. 场景对比
 
@@ -104,9 +104,9 @@ MiMo在补齐原9个失败题的候选回答并重新评分后，精确定位为
 以上数值按原始精度计算，表格展示时取两位小数，单题成本取六位。完整性和分项费用核对记录见[补跑结果核验][retrycheck]。
 
 [excel]: ../../../.local/outputs/vision-full-100x8_20261109_210754/视觉模型评测报告_20261110_114852.xlsx
-[results]: ../../../.local/vision-runs/full-100x8_32k_20261109_210754/report-data.json
+[results]: ../../../.local/outputs/vision-full-100x8_20261109_210754/report-data_20261110_114852.json
 [run]: ../../../.local/vision-runs/full-100x8_32k_20261109_210754/run.json
 [pricing]: ../../../.local/vision-runs/full-100x8_32k_20261109_210754/pricing.json
-[retrycheck]: ../../../.local/vision-runs/full-100x8_32k_20261109_210754/mimo-nine-retry-validation-20261110.json
+[retrycheck]: ../../../.local/outputs/vision-full-100x8_20261109_210754/mimo-nine-retry-validation_20261110_114852.json
 [models]: https://yf2ljykclb.xfchat.iflytek.com/docx/doxrzrtQPKEFmhibd19RT8poe1d
 [metrics]: https://yf2ljykclb.xfchat.iflytek.com/docx/doxrzQ171Iz0NJ2gYjhOlXka39g
