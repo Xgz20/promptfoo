@@ -123,6 +123,16 @@ node scripts/astudio/vision/judge-run.mjs --run-dir RUN_DIR --mode api --concurr
 
 ### 输出预算的解释
 
+出现截断或空回答时，可以先抽样诊断并保存完整响应。以下命令沿用原批次模型、题目与生成参数，将HTTP响应体、脱敏后的响应头、`reasoning_content`、原始 `content` 结构和usage保存到独立目录，正式候选记录继续作为原配置的基线。
+
+```bash
+node scripts/astudio/vision/diagnose-candidates.mjs \
+  --run-dir RUN_DIR --model xiaomi/mimo-v2.6-pro \
+  --cases canvas-004,poster-014 --output-dir .local/vision-diagnostics/mimo-32k
+```
+
+每次诊断使用新目录，响应逐题保存。HTTP响应读到一半失败时保留已接收的片段，并标记完整性与JSON解析状态。调整输出预算或思考配置后，另开正式评测版本，完整重评该模型的全部题目。
+
 当前采集流程显式发送 `max_tokens`，命令行默认8192，本次正式批次为32768。该值表达生成上限。支持推理的接口可能将思考token与最终答案共同计入该预算，具体语义以渠道实现为准。
 
 统一预算适合比较既定资源条件下的效果、成本和延迟。以模型推荐配置开展选型时，应冻结各模型的有效输出预算及思考设置，并单列截断率。省略参数后由SDK、网关或供应商决定有效默认值，默认值与模型最大输出容量分别核对。视觉评测框架VLMEvalKit也在模型配置中分别设置输出预算，例如部分推理模型为16384、部分模型为32768。来源见 [VLMEvalKit配置](https://github.com/open-compass/VLMEvalKit/blob/main/vlmeval/config.py) 与 [Inspect生成配置](https://inspect.aisi.org.uk/reference/inspect_ai.model.html#generateconfig)。

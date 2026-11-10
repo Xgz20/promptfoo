@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { bytes, hash } from './files.mjs';
+import { hash } from './files.mjs';
 import {
   candidatePath,
   modelKey,
@@ -10,7 +10,7 @@ import {
   requestCandidate,
   writeJSON,
 } from './live-provider.mjs';
-import messages from './messages.mjs';
+import { caseMessages } from './messages.mjs';
 
 // The caller owns both candidate and judge locks during this transaction.
 export async function retryCandidate({
@@ -50,13 +50,7 @@ export async function retryCandidate({
     assert.deepEqual(replacement.retry.parameters, config.parameters, '补跑恢复参数不一致');
     assert.equal(replacement.retry.timeout_ms, config.timeoutMs, '补跑恢复超时不一致');
   } else {
-    const input = messages({
-      vars: {
-        case_id: previous.case_id,
-        question: bytes(row.vars.question).toString('utf8').trim(),
-        image: `data:image/png;base64,${bytes(row.vars.image).toString('base64')}`,
-      },
-    });
+    const input = caseMessages(previous.case_id);
     replacement = await requester(config, row.metadata, input);
     replacement.retry = {
       previous_request_id: previous.request_id,

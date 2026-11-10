@@ -65,6 +65,7 @@ export async function requestCandidate(config, meta, messages) {
     messages,
     parameters: config.parameters,
     timeoutMs: config.timeoutMs,
+    captureResponse: config.captureResponse,
   });
   return {
     ...result,
