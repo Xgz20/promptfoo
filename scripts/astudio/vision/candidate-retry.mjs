@@ -12,6 +12,47 @@ import {
 } from './live-provider.mjs';
 import { caseMessages } from './messages.mjs';
 
+export function readDiagnosticCandidate({ runRoot, directory, model, meta, config }) {
+  const plan = JSON.parse(fs.readFileSync(path.join(directory, 'diagnostic.json'), 'utf8'));
+  assert.equal(plan.mode, 'diagnostic');
+  assert.equal(path.resolve(plan.baseline_run), path.resolve(runRoot), '诊断基线不匹配');
+  assert.equal(plan.model, model.id, '诊断模型不匹配');
+  assert.equal(plan.stream, false, '诊断响应模式不匹配');
+  assert.deepEqual(plan.parameters, config.parameters, '诊断生成参数不匹配');
+  assert.equal(plan.application_timeout_ms, config.timeoutMs, '诊断超时不匹配');
+  const item = plan.cases.find((item) => item.case_id === meta.case_id);
+  assert.ok(item, '诊断中缺少指定用例');
+  assert.deepEqual(item.metadata, meta, '诊断用例元数据不匹配');
+  assert.equal(
+    hash(fs.readFileSync(candidatePath(runRoot, model.id, meta.case_id))),
+    item.baseline_sha256,
+    '诊断原候选记录不匹配',
+  );
+  const file = path.resolve(directory, `${meta.case_id}.json`);
+  const record = JSON.parse(fs.readFileSync(file, 'utf8'));
+  assert.equal(record.status, 'ok', '诊断回答需正常完成');
+  assert.equal(record.http_status, 200);
+  assert.equal(record.model_id, model.id);
+  assert.equal(record.case_id, meta.case_id);
+  for (const key of ['image_sha256', 'prompt_sha256', 'gold_sha256']) {
+    assert.equal(record[key], meta[key], `诊断输入哈希不匹配 ${key}`);
+  }
+  assert.equal(record.answer_sha256, hash(record.output));
+  assert.ok(record.output.trim(), '诊断回答为空');
+  assert.ok(record.raw_response?.complete && record.raw_response.json_valid, '诊断完整响应缺失');
+  const raw = JSON.parse(record.raw_response.body);
+  assert.equal(raw.choices?.[0]?.message?.content, record.output, '诊断回答与原始响应不一致');
+  assert.deepEqual(raw.usage, record.usage, '诊断用量与原始响应不一致');
+  return {
+    ...record,
+    reused_diagnostic_response: {
+      file,
+      sha256: hash(fs.readFileSync(file)),
+      source_revision: plan.source_revision,
+    },
+  };
+}
+
 // The caller owns both candidate and judge locks during this transaction.
 export async function retryCandidate({
   runRoot,
@@ -49,6 +90,11 @@ export async function retryCandidate({
     replacement = JSON.parse(fs.readFileSync(staged, 'utf8'));
     assert.deepEqual(replacement.retry.parameters, config.parameters, '补跑恢复参数不一致');
     assert.equal(replacement.retry.timeout_ms, config.timeoutMs, '补跑恢复超时不一致');
+    assert.equal(
+      Boolean(replacement.retry.capture_response),
+      Boolean(config.captureResponse),
+      '补跑响应留存配置不一致',
+    );
   } else {
     const input = caseMessages(previous.case_id);
     replacement = await requester(config, row.metadata, input);
@@ -59,6 +105,7 @@ export async function retryCandidate({
       parameters: config.parameters,
       timeout_ms: config.timeoutMs,
       response_header_timeout_ms: Number(process.env.REQUEST_TIMEOUT_MS ?? 600000),
+      capture_response: Boolean(config.captureResponse),
     };
     writeJSON(staged, replacement);
   }

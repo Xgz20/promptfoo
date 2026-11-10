@@ -4,7 +4,10 @@ import os from 'node:os';
 import path from 'node:path';
 
 import { afterEach, beforeEach, test, vi } from 'vitest';
-import { retryCandidate } from '../../scripts/astudio/vision/candidate-retry.mjs';
+import {
+  readDiagnosticCandidate,
+  retryCandidate,
+} from '../../scripts/astudio/vision/candidate-retry.mjs';
 import { bytes, hash } from '../../scripts/astudio/vision/files.mjs';
 import { candidatePath, modelKey, writeJSON } from '../../scripts/astudio/vision/live-provider.mjs';
 import { datasetCases } from '../../scripts/astudio/vision/run-store.mjs';
@@ -97,4 +100,82 @@ test('run-local cases are verified by the frozen hash and remain independent of 
   assert.deepEqual(datasetCases(root), [row]);
   fs.appendFileSync(path.join(root, 'dataset-cases.jsonl'), ' ');
   assert.throws(() => datasetCases(root), /JSONL/);
+});
+
+function diagnosticFixture() {
+  const directory = path.join(root, 'diagnostic');
+  const usage = { prompt_tokens: 10, completion_tokens: 2, total_tokens: 12 };
+  const record = {
+    ...next,
+    http_status: 200,
+    usage,
+    raw_response: {
+      complete: true,
+      json_valid: true,
+      body: JSON.stringify({ usage, choices: [{ message: { content: next.output } }] }),
+    },
+  };
+  const plan = {
+    mode: 'diagnostic',
+    baseline_run: root,
+    model: model.id,
+    stream: false,
+    parameters: config.parameters,
+    application_timeout_ms: config.timeoutMs,
+    source_revision: 'diagnostic-test',
+    cases: [
+      {
+        case_id: row.metadata.case_id,
+        metadata: row.metadata,
+        baseline_sha256: hash(fs.readFileSync(candidatePath(root, model.id, row.metadata.case_id))),
+      },
+    ],
+  };
+  writeJSON(path.join(directory, 'diagnostic.json'), plan);
+  writeJSON(path.join(directory, `${row.metadata.case_id}.json`), record);
+  return { directory, record, plan };
+}
+
+test('same-parameter diagnostic responses can be reused with their original provenance', async () => {
+  const { directory } = diagnosticFixture();
+  const imported = readDiagnosticCandidate({
+    runRoot: root,
+    directory,
+    model,
+    meta: row.metadata,
+    config,
+  });
+  const result = await retryCandidate({
+    runRoot: root,
+    model,
+    row,
+    config,
+    sourceRevision: 'test',
+    requester: async () => imported,
+  });
+  assert.equal(result.status, 'ok');
+  const current = JSON.parse(fs.readFileSync(candidatePath(root, model.id, row.metadata.case_id)));
+  assert.equal(current.reused_diagnostic_response.source_revision, 'diagnostic-test');
+  assert.equal(current.request_id, next.request_id);
+});
+
+test.each(['parameters', 'body', 'metadata'])('diagnostic reuse rejects mismatched %s', (field) => {
+  const { directory, plan, record } = diagnosticFixture();
+  if (field === 'parameters') {
+    plan.parameters = { max_tokens: 131072 };
+  }
+  if (field === 'body') {
+    record.raw_response.body = JSON.stringify({
+      usage: record.usage,
+      choices: [{ message: { content: 'different' } }],
+    });
+  }
+  if (field === 'metadata') {
+    record.image_sha256 = 'different';
+  }
+  writeJSON(path.join(directory, 'diagnostic.json'), plan);
+  writeJSON(path.join(directory, `${row.metadata.case_id}.json`), record);
+  assert.throws(() =>
+    readDiagnosticCandidate({ runRoot: root, directory, model, meta: row.metadata, config }),
+  );
 });

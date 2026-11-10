@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parseArgs } from 'node:util';
 
-import { retryCandidate } from './candidate-retry.mjs';
+import { readDiagnosticCandidate, retryCandidate } from './candidate-retry.mjs';
 import { REPO } from './files.mjs';
 import { loadRun } from './run-store.mjs';
 
@@ -14,6 +14,8 @@ const { values } = parseArgs({
     model: { type: 'string' },
     cases: { type: 'string' },
     'timeout-ms': { type: 'string', default: '600000' },
+    'capture-response': { type: 'boolean', default: false },
+    'reuse-diagnostic': { type: 'string' },
   },
 });
 assert.ok(values['run-dir'] && values.model && values.cases, '请指定 run-dir、model 和 cases');
@@ -50,10 +52,21 @@ try {
     baseUrl: run.config.base_url,
     apiKeyEnv: run.config.api_key_env,
     timeoutMs,
+    captureResponse: values['capture-response'],
     parameters: { ...run.manifest.candidate_parameters, ...model.parameters },
   };
   for (const { row } of jobs) {
-    const result = await retryCandidate({ runRoot, model, row, config, sourceRevision });
+    const requester = values['reuse-diagnostic']
+      ? async () =>
+          readDiagnosticCandidate({
+            runRoot,
+            directory: path.resolve(values['reuse-diagnostic']),
+            model,
+            meta: row.metadata,
+            config,
+          })
+      : undefined;
+    const result = await retryCandidate({ runRoot, model, row, config, sourceRevision, requester });
     console.log(JSON.stringify(result));
     if (!['ok', 'skipped'].includes(result.status)) {
       process.exitCode = 1;
