@@ -102,7 +102,7 @@ node --import tsx scripts/astudio/vision/evaluate-live.mjs \
   --run-dir RUN_DIR --concurrency 8 --per-model-concurrency 1 --resume
 ```
 
-`.candidate.lock` 防止同一轮重复启动。异常中止后，如锁仍存在，应先确认该轮父进程和所有模型子进程均已结束，再清理残留锁文件。默认单次请求超时180秒、最大输出8192 token，可通过 `--timeout-ms`、`--max-tokens` 指定并冻结在运行记录中。
+`.candidate.lock` 防止同一轮重复启动。异常中止后，如锁仍存在，应先确认该轮父进程和所有模型子进程均已结束，再清理残留锁文件。默认单次请求超时600秒、最大输出8192 token，可通过 `--timeout-ms`、`--max-tokens` 指定并冻结在运行记录中。
 
 候选阶段的原生结果用于执行诊断，最终视觉分数由后续逐点判分生成。模型输入仅包含已核验哈希的原图与完整题干。
 

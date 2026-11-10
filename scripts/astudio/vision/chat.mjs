@@ -8,7 +8,7 @@ export async function chat({
   apiKey,
   messages,
   parameters = {},
-  timeoutMs = 180000,
+  timeoutMs = 600000,
   fetcher = fetchForVision,
 }) {
   if (!apiKey) {

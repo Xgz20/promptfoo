@@ -21,7 +21,7 @@ const { values } = parseArgs({
     concurrency: { type: 'string', default: '4' },
     'per-model-concurrency': { type: 'string', default: '1' },
     'max-tokens': { type: 'string', default: '8192' },
-    'timeout-ms': { type: 'string', default: '180000' },
+    'timeout-ms': { type: 'string', default: '600000' },
     'run-dir': { type: 'string' },
     resume: { type: 'boolean', default: false },
   },

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 
-import { test } from 'vitest';
+import { afterEach, test, vi } from 'vitest';
 import { chat } from '../../scripts/astudio/vision/chat.mjs';
 import { forEachConcurrent } from '../../scripts/astudio/vision/concurrency.mjs';
 import { bindReview } from '../../scripts/astudio/vision/judge.mjs';
@@ -12,6 +12,20 @@ import {
 } from '../../scripts/astudio/vision/metrics.mjs';
 import { estimateCost, normalizeUsage } from '../../scripts/astudio/vision/pricing.mjs';
 import { DIMENSIONS } from '../../scripts/astudio/vision/score.mjs';
+
+afterEach(() => vi.restoreAllMocks());
+
+test('the default application timeout matches the 600-second vision transport timeout', async () => {
+  const timeout = vi.spyOn(AbortSignal, 'timeout').mockReturnValue(new AbortController().signal);
+  await chat({
+    baseUrl: 'https://example.com/v1',
+    model: 'test/model',
+    apiKey: 'test-key',
+    messages: [],
+    fetcher: async () => new Response('{}'),
+  });
+  assert.deepEqual(timeout.mock.calls, [[600000]]);
+});
 
 function record(id, earned, possible, score) {
   return {
