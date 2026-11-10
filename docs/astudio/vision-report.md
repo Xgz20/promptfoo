@@ -127,6 +127,8 @@ node scripts/astudio/vision/judge-run.mjs --run-dir RUN_DIR --mode api --concurr
 
 统一预算适合比较既定资源条件下的效果、成本和延迟。以模型推荐配置开展选型时，应冻结各模型的有效输出预算及思考设置，并单列截断率。省略参数后由SDK、网关或供应商决定有效默认值，默认值与模型最大输出容量分别核对。视觉评测框架VLMEvalKit也在模型配置中分别设置输出预算，例如部分推理模型为16384、部分模型为32768。来源见 [VLMEvalKit配置](https://github.com/open-compass/VLMEvalKit/blob/main/vlmeval/config.py) 与 [Inspect生成配置](https://inspect.aisi.org.uk/reference/inspect_ai.model.html#generateconfig)。
 
+相同字段的限制范围也需核对。[百炼OpenAI兼容Chat文档](https://docs.modelstudio.console.alibabacloud.com/zh/model-studio/qwen-api-via-openai-chat-completions)说明，`max_tokens` 对部分模型限制思考与回答之和，对其它模型仅限制回答。`max_completion_tokens` 则限制总生成量。经过Venus路由时，还需核实其参数转换后再声明预算等价。
+
 ## 在 Codex 客户端会话中完成裁判
 
 当前会话可以读取本地原图、候选回答及标准检查点，输出逐点判断。该方式适合人工协作核验，判分过程通过结构化文件交接。

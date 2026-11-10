@@ -324,7 +324,7 @@ export async function createReportWorkbook(report) {
   const comparisonModels = sortModelsByScore(report.overall);
   const scope = `${report.scope === 'full' ? '全量评测' : '接口验证样本'}。每模型 ${report.selected_cases}/${report.dataset_size} 题。`;
   const context = {
-    整体对比: `${scope}成本按候选模型公开实时单价估算，裁判用量另存。`,
+    整体对比: `${scope}成本按当前候选请求的公开单价估算，补跑历史与裁判用量另存。`,
     场景对比: `${scope}各场景按该场景内题目得分平均，表头题数为本轮计划题数。`,
     能力对比: `${scope}能力按检查点汇总正确率，批注按完整正确批注数计算。`,
     用例明细: `${scope}每题百分制，检查点0/1。基础分为正确数/总数×100，再扣除额外修改分，最低0分。`,
@@ -385,9 +385,10 @@ export async function createReportWorkbook(report) {
   if (report.execution?.per_model_concurrency && report.execution.max_tokens) {
     const execution = report.execution;
     const failures = report.overall.reduce((sum, model) => sum + model.failed_calls, 0);
+    const retries = report.records.filter((record) => record.candidate?.retry).length;
     overall.getRange('B5').values = [
       [
-        `候选模型并发${execution.model_concurrency}，单模型并发${execution.per_model_concurrency}，输出上限${execution.max_tokens} token。候选失败${failures}题按0分计，缺少完整用量的成本为N/A。`,
+        `候选模型并发${execution.model_concurrency}，单模型并发${execution.per_model_concurrency}，输出上限${execution.max_tokens} token。候选失败${failures}题按0分计，缺少完整用量的成本为N/A。${retries ? `补跑${retries}题采用最新请求。` : ''}`,
       ],
     ];
   }

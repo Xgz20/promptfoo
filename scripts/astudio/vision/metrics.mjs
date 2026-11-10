@@ -153,7 +153,8 @@ export function buildReport({ manifest, config, pricing, records }) {
       capability: '正确检查点数 / 全部适用检查点数',
       annotation: '全部检查点正确的批注数 / 标准批注数',
     },
-    cost_method: 'Venus 实时 API 公开单价估算，包含接口计入的推理 token，裁判费用单独记录',
+    cost_method:
+      '当前候选请求按 Venus 公开单价分项估算，包含接口计入的推理 token，补跑历史与裁判用量另存',
     sources: {
       metrics: config.metrics_source,
       models: config.source,
