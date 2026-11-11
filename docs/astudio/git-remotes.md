@@ -11,11 +11,21 @@
 
 ## 提交身份
 
-当前用户已确认本项目的提交邮箱为 `xqzhou9@iflytek.com`。为该用户代为提交时，使用此邮箱，配置仅作用于本仓库；其他协作者使用本人在公司 Git 平台登记的邮箱。
+每位协作者使用本人在公司 Git 平台登记的邮箱。当前已确认的身份对应关系如下。
+
+| 协作者                 | 公司邮箱              |
+| ---------------------- | --------------------- |
+| `xgzhu6`               | `xgzhu6@iflytek.com`  |
+| 产品协作者 `doki-zhou` | `xqzhou9@iflytek.com` |
+
+首次提交前核对当前克隆中的姓名、邮箱及配置来源。仓库本地配置会覆盖全局配置；合入其他协作者的提交后，也需要按当前操作者的身份核对。代为提交时，使用本次会话已确认的操作者身份。
 
 ```bash
-git config --local user.email 'xqzhou9@iflytek.com'
-git config --local --get user.email
+git config --show-origin --get user.name
+git config --show-origin --get user.email
+
+# 在自己的克隆中填写本人的公司邮箱
+git config --local user.email '<本人在公司 Git 平台登记的邮箱>'
 ```
 
 公司仓库的远端 hook 会校验提交邮箱。若返回“未通过Commit邮箱校验”，检查待推送提交的作者和提交者邮箱；修改 `user.email` 只影响后续新提交，不会更改已有提交。
